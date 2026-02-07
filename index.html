@@ -8,23 +8,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700&family=Noto+Sans+Thai:wght@300;400;600;700&family=Noto+Sans+Hebrew:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <style>
     * { box-sizing: border-box; }
-    body { margin: 0; padding: 0; font-family: "Source Sans 3", "Noto Sans", sans-serif; background: linear-gradient(180deg, #0a1628 0%, #1a2d4a 50%, #0f1f35 100%); color: #e8eef5; line-height: 1.7; min-height: 100vh; }
+    body { margin: 0; padding: 0; font-family: "Source Sans 3", "Noto Sans", sans-serif; background: linear-gradient(180deg, #e8f2f9 0%, #f5f9fc 50%, #e0ecf5 100%); color: #1a2d4a; line-height: 1.7; min-height: 100vh; }
     body[data-lang="KO"] { font-family: "Noto Sans KR", "Source Sans 3", sans-serif; }
     body[data-lang="TH"] { font-family: "Noto Sans Thai", "Source Sans 3", sans-serif; }
     body[data-lang="VN"] { font-family: "Noto Sans", "Source Sans 3", sans-serif; }
     body[data-lang="IL"] { font-family: "Noto Sans Hebrew", "Source Sans 3", sans-serif; }
     
     :root {
-      --primary: #4a90d9;
-      --primary-light: #7eb3eb;
+      --primary: #2a6cb5;
+      --primary-light: #4a90d9;
       --accent: #c9a227;
       --accent-light: #e8d48a;
-      --dark: #0a1628;
-      --dark-card: rgba(255, 255, 255, 0.05);
-      --glass: rgba(255, 255, 255, 0.08);
-      --glass-border: rgba(255, 255, 255, 0.15);
-      --text: #e8eef5;
-      --text-muted: #a0b4c8;
+      --dark: #f8fbfe;
+      --dark-card: rgba(42, 108, 181, 0.08);
+      --glass: rgba(255, 255, 255, 0.75);
+      --glass-border: rgba(42, 108, 181, 0.2);
+      --text: #1a2d4a;
+      --text-muted: #5c7a95;
     }
 
     .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
@@ -34,7 +34,7 @@
       position: relative;
       padding: 2.5rem 1.5rem 3rem;
       text-align: center;
-      background: linear-gradient(135deg, rgba(74, 144, 217, 0.2) 0%, transparent 50%, rgba(201, 162, 39, 0.1) 100%);
+      background: linear-gradient(135deg, rgba(42, 108, 181, 0.1) 0%, transparent 50%, rgba(201, 162, 39, 0.08) 100%);
       border-bottom: 1px solid var(--glass-border);
       overflow: hidden;
     }
@@ -170,13 +170,14 @@
       background: var(--glass);
       backdrop-filter: blur(10px);
       border: 1px solid var(--glass-border);
+      box-shadow: 0 8px 24px rgba(42, 108, 181, 0.1);
       border-radius: 20px;
       padding: 2rem;
       transition: transform 0.3s, box-shadow 0.3s;
     }
     .glass-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 20px 40px rgba(42, 108, 181, 0.15);
     }
 
     .video-frame {
@@ -352,7 +353,7 @@
     .modal {
       position: fixed;
       inset: 0;
-      background: rgba(10, 22, 40, 0.9);
+      background: rgba(42, 108, 181, 0.15);
       backdrop-filter: blur(10px);
       display: none;
       align-items: center;
@@ -362,7 +363,7 @@
     }
     .modal.show { display: flex; }
     .modal-content {
-      background: linear-gradient(180deg, #1a2d4a, #0f1f35);
+      background: linear-gradient(180deg, #ffffff, #f5f9fc);
       border: 1px solid var(--glass-border);
       padding: 2.5rem;
       border-radius: 24px;
@@ -371,7 +372,7 @@
       max-height: 85vh;
       overflow-y: auto;
       position: relative;
-      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 25px 80px rgba(42, 108, 181, 0.2);
     }
     .modal-content h2 {
       font-family: "Playfair Display", serif;
@@ -458,7 +459,7 @@
       <h2 class="section-title" id="founders-greeting-title">From Our Founders</h2>
       <div class="founders-section">
         <div class="glass-card">
-          <iframe class="video-frame" src="https://www.youtube.com/embed/f6AO1APKpY8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="video-frame" src="https://www.youtube.com/embed/tNtFSz5BdWY" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="founder-message">
           <div class="placeholder-notice" id="placeholder-notice">📝 Placeholder content - to be updated with final Founders' Message</div>
