@@ -4,173 +4,1028 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>New Heart Newsletter — Winter 2026</title>
-
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700&family=Noto+Sans+Thai:wght@300;400;600;700&family=Noto+Sans+Hebrew:wght@300;400;600;700&display=swap" rel="stylesheet" />
-
   <style>
     * { box-sizing: border-box; }
-
+    body { margin: 0; padding: 0; font-family: "Source Sans 3", "Noto Sans", sans-serif; background: linear-gradient(180deg, #e8f2f9 0%, #f5f9fc 50%, #e0ecf5 100%); color: #1a2d4a; line-height: 1.7; min-height: 100vh; }
+    body[data-lang="KO"] { font-family: "Noto Sans KR", "Source Sans 3", sans-serif; }
+    body[data-lang="TH"] { font-family: "Noto Sans Thai", "Source Sans 3", sans-serif; }
+    body[data-lang="VN"] { font-family: "Noto Sans", "Source Sans 3", sans-serif; }
+    body[data-lang="IL"] { font-family: "Noto Sans Hebrew", "Source Sans 3", sans-serif; }
+    
     :root {
-      --primary: #4A5D4F;
-      --primary-light: #6F8474;
-      --accent: #9C6B3E;
-      --accent-light: #D6B58C;
-      --text: #2E2A26;
-      --text-muted: #6B645F;
-      --glass: rgba(246,242,236,0.85);
-      --glass-border: rgba(156,107,62,0.25);
+      --primary: #2a6cb5;
+      --primary-light: #4a90d9;
+      --accent: #c9a227;
+      --accent-light: #e8d48a;
+      --dark: #f8fbfe;
+      --dark-card: rgba(42, 108, 181, 0.08);
+      --glass: rgba(255, 255, 255, 0.75);
+      --glass-border: rgba(42, 108, 181, 0.2);
+      --text: #1a2d4a;
+      --text-muted: #5c7a95;
     }
 
-    body {
-      margin: 0;
-      font-family: "Source Sans 3", sans-serif;
-      background: linear-gradient(180deg,#F6F2EC,#FAF7F2,#EFE8DE);
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+    
+    /* Header */
+    .page-header {
+      position: relative;
+      padding: 2.5rem 1.5rem 3rem;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(42, 108, 181, 0.1) 0%, transparent 50%, rgba(201, 162, 39, 0.08) 100%);
+      border-bottom: 1px solid var(--glass-border);
+      overflow: hidden;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 20%, rgba(74, 144, 217, 0.15) 0%, transparent 40%),
+                  radial-gradient(circle at 70% 80%, rgba(201, 162, 39, 0.1) 0%, transparent 40%);
+      animation: float 20s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(-2%, 2%) rotate(1deg); }
+    }
+    
+    .language-buttons {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      font-size: 1.5rem;
+      z-index: 100;
+      display: flex;
+      gap: 8px;
+      background: var(--glass);
+      padding: 8px 12px;
+      border-radius: 30px;
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(10px);
+    }
+    .language-buttons span[data-lang] {
+      cursor: pointer;
+      opacity: 0.5;
+      transition: all 0.3s;
+      filter: grayscale(50%);
+    }
+    .language-buttons span[data-lang]:hover,
+    .language-buttons span[data-lang].active {
+      opacity: 1;
+      transform: scale(1.15);
+      filter: grayscale(0%);
+    }
+    .audio-toggle { cursor: pointer; opacity: 0.7; transition: all 0.2s; }
+    .audio-toggle:hover { opacity: 1; transform: scale(1.1); }
+
+    .logo-container {
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+    .newsletter-logo {
+      max-width: 320px;
+      width: 100%;
+      filter: brightness(1.1) drop-shadow(0 4px 20px rgba(74, 144, 217, 0.3));
+    }
+    .edition-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: var(--dark);
+      padding: 0.5rem 1.5rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+    }
+    
+    /* Verse Banner */
+    .verse-banner {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .verse-ref {
+      color: var(--accent);
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .verse-text {
+      font-family: "Playfair Display", serif;
+      font-size: 1.4rem;
+      font-style: italic;
       color: var(--text);
-      line-height: 1.7;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
     }
 
-    /* Cards / Buttons */
-    .glass { background: var(--glass); border:1px solid var(--glass-border); border-radius:20px; }
-    .btn { background: linear-gradient(135deg,var(--primary),var(--primary-light)); color:#fff; border:none; padding:.6rem 1.3rem; border-radius:30px; cursor:pointer; }
+    /* Section Titles */
+    .section-title {
+      font-family: "Playfair Display", serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      text-align: center;
+      margin: 0 0 2rem;
+      color: var(--text);
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      margin: 1rem auto 0;
+      border-radius: 2px;
+    }
+
+    /* Grid Layouts */
+    section { padding: 4rem 0; }
+    
+    .founders-section {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    @media (max-width: 850px) {
+      .founders-section { grid-template-columns: 1fr; }
+    }
+
+    /* Glass Cards */
+    .glass-card {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 8px 24px rgba(42, 108, 181, 0.1);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .glass-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(42, 108, 181, 0.15);
+    }
+
+    .video-frame {
+      width: 100%;
+      aspect-ratio: 9/16;
+      border-radius: 16px;
+      border: 1px solid var(--glass-border);
+      max-height: 600px;
+    }
+
+    .founder-message h3 {
+      color: var(--accent);
+      font-family: "Playfair Display", serif;
+      font-size: 1.5rem;
+      margin-top: 0;
+    }
+    .founder-message p { color: var(--text-muted); margin: 1rem 0; }
+    .founder-signature {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--glass-border);
+    }
+    .founder-signature .name { font-weight: 600; color: var(--text); }
+    .founder-signature .title { color: var(--accent); font-size: 0.9rem; }
+
+    /* Stories Grid - Horizontal Scroll */
+    .stories-section { overflow: hidden; }
+    .stories-scroll {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      padding: 1rem 0 2rem;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .stories-scroll::-webkit-scrollbar { height: 6px; }
+    .stories-scroll::-webkit-scrollbar-track { background: var(--glass); border-radius: 3px; }
+    .stories-scroll::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+
+    .story-card {
+      flex: 0 0 280px;
+      scroll-snap-align: start;
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .story-card:hover {
+      transform: scale(1.03);
+      border-color: var(--primary);
+      box-shadow: 0 0 30px rgba(74, 144, 217, 0.2);
+    }
+    .story-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary);
+      margin-bottom: 1rem;
+      transition: border-color 0.3s;
+    }
+    .story-card:hover .story-photo { border-color: var(--accent); }
+    .story-name {
+      font-family: "Playfair Display", serif;
+      font-size: 1.2rem;
+      margin: 0.5rem 0 0.3rem;
+      color: var(--text);
+    }
+    .story-role {
+      color: var(--primary-light);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 1.5rem;
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      font-family: inherit;
+      font-size: 0.9rem;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(74, 144, 217, 0.4);
+    }
+
+    /* Editorial & Donations Split */
+    .content-split {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 3rem;
+    }
+    @media (max-width: 900px) {
+      .content-split { grid-template-columns: 1fr; }
+    }
+
+    .editorial-content {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2.5rem;
+    }
+    .editorial-content h3 {
+      font-family: "Playfair Display", serif;
+      color: var(--accent);
+      font-size: 1.4rem;
+      margin-top: 1.5rem;
+    }
+    .editorial-content h3:first-child { margin-top: 0; }
+    .editorial-content p { color: var(--text-muted); }
+
+    .sidebar-card {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .sidebar-card h4 {
+      color: var(--accent);
+      margin: 0 0 1rem;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .sidebar-card p { color: var(--text-muted); font-size: 0.95rem; margin: 0.5rem 0; }
+    .sidebar-card ul { list-style: none; padding: 0; margin: 0; }
+    .sidebar-card li { padding: 0.5rem 0; color: var(--text-muted); border-bottom: 1px solid var(--glass-border); }
+    .sidebar-card li:last-child { border-bottom: none; }
+
+    .qr-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .qr-item { text-align: center; }
+    .qr-item img {
+      width: 100%;
+      max-width: 140px;
+      border-radius: 12px;
+      border: 2px solid var(--glass-border);
+    }
+    .qr-item span { display: block; margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-muted); }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      border-top: 1px solid var(--glass-border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    footer a { color: var(--primary-light); text-decoration: none; }
 
     /* Modals */
     .modal {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.4);
-      backdrop-filter: blur(8px);
+      background: rgba(42, 108, 181, 0.15);
+      backdrop-filter: blur(10px);
       display: none;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       z-index: 9999;
+      padding: 1.5rem;
     }
-
     .modal.show { display: flex; }
-
     .modal-content {
-      background: var(--glass);
-      border:1px solid var(--glass-border);
-      border-radius:24px;
-      padding:2.5rem;
-      max-width:750px;
-      width:100%;
-      max-height:85vh;
-      overflow-y:auto;
-      position:relative;
+      background: linear-gradient(180deg, #ffffff, #f5f9fc);
+      border: 1px solid var(--glass-border);
+      padding: 2.5rem;
+      border-radius: 24px;
+      max-width: 700px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 25px 80px rgba(42, 108, 181, 0.2);
     }
-
     .modal-content h2 {
       font-family: "Playfair Display", serif;
       color: var(--accent);
-      margin-top:0;
+      margin: 0 0 1.5rem;
+      font-size: 1.8rem;
     }
-
-    .modal-content p { margin-bottom:1.2rem; }
-
+    .modal-content p { color: var(--text-muted); margin-bottom: 1rem; line-height: 1.8; }
+    .modal-content strong { color: var(--text); }
     .close-modal {
-      position:absolute;
-      top:1rem;
-      right:1.5rem;
-      font-size:2rem;
-      background:none;
-      border:none;
-      cursor:pointer;
-      color:var(--text-muted);
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      font-size: 2rem;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .close-modal:hover { color: var(--text); }
+    .modal-speak-btn {
+      position: absolute;
+      top: 1rem;
+      right: 4rem;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .modal-speak-btn:hover { background: var(--primary); border-color: var(--primary); }
+    .modal-speak-btn.speaking { background: var(--accent); border-color: var(--accent); }
+
+    /* RTL Support */
+    [dir="rtl"] .modal-content { text-align: right; }
+    [dir="rtl"] .close-modal { right: auto; left: 1.5rem; }
+    [dir="rtl"] .modal-speak-btn { right: auto; left: 4rem; }
+
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+    
+    .placeholder-notice {
+      background: rgba(201, 162, 39, 0.1);
+      border: 1px solid var(--accent);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      color: var(--accent-light);
+      font-size: 0.9rem;
+      font-style: italic;
     }
   </style>
 </head>
-
 <body data-lang="EN">
+  
+  <header class="page-header">
+    <div class="language-buttons">
+      <span data-lang="EN" title="English" class="active">🇺🇸</span>
+      <span data-lang="KO" title="한국어">🇰🇷</span>
+      <span data-lang="VN" title="Tiếng Việt">🇻🇳</span>
+      <span data-lang="TH" title="ไทย">🇹🇭</span>
+      <span data-lang="IL" title="Hebrew">🇮🇱</span>
+      <span class="audio-toggle" id="audioToggleHeader" title="Listen">🔊</span>
+    </div>
+    <div class="logo-container">
+      <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 320 100%22%3E%3Cdefs%3E%3ClinearGradient id=%22g%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%221%22%3E%3Cstop offset=%220%25%22 stop-color=%22%232a6cb5%22/%3E%3Cstop offset=%22100%25%22 stop-color=%22%23c9a227%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Ctext x=%22160%22 y=%2255%22 text-anchor=%22middle%22 font-family=%22serif%22 font-size=%2240%22 font-weight=%22bold%22 fill=%22url(%23g)%22%3ENew Heart%3C/text%3E%3Ctext x=%22160%22 y=%2280%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2214%22 fill=%22%235c7a95%22%3EMinistry%3C/text%3E%3C/svg%3E" alt="New Heart" class="newsletter-logo" />
+    </div>
+    <div class="edition-badge" id="subtitle">Winter 2026 Edition</div>
+    <h1 class="visually-hidden" id="main-title">New Heart Newsletter</h1>
+  </header>
 
-<!-- =========================
-     STORY CARDS (example)
-     ========================= -->
-<button class="btn open-modal" data-target="#modal-carlos">Read Story</button>
-
-<!-- =========================
-     MODALS
-     ========================= -->
-<div class="modal" id="modal-carlos">
-  <div class="modal-content">
-    <button class="close-modal">×</button>
-    <h2>Carlos — The Visceral Gift of a Pure Heart</h2>
-    <div id="carlos-story-content"></div>
+  <div class="verse-banner">
+    <div class="verse-ref" id="verse-ref">Ezekiel 36:26</div>
+    <div class="verse-text" id="verse-text">"I will give you a new heart and put a new spirit in you; I will remove from you your heart of stone and give you a heart of flesh."</div>
   </div>
+
+  <section>
+    <div class="container">
+      <h2 class="section-title" id="founders-greeting-title">From Our Founders</h2>
+      <div class="founders-section">
+        <div class="glass-card">
+          <iframe class="video-frame" src="https://www.youtube.com/embed/tNtFSz5BdWY" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="founder-message">
+          <div class="placeholder-notice" id="placeholder-notice">📝 Placeholder content - to be updated with final Founders' Message</div>
+          <h3 id="founder-msg-title">A Season of New Beginnings</h3>
+          <div id="founder-msg">
+            <p>Dear New Heart Family,</p>
+            <p>As we enter this winter season, we are reminded that even in the coldest months, God is preparing new growth beneath the surface. This past year has been filled with testimonies of His transforming power across nations.</p>
+            <p>We are humbled to witness God's faithfulness in every retreat—from Thailand to Vietnam, Korea to the United States, and soon Israel. Each gathering reveals His heart to restore, renew, and give us fresh encounters with His love.</p>
+            <p>May this newsletter encourage your faith and remind you that you are part of a global family united by one New Heart.</p>
+          </div>
+          <div class="founder-signature">
+            <div class="name">Pastors Jason & Youngmi Cha</div>
+            <div class="title" id="founders-title">Founders & Global Directors</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stories-section">
+    <div class="container">
+      <h2 class="section-title" id="stories-title">Stories of Transformation</h2>
+      <div class="stories-scroll">
+        <div class="story-card">
+          <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 120 120%22%3E%3Cdefs%3E%3ClinearGradient id=%22bg%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%221%22%3E%3Cstop offset=%220%25%22 stop-color=%22%232a6cb5%22/%3E%3Cstop offset=%22100%25%22 stop-color=%22%234a90d9%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx=%2260%22 cy=%2260%22 r=%2260%22 fill=%22url(%23bg)%22/%3E%3Ctext x=%2260%22 y=%2270%22 text-anchor=%22middle%22 font-family=%22serif%22 font-size=%2240%22 fill=%22white%22%3EC%3C/text%3E%3C/svg%3E" alt="Carlos" class="story-photo" />
+          <h3 class="story-name">Carlos</h3>
+          <div class="story-role" id="carlos-role">The Visceral Gift of a Pure Heart</div>
+          <button class="btn btn-primary open-modal" data-target="#modal-carlos">Read Story</button>
+        </div>
+        <div class="story-card">
+          <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 120 120%22%3E%3Cdefs%3E%3ClinearGradient id=%22bg%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%221%22%3E%3Cstop offset=%220%25%22 stop-color=%22%23c9a227%22/%3E%3Cstop offset=%22100%25%22 stop-color=%22%23e8d48a%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx=%2260%22 cy=%2260%22 r=%2260%22 fill=%22url(%23bg)%22/%3E%3Ctext x=%2260%22 y=%2270%22 text-anchor=%22middle%22 font-family=%22serif%22 font-size=%2240%22 fill=%22white%22%3ET%3C/text%3E%3C/svg%3E" alt="Thao" class="story-photo" />
+          <h3 class="story-name">Thao Tho</h3>
+          <div class="story-role" id="thao-role">New Heart #15 Vietnam</div>
+          <button class="btn btn-primary open-modal" data-target="#modal-thao">Read Story</button>
+        </div>
+        <div class="story-card">
+          <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 120 120%22%3E%3Cdefs%3E%3ClinearGradient id=%22bg%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%221%22%3E%3Cstop offset=%220%25%22 stop-color=%22%23e87561%22/%3E%3Cstop offset=%22100%25%22 stop-color=%22%23f5a088%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx=%2260%22 cy=%2260%22 r=%2260%22 fill=%22url(%23bg)%22/%3E%3Ctext x=%2260%22 y=%2270%22 text-anchor=%22middle%22 font-family=%22serif%22 font-size=%2240%22 fill=%22white%22%3EC%3C/text%3E%3C/svg%3E" alt="Cathy" class="story-photo" />
+          <h3 class="story-name">Cathy</h3>
+          <div class="story-role" id="cathy-role">The Heart of a Servant</div>
+          <button class="btn btn-primary open-modal" data-target="#modal-cathy">Read Story</button>
+        </div>
+        <div class="story-card">
+          <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 120 120%22%3E%3Cdefs%3E%3ClinearGradient id=%22bg%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%221%22%3E%3Cstop offset=%220%25%22 stop-color=%22%236b8e3b%22/%3E%3Cstop offset=%22100%25%22 stop-color=%22%2398bf64%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx=%2260%22 cy=%2260%22 r=%2260%22 fill=%22url(%23bg)%22/%3E%3Ctext x=%2260%22 y=%2270%22 text-anchor=%22middle%22 font-family=%22serif%22 font-size=%2240%22 fill=%22white%22%3EE%3C/text%3E%3C/svg%3E" alt="Eun Young" class="story-photo" />
+          <h3 class="story-name" id="eunyoung-name">Eun Young Go</h3>
+          <div class="story-role" id="eunyoung-role">Team Member Korea/Vietnam/Thailand</div>
+          <button class="btn btn-primary open-modal" data-target="#modal-eunyoung">Read Story</button>
+        </div>
+        <div class="story-card">
+          <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 120 120%22%3E%3Cdefs%3E%3ClinearGradient id=%22bg%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%221%22%3E%3Cstop offset=%220%25%22 stop-color=%22%239b59b6%22/%3E%3Cstop offset=%22100%25%22 stop-color=%22%23c39bd3%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx=%2260%22 cy=%2260%22 r=%2260%22 fill=%22url(%23bg)%22/%3E%3Ctext x=%2260%22 y=%2270%22 text-anchor=%22middle%22 font-family=%22serif%22 font-size=%2240%22 fill=%22white%22%3EP%3C/text%3E%3C/svg%3E" alt="Pai" class="story-photo" />
+          <h3 class="story-name">Pai</h3>
+          <div class="story-role" id="pai-role">Miraculous Healing - Thailand #56</div>
+          <button class="btn btn-primary open-modal" data-target="#modal-pai">Read Story</button>
+        </div>
+        <div class="story-card">
+          <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 120 120%22%3E%3Cdefs%3E%3ClinearGradient id=%22bg%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%221%22%3E%3Cstop offset=%220%25%22 stop-color=%22%23e67e22%22/%3E%3Cstop offset=%22100%25%22 stop-color=%22%23f5b041%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx=%2260%22 cy=%2260%22 r=%2260%22 fill=%22url(%23bg)%22/%3E%3Ctext x=%2260%22 y=%2270%22 text-anchor=%22middle%22 font-family=%22serif%22 font-size=%2240%22 fill=%22white%22%3EG%3C/text%3E%3C/svg%3E" alt="Guk Hyun Lee" class="story-photo" />
+          <h3 class="story-name" id="gukhyun-name">Guk Hyun Lee</h3>
+          <div class="story-role" id="gukhyun-role">Learning Humility Through Service</div>
+          <button class="btn btn-primary open-modal" data-target="#modal-gukhyun">Read Story</button>
+        </div>
 </div>
+      </div>
+    </div>
+  </section>
 
-<div class="modal" id="modal-thao">
-  <div class="modal-content">
-    <button class="close-modal">×</button>
-    <h2>Thao Tho — New Heart #15 Vietnam</h2>
-    <div id="thao-story-content"></div>
-  </div>
-</div>
+  <section>
+    <div class="container">
+      <div class="content-split">
+        <div class="editorial-content">
+          <div class="placeholder-notice" id="placeholder-notice-editorial">📝 Placeholder content - to be updated with final Editorial</div>
+          <h2 class="section-title" style="text-align:left;margin-bottom:1.5rem;" id="editorial-section-title">Editorial</h2>
+          <div id="editorial-content">
+            <h3>The Ripple Effect of One New Heart</h3>
+            <p>Across five continents, we are witnessing an undeniable movement of God's Spirit. The testimonies in this newsletter represent just a fraction of the lives being transformed through New Heart Ministry. From Carlos's visceral encounter in the USA to Pai's miraculous healing in Thailand, each story carries the same DNA: God's promise to give us a heart of flesh.</p>
+            <h3>Beyond the Three Days</h3>
+            <p>The three-day New Heart retreat is not the destination—it's the catalyst. We are learning that true transformation happens in the "fourth day" and beyond, as we integrate the heart surgery God performed during the retreat into our daily lives. This newsletter exists to keep us connected, encouraged, and accountable to the new hearts we've received.</p>
+            <h3>Looking Forward to 2026</h3>
+            <p>With upcoming retreats in Israel, USA, Korea, and Vietnam, God is expanding this family even further. We invite you to pray, serve, give, and invite others to experience what you've experienced. The harvest is plentiful, and God is calling more laborers into His field.</p>
+          </div>
+        </div>
+        
+        <aside>
+          <div class="sidebar-card">
+            <h4>📅 <span id="upcoming-nh-title">Upcoming New Heart Retreats</span></h4>
+            <ul>
+              <li>🇮🇱 Israel — March 1-4, 2026</li>
+              <li>🇺🇸 USA — May 22-25, 2026</li>
+              <li>🇰🇷 South Korea — Oct 2-5, 2026</li>
+              <li>🇻🇳 Vietnam — TBA</li>
+            </ul>
+          </div>
+          
+          <div class="sidebar-card">
+            <h4>🤝 <span id="serve-title">Ways to Serve</span></h4>
+            <p id="serve-text">Pray for upcoming weekends. Serve on a team. Share your testimony. Support New Heart Kids. Invite someone who needs a new heart encounter.</p>
+          </div>
+          
+          <div class="sidebar-card">
+            <h4>💝 <span id="palanca-title">Support & Donations</span></h4>
+            <p id="qr-instruction">Use QR codes or bank info below:</p>
+            <div class="qr-grid">
+              <div class="qr-item">
+                <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 140 140%22%3E%3Crect width=%22140%22 height=%22140%22 rx=%2212%22 fill=%22%23f0f4f8%22 stroke=%22%232a6cb5%22 stroke-width=%222%22/%3E%3Ctext x=%2270%22 y=%2265%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2214%22 fill=%22%235c7a95%22%3EQR Code%3C/text%3E%3Ctext x=%2270%22 y=%2285%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2212%22 fill=%22%235c7a95%22%3EPlaceholder%3C/text%3E%3C/svg%3E" alt="USA QR" />
+                <span>🇺🇸 USA</span>
+              </div>
+              <div class="qr-item">
+                <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 140 140%22%3E%3Crect width=%22140%22 height=%22140%22 rx=%2212%22 fill=%22%23f0f4f8%22 stroke=%22%232a6cb5%22 stroke-width=%222%22/%3E%3Ctext x=%2270%22 y=%2265%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2214%22 fill=%22%235c7a95%22%3EQR Code%3C/text%3E%3Ctext x=%2270%22 y=%2285%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2212%22 fill=%22%235c7a95%22%3EPlaceholder%3C/text%3E%3C/svg%3E" alt="Thailand QR" />
+                <span>🇹🇭 Thailand</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
 
-<!-- Repeat for other stories -->
+  <footer>
+    <p id="footer-copyright">© 2026 New Heart Ministry. All rights reserved.</p>
+    <p id="footer-note">Please keep this newsletter within the New Heart family.</p>
+  </footer>
 
-<!-- =========================
-     TRANSLATIONS
-     ========================= -->
-<script>
-/* 🔴 PASTE YOUR FULL translations = { ... } OBJECT HERE
-   (UNCHANGED, EXACTLY AS YOU HAVE IT NOW) */
-</script>
+  <!-- MODALS -->
+  <div class="modal" id="modal-carlos"><div class="modal-content"><button class="close-modal">×</button><button class="modal-speak-btn">🔊</button><h2 id="carlos-modal-title">Carlos Messerschmidt — The Visceral Gift of a Pure Heart</h2><div id="carlos-story-content"></div></div></div>
+  <div class="modal" id="modal-thao"><div class="modal-content"><button class="close-modal">×</button><button class="modal-speak-btn">🔊</button><h2 id="thao-modal-title">Thao Tho — New Heart #15 Vietnam</h2><div id="thao-story-content"></div></div></div>
+  <div class="modal" id="modal-cathy"><div class="modal-content"><button class="close-modal">×</button><button class="modal-speak-btn">🔊</button><h2 id="cathy-modal-title">Cathy — The Heart of a Servant</h2><div id="cathy-story-content"></div></div></div>
+  <div class="modal" id="modal-eunyoung"><div class="modal-content"><button class="close-modal">×</button><button class="modal-speak-btn">🔊</button><h2 id="eunyoung-modal-title">Eun Young Go — Team Member</h2><div id="eunyoung-story-content"></div></div></div>
+  <div class="modal" id="modal-pai"><div class="modal-content"><button class="close-modal">×</button><button class="modal-speak-btn">🔊</button><h2 id="pai-modal-title">Pai — Miraculous Healing</h2><div id="pai-story-content"></div></div></div>
+  <div class="modal" id="modal-gukhyun"><div class="modal-content"><button class="close-modal">×</button><button class="modal-speak-btn">🔊</button><h2 id="gukhyun-modal-title">Guk Hyun Lee — Learning Humility Through Service</h2><div id="gukhyun-story-content"></div></div></div>
 
-<!-- =========================
-     MODAL LOGIC
-     ========================= -->
-<script>
-const buttons = document.querySelectorAll(".open-modal");
-const modals = document.querySelectorAll(".modal");
-const closes = document.querySelectorAll(".close-modal");
-
-const storyMap = {
-  "modal-carlos": "carlosStory",
-  "modal-thao": "thaoStory",
-  "modal-cathy": "cathyStory",
-  "modal-eunyoung": "eunyoungStory",
-  "modal-pai": "paiStory",
-  "modal-gukhyun": "gukhyunStory"
+  <script>
+// TRANSLATIONS - Complete for all 5 languages
+const translations = {
+  EN: {
+    mainTitle: "New Heart Newsletter",
+    subtitle: "Winter 2026 Edition",
+    foundersGreetingTitle: "From Our Founders",
+    foundersTitle: "Founders & Global Directors",
+    storiesTitle: "Stories of Transformation",
+    editorialSectionTitle: "Editorial",
+    serveTitle: "Ways to Serve",
+    palancaTitle: "Support & Donations",
+    upcomingNhTitle: "Upcoming New Heart Retreats",
+    qrInstruction: "Use QR codes or bank info below:",
+    footerCopyright: "© 2026 New Heart Ministry. All rights reserved.",
+    footerNote: "Please keep this newsletter within the New Heart family.",
+    verseRef: "Ezekiel 36:26",
+    verseText: '"I will give you a new heart and put a new spirit in you; I will remove from you your heart of stone and give you a heart of flesh."',
+    founderMsgTitle: "A Season of New Beginnings",
+    founderMsg: `<p>Dear New Heart Family,</p><p>As we enter this winter season, we are reminded that even in the coldest months, God is preparing new growth beneath the surface. This past year has been filled with testimonies of His transforming power across nations.</p><p>We are humbled to witness God's faithfulness in every retreat—from Thailand to Vietnam, Korea to the United States, and soon Israel. Each gathering reveals His heart to restore, renew, and give us fresh encounters with His love.</p><p>May this newsletter encourage your faith and remind you that you are part of a global family united by one New Heart.</p>`,
+    serveText: "Pray for upcoming weekends. Serve on a team. Share your testimony. Support New Heart Kids. Invite someone who needs a new heart encounter.",
+    readStory: "Read Story",
+    placeholderNotice: "📝 Placeholder content - to be updated with final Founders' Message",
+    placeholderNoticeEditorial: "📝 Placeholder content - to be updated with final Editorial",
+    
+    // Testimony roles
+    carlosRole: "The Visceral Gift of a Pure Heart",
+    thaoRole: "New Heart #15 Vietnam",
+    cathyRole: "The Heart of a Servant",
+    eunyoungName: "Eun Young Go",
+    eunyoungRole: "Team Member Korea/Vietnam/Thailand",
+    paiRole: "Miraculous Healing - Thailand #56",
+    
+    // Modal titles
+    carlosModalTitle: "Carlos Messerschmidt — The Visceral Gift of a Pure Heart",
+    thaoModalTitle: "Thao Tho — New Heart #15 Vietnam",
+    cathyModalTitle: "Cathy — The Heart of a Servant",
+    eunyoungModalTitle: "Eun Young Go — Team Member",
+    paiModalTitle: "Pai — Miraculous Healing",
+    
+    // Guk Hyun
+    gukhyunName: "Guk Hyun Lee",
+    gukhyunRole: "Learning Humility Through Service",
+    gukhyunModalTitle: "Guk Hyun Lee — Learning Humility Through Service",
+    gukhyunStory: `<p><strong>"The Son of Man came not to be served but to serve..." — Mark 10:45</strong></p><p>In the fall of 2024, I entered New Heart without really knowing what the program was about, at my wife's suggestion, bringing only the bare minimum. As a new believer baptized less than a year ago, I shared a room with two pastors and witnessed up close how faith is revealed through life rather than words. Their attitude and service were my first lesson in learning what faith truly means through experience, and that experience remained deep in my heart for a long time.</p><p>Having been in a position of receiving service, I naturally felt compelled to stand again in that place as someone who serves. The grace I received was too clear. However, at the same time, there was fear. I felt my faith was still small, and I worried about becoming a burden to other team members. Nevertheless, remembering the inspiration and grace I had received, I returned to New Heart hoping that love would be conveyed to other candidates as well.</p><p>When I was a participant, I felt Jesus through the team members who served. I saw His love in their quiet movements without drawing attention to themselves. Conversely, looking at the candidates while serving as a team member, I saw another face of Jesus. I saw the Lord still at work in their opening hearts, receiving grace, and praising.</p><p>At this New Heart, I served on the coordination team, helping with the overall flow of the program. It was work managing schedules and logistics, taking responsibility for invisible parts. The most rewarding moments were when the candidates' expressions changed. Every time I saw hearts that had been hardened soften and become free in worship, I felt that all this labor was never in vain.</p><p>Of course, it wasn't easy. Being my first time serving, I moved at an overpace with excessive enthusiasm, and when my physical strength declined, my heart collapsed along with it. Each time, I recalled the moments of gratitude and grace I had received in the past, and the faces of candidates experiencing grace right before me lifted me up again. Watching God's hand guide everything smoothly despite inadequate preparation and unexpected situations, I clearly felt that the Lord is still alive.</p><p>Through this service, God gave me a clear message. It wasn't about years of faith or depth of spirituality, but the fact that God uses those who willingly humble themselves. The truth that the highest One served in the lowest place planted a completely new value system in me, who had lived hoping to rise high in the world. It was a time to learn through my body that being lowly is not shabby at all, but rather the most beautiful place.</p><p>What's interesting is that I didn't feel much change in the moment of serving. I thought I was serving out of grace, but in fact, my "desire to do well" and "my own zeal" were ahead. As time passed and I meditated, I realized how worldly last year's service had been. I easily became exhausted because I tried to please the Lord with my own righteousness and effort.</p><p>In that realization, I learned again what true worship and ministry are. My position, environment, and circumstances had nothing to do with the essence of service. True worship was dying to myself in the world and turning only toward the Lord. Even short moments of whole-hearted praise and prayer became times of even deeper grace.</p><p>The foot washing ceremony especially remains long in my memory. In the tears shed as family, team members, and candidates washed each other's feet, I saw how the Lord loved His disciples and how that love should continue into further service. God's way of healing wounded hearts and giving strength to serve again was always love.</p><p>If I were to express this service in one word, it would be "prostration." I learned that the grace of serving is far greater than the grace received. Even if it seems small in the world, if it's something the Lord is pleased with, that is enough.</p><p>I am still someone who hasn't been walking the path of faith for very long. Sometimes it's slow and I become impatient. However, the Lord tells me not to overdo it, that He will bear the yoke together with His beloved son. I believe this journey of service is ultimately not a path I walk alone, but a path I walk with the Lord.</p><p>I offer gratitude and praise to the Lord who called me to this place again. I hope to continue serving willingly with humility in all the places of ministry the Lord will lead.</p>`,
+    
+    // Editorial
+    editorialContent: `<h3>The Ripple Effect of One New Heart</h3><p>Across five continents, we are witnessing an undeniable movement of God's Spirit. The testimonies in this newsletter represent just a fraction of the lives being transformed through New Heart Ministry. From Carlos's visceral encounter in the USA to Pai's miraculous healing in Thailand, each story carries the same DNA: God's promise to give us a heart of flesh.</p><h3>Beyond the Three Days</h3><p>The three-day New Heart retreat is not the destination—it's the catalyst. We are learning that true transformation happens in the "fourth day" and beyond, as we integrate the heart surgery God performed during the retreat into our daily lives. This newsletter exists to keep us connected, encouraged, and accountable to the new hearts we've received.</p><h3>Looking Forward to 2026</h3><p>With upcoming retreats in Israel, USA, Korea, and Vietnam, God is expanding this family even further. We invite you to pray, serve, give, and invite others to experience what you've experienced. The harvest is plentiful, and God is calling more laborers into His field.</p>`,
+    
+    // Carlos testimony
+    carlosStory: `<p>Before the transformative experience of New Heart #48, my spiritual life was characterized by active involvement in church, participation in small groups, and various ministries. Yet, as the new year approached, a deeper yearning took root. At the Christmas 2023 service, we were prompted to select two words to articulate our intention for the coming year. My choice was a simple, yet profound, aspiration: "PURE HEART." Little did I know how literally God would answer that prayer.</p><p>When I was chosen to attend the New Heart retreat, I approached it with a clear, focused intention: "I want to experience the Holy Spirit purifying my heart so that I feel a deep peace and guidance for my daily Christian living by the Holy Spirit." The reality of the retreat far exceeded this expectation. What transpired was not merely an emotional experience, but a visceral, tangible encounter with the divine. I was profoundly blessed with the love of God's heart. In a moment of absolute clarity, I felt my heart taken out, placed into God's own heart, and then returned to me. It was an experience so real, so palpable, that it changed me forever. God breathed His heart into me, and I had a distinct, felt sense that the Holy Spirit was gifting me with a new heart.</p><p>This spiritual surgery was facilitated by a powerful environment of worship and prayer. The worship team served as my guide, their songs and words on the screen stirring deep emotion. I began to cry, surrendering to overwhelming feelings of joy and gratitude. Amidst this surrender, a clear, unmistakable voice echoed in my spirit: "You are mine and obey now." The words shook me to my core. Simultaneously, the dedicated prayer team continued the work, their intercession—especially when a teammate and others prayed over me—shaking the ground beneath me. The walls I had built up throughout my life began to crumble, creating space for the Holy Spirit to move and dwell more freely. It felt like taking my very first breath. The foot washing, a sacred ritual, invited a further letting go of strongholds. I broke down completely under the loving prayer of a team member, whose hands on my shoulders conveyed a gift of immense grace. On the final day, the chase continued; more prayer, more worship, with two teammates continuing to pursue, find, and pray for me. For this unwavering, unconditional love from all the servants and team members, my gratitude remains boundless.</p><p>What makes the New Heart retreat so unique is its artistry in evoking the presence of the Holy Spirit, allowing Him complete freedom to move and transform as He wills. This atmosphere is intentionally created through acts of worship and the powerful practice of praying in tongues. My fourth day at the retreat was a seamless continuation of serving and seeking our Lord, a choice to fully allow the Spirit to guide me.</p><p>The gift of a pure heart, the deep peace, and the visceral encounter at New Heart #48 were not the end of the journey, but a profound commencement. Since that experience, I have served as a team member in several New Heart settings in both the USA and Vietnam. I now feel so blessed, so anchored in peace. Thank you, Lord, for the gift of a new, pure heart.</p>`,
+    
+    // Thao testimony
+    thaoStory: `<p>Entering the New Heart Camp, I think it is likened to step on a faith boat, beginning a journey of discovery that was incredibly new and fascinating. This journey took me from one surprise to another, from one experience to another and really touched my emotions, my spirit, and my soul.</p><p>When I agreed to participate in this camp, I simply wanted to spend time resting and took advantage of the opportunity to learn new things. This is the first time in my life when I joined a camp, I had no idea where I would be staying or what I would be doing during four days. My head was full of thoughts and imagination.</p><p>I remembered I was one of the first people to get into the "Welcome" room, I was really surprised. It was a real "wow" moment to be welcomed with songs, loud applause, and the warm smiles of people I first met.</p><p>I was deeply touched when I listened to the testimony - Rollo 3 "Identity". It reminded me of myself when I was a tenth-grade student - a teenager who suffered deeply from emotional stress because of some friends and adults' jokes about my appearance. I started to withdraw, shut down and had many doubts and questions with God. Thank God, He helped me realize "I am who I am for a reason. I am part of an intricate plan. I am a precious and perfect unique design, Called God's special man or woman. I am who I am for a reason. I've been formed by the Master's rod. I am who I am, beloved, Because there is a God!" Once again, this truth was revived in me through the New Heart Camp. I know that I am still alive on this earth to live for the glory of God, to live for showing the power of God in my own life, and to live to tell others that You and I are God's masterpieces.</p><p>Another deep impression was the moment I moved from the Holy Communion room into the Rollo Room to prepare for foot washing. Like a child, I burst into uncontrollable tears. I cried because I wondered who I was that brothers and sisters would be humble themselves to wash my feet. I cried as I remembered God's love for an undeserved person like me. I cried as I thought of Christ's ultimate humility. He is God, He was willing to wash His disciples' feet and to serve others. Therefore, as a disciple of Jesus, I also must follow His example - living humbly, serving God and everyone, regardless of whatever position or role I may hold in the church.</p><p>Indeed, this was not by chance or coincidence. Everything was part of God's great plan when He brought me to the New Heart Camp. Thank God, thank the coordinating team, and also thank every brother and sister who brought me experience about the servants' dedication, attentiveness, thoughtfulness, warmth through every program of the camp. The gifts from the Balanca Team, the banquet tables from the Refreshment Team and the Decor Team were always surprising, impressive, creative, skillful, and filled with deep and meaningful messages.</p><p>I also have never forgot the feeling of receiving encouragement letters when I returned to my room. In today's busy digital world, I truly cherish handwritten letters like this, and I got so emotioned reading these loving wishes.</p><p>Last but not least, I spent each day of the camp with so many emotional moments. I deeply experienced healing and returned home with spiritual and mental refreshment. I look forward to meeting New Heart many, many more times.</p>`,
+    
+    // Cathy testimony
+    cathyStory: `<p><strong>"How good and pleasant it is when God's people live together in unity!" — Psalm 133:1</strong></p><p><strong>A Journey of Renewal</strong></p><p>My connection with New Heart began in 2022 at Ke Ga, PhanThiết. Back then, I was a participant whose soul was weary, and I remember how God used that camp to refresh my relationship with Him. I was captivated by the environment—the thoughtful gifts and the way the Team Members served with such genuine love. This year, in 2025, I returned to New Heart Nha Trang with a new calling: to serve on the Auxiliary Team.</p><p><strong>The Power of One Spirit</strong></p><p>The transition from being served to serving others opened my eyes to a beautiful truth. I was struck by the spirit of obedience and the "all-in" dedication of every team member. Although many of us had just met, we worked with a level of synchronicity that usually takes years to build. I realized that when Christ is our common center, there are no strangers. We became a family overnight, driven by a single goal: the spiritual well-being of the candidates.</p><p><strong>Faith Amidst the Pressure</strong></p><p>Service, however, is not without its trials. On the very first night, the pressure mounted when three candidates reported falling ill. One had a medical history so serious it previously required emergency hospitalization. Though I moved quickly to provide medication and care, my heart was racing with anxiety. I had to lean entirely on God. Seeing all three of them fully recovered and participating joyfully the next day was a beautiful reminder that He is our ultimate Healer.</p><p>Another moment that tested my resolve was when a candidate fiercely refused to hand over his phone to the Rollo room. After we stepped in to offer a supportive solution and successfully collected the device, I worried the experience might leave a negative mark on his retreat. I was wrong. Later, that same person testified with tears of joy, thanking God for those "silent days" away from the digital world. Seeing him cherish that quiet time with the Lord was a breakthrough moment for me.</p><p><strong>A Heart Refined</strong></p><p>Through New Heart 2025, I witnessed God's transformative hand touching everyone—candidates and team members alike—in unique and sweet ways. This experience has deepened my commitment to service. I am no longer just a recipient of grace; I am a vessel for it.</p><p>I wholeheartedly recommend New Heart to my friends and anyone seeking a fresh encounter with the Creator. You will not only see God; you will see Him working through the hands and hearts of others. My only prayer now is that I may continue to have the opportunity to serve Him in many more camps to come.</p>`,
+    
+    // Eun Young testimony
+    eunyoungStory: `<p>Hello. I am Deaconess Eun Young Go, who joyfully served in Vietnam. The reason I started attending this church was thanks to my business client. Whenever we met, he kept telling me I should come to church. I finally came with the mindset that "this would be the last time," but I really liked our pastor and his wife. So I decided, "I should attend this church."</p><p>I had attended church consistently since I was young, but to be honest, I stopped going regularly while working in society. I kept taking breaks, and the world seemed so good that I even went to fortune-tellers. I did so many foolish things.</p><p>When I started coming back to church, the pastor told me I had to go to New Heart. Honestly, I really didn't want to go. Three nights and four days... But I felt like it wouldn't end unless I went. So with the mindset of "let's just get this over with quickly," I went to New Heart. But oh my goodness, you all know what happened next, right? I don't even need to explain.</p><p>So I came back determined to repay everything I had received all at once by diligently serving New Heart from now on. But as I served New Heart, I found myself receiving even more grace. I regret most going to fortune-tellers all those years. The fortune-tellers had so many superstitions—do this and your business will go well, do that and your business will prosper. I broke free from all these superstitions, and now I'm happy even without doing business.</p><p>Now I just want to serve God alone. In the end, there's really not much that's fun. I used to like so many things, but now I'm just so happy! From now on, I want to show you my dedicated service, and I came out wanting to show you even more dedicated service next year as well. Thank you.</p>`,
+    
+    // Pai testimony
+    paiStory: `<p>Hello, my name is Pai. Before attending the New Heart Retreat, my external life was quite chaotic. I had to take care of my children and husband, alongside working outside the home. Plus, I had several responsibilities serving in the church. Additionally, I was taking extra English classes on Monday and Thursday evenings and had to prepare for an exam on January 24th, just before going to the New Heart camp. Even though my external life seemed very busy, my inner heart was full of joy and expectation. I prepared my heart greatly for this retreat and had great hope of encountering God through this event. I expected that God would heal the health problems I was facing. I also wanted to know if what I was doing—my past service to God—was the right path and if God was pleased, because I truly desired to live my life in His way.</p><p>Before joining the New Heart Retreat, I went for a health check-up. Back in 2024, I was diagnosed with abnormal cells on my cervix and had been following up with the doctor every six months, using the hot cautery method. The first treatment was in early 2025, but the abnormal cells remained, and HPV was also detected. The doctor performed the second treatment, using a wider area of hot cautery. Therefore, I had great expectations that during this New Heart Retreat, God would completely heal this disease.</p><p>Throughout my time at the retreat, I felt the warmth and love from the team members and fellow participants. Even though everyone came from different places and backgrounds, they shared one heart: the heart of Jesus Christ. Coming to this New Heart event, I worshiped God with tears, with a heart mindful of His grace, and with a truly surrendered heart. God revealed many things in the deepest parts of my life, leading me to confess my sins and start anew with Him.</p><p>During the small group sharing and prayer time, I clearly gained more confidence in God. I received new gifts, spoke in tongues I had never spoken before, and clearly heard the voice of God saying, "I have healed you. You are well." At that moment, my body was very hot, my heart was racing, and I bowed down to Him many times. On the third night of the camp, while sleeping, I dreamed of the light of Jesus entering my life—a very bright light. And on the fourth night after the event ended, I dreamed of Pastor Mayuree telling me, "God has cleansed you." The pastor spoke with a smiling face, and the atmosphere in the dream was full of joy.</p><p>Upon returning to Singapore, I still had to face the same environment and the same problems, but one thing was not the same: "My heart." I have a new heart and will not allow those circumstances to consume my heart anymore. I am closer to God, pray to Him regularly, and have not missed His Word even for a single day.</p><p><strong>Thank God immensely, because on the third Monday after returning, the health check-up results reported that no abnormal cells were found, and no HPV was detected anymore.</strong> It is an immense miracle. I thank God for this healing, which has given me a deeper experience with Him. I told myself that everything I received from God this time, I will use to help, proclaim, and encourage the Peace members in Singapore, as well as many other people who are in need of hope and help. I ask to serve God with humility, without boasting, and with the utmost gratitude to God. May God receive the highest glory.</p>`
+  },
+  
+  KO: {
+    mainTitle: "뉴하트 뉴스레터",
+    subtitle: "2026년 겨울호",
+    foundersGreetingTitle: "설립자 인사",
+    foundersTitle: "설립자 & 글로벌 디렉터",
+    storiesTitle: "변화의 이야기",
+    editorialSectionTitle: "에디토리얼",
+    serveTitle: "섬길 수 있는 방법",
+    palancaTitle: "후원 & 헌금",
+    upcomingNhTitle: "다가오는 뉴하트 리트릿",
+    qrInstruction: "아래 QR 코드 또는 계좌 정보를 사용하세요:",
+    footerCopyright: "© 2026 New Heart Ministry. All rights reserved.",
+    footerNote: "이 뉴스레터를 뉴하트 가족 안에서만 공유해 주세요.",
+    verseRef: "에스겔 36:26",
+    verseText: '"또 새 마음을 너희에게 주고 새 영을 너희 속에 두고 너희 육신에서 굳은 마음을 제거하고 부드러운 마음을 줄 것이며"',
+    founderMsgTitle: "새로운 시작의 계절",
+    founderMsg: `<p>사랑하는 뉴하트 가족 여러분,</p><p>이번 겨울철을 맞이하며 가장 추운 달에도 하나님께서는 표면 아래에서 새로운 성장을 준비하고 계심을 기억합니다. 지난 한 해는 여러 나라에 걸쳐 그분의 변화시키는 능력에 대한 간증으로 가득했습니다.</p><p>태국에서 베트남, 한국에서 미국, 그리고 곧 이스라엘까지 모든 리트릿에서 하나님의 신실하심을 목격하게 되어 겸손해집니다. 각 모임은 회복하고, 새롭게 하며, 그분의 사랑과의 신선한 만남을 주시려는 그분의 마음을 드러냅니다.</p><p>이 뉴스레터가 여러분의 믿음을 격려하고 하나의 새 마음으로 연합된 글로벌 가족의 일부임을 상기시켜 주기를 바랍니다.</p>`,
+    serveText: "다가오는 주말을 위해 기도해 주세요. 팀에서 섬기세요. 간증을 나누세요. 뉴하트 키즈를 후원하세요. 새 마음의 만남이 필요한 누군가를 초대하세요.",
+    readStory: "간증 읽기",
+    placeholderNotice: "📝 임시 내용 - 최종 설립자 메시지로 업데이트될 예정",
+    placeholderNoticeEditorial: "📝 임시 내용 - 최종 에디토리얼로 업데이트될 예정",
+    
+    carlosRole: "순수한 마음의 생생한 선물",
+    thaoRole: "뉴하트 #15 베트남",
+    cathyRole: "섬기는 자의 마음",
+    eunyoungName: "고은영",
+    eunyoungRole: "팀 멤버 한국/베트남/태국",
+    paiRole: "기적적인 치유 - 태국 #56",
+    
+    carlosModalTitle: "카를로스 메서슈미트 — 순수한 마음의 생생한 선물",
+    thaoModalTitle: "타오 토 — 뉴하트 #15 베트남",
+    cathyModalTitle: "캐시 — 섬기는 자의 마음",
+    eunyoungModalTitle: "고은영 — 팀 멤버",
+    paiModalTitle: "파이 — 기적적인 치유",
+    
+    editorialContent: `<h3>하나의 새 마음의 파급 효과</h3><p>5개 대륙에 걸쳐 우리는 하나님의 영의 부인할 수 없는 움직임을 목격하고 있습니다. 이 뉴스레터의 간증들은 뉴하트 사역을 통해 변화되고 있는 삶의 극히 일부만을 나타냅니다. 미국에서의 카를로스의 생생한 만남부터 태국에서의 파이의 기적적인 치유까지, 각 이야기는 같은 DNA를 담고 있습니다: 우리에게 살아있는 마음을 주시겠다는 하나님의 약속.</p><h3>3일을 넘어서</h3><p>3일간의 뉴하트 리트릿은 목적지가 아니라 촉매제입니다. 진정한 변화는 "네 번째 날"과 그 이후에 일어나며, 리트릿 동안 하나님께서 행하신 심장 수술을 우리의 일상 생활에 통합할 때 일어납니다. 이 뉴스레터는 우리가 받은 새 마음에 대해 연결되고, 격려받고, 책임감을 갖도록 존재합니다.</p><h3>2026년을 기대하며</h3><p>이스라엘, 미국, 한국, 베트남에서 다가오는 리트릿과 함께 하나님은 이 가족을 더욱 확장하고 계십니다. 우리는 여러분이 기도하고, 섬기고, 주고, 다른 사람들을 초대하여 여러분이 경험한 것을 경험하도록 초대합니다. 추수할 것은 많고 하나님은 그분의 밭으로 더 많은 일꾼을 부르고 계십니다.</p>`,
+    
+    carlosStory: `<p>뉴하트 #48의 변화의 경험 이전에, 제 영적 생활은 교회 활동, 소그룹 참여, 다양한 사역으로 특징지어졌습니다. 그러나 새해가 다가오면서 더 깊은 갈망이 뿌리를 내렸습니다. 2023년 크리스마스 예배에서 우리는 다가오는 해에 대한 의도를 표현할 두 단어를 선택하라는 요청을 받았습니다. 제 선택은 단순하면서도 깊은 열망이었습니다: "순수한 마음." 하나님께서 그 기도에 얼마나 문자 그대로 응답하실지 거의 몰랐습니다.</p><p>뉴하트 리트릿에 참석하도록 선택되었을 때, 저는 명확하고 집중된 의도로 접근했습니다: "성령께서 제 마음을 정화하셔서 성령에 의한 일상적인 기독교 생활을 위한 깊은 평화와 인도를 느끼고 싶습니다." 리트릿의 현실은 이 기대를 훨씬 초과했습니다. 일어난 일은 단순히 감정적인 경험이 아니라 신과의 생생하고 실재하는 만남이었습니다. 저는 하나님 마음의 사랑으로 깊이 축복받았습니다. 절대적인 명료함의 순간에 제 마음이 빼내어져 하나님 자신의 마음에 놓여진 다음 제게 돌아오는 것을 느꼈습니다. 그것은 너무나 실제적이고 만질 수 있는 경험이어서 저를 영원히 변화시켰습니다. 하나님께서 그분의 마음을 제게 불어넣으셨고, 성령께서 제게 새 마음을 선물하고 계신다는 뚜렷하고 느껴지는 감각이 있었습니다.</p><p>이 영적 수술은 예배와 기도의 강력한 환경에 의해 촉진되었습니다. 예배 팀은 제 안내자 역할을 했으며, 그들의 노래와 화면의 가사가 깊은 감정을 일깨웠습니다. 저는 압도적인 기쁨과 감사의 감정에 항복하며 울기 시작했습니다. 이 항복 속에서 명확하고 분명한 목소리가 제 영에 울렸습니다: "너는 내 것이니 이제 순종하라." 그 말씀이 제 핵심을 흔들었습니다. 동시에 헌신적인 기도 팀이 일을 계속했고, 그들의 중보—특히 팀원과 다른 사람들이 저를 위해 기도할 때—제 발 아래의 땅을 흔들었습니다. 제가 평생 쌓아온 벽이 무너지기 시작하여 성령께서 더 자유롭게 움직이고 거하실 공간을 만들었습니다. 마치 제 첫 숨을 쉬는 것 같았습니다. 발씻김이라는 거룩한 의식은 요새를 더욱 내려놓도록 초대했습니다. 저는 제 어깨에 손을 얹은 팀원의 사랑하는 기도 아래 완전히 무너졌으며, 그의 손은 엄청난 은혜의 선물을 전달했습니다. 마지막 날에도 추적은 계속되었습니다. 더 많은 기도, 더 많은 예배, 두 팀원이 계속해서 저를 추구하고, 찾고, 기도했습니다. 모든 섬기는 자들과 팀원들로부터 받은 이 흔들리지 않는 무조건적인 사랑에 대해 제 감사는 한없습니다.</p><p>뉴하트 리트릿을 독특하게 만드는 것은 성령의 임재를 불러일으키는 예술성이며, 그분이 원하시는 대로 움직이고 변화시킬 완전한 자유를 허락하는 것입니다. 이 분위기는 예배 행위와 방언으로 기도하는 강력한 실천을 통해 의도적으로 만들어집니다. 리트릿에서의 제 네 번째 날은 우리 주님을 섬기고 찾는 완벽한 연속이었으며, 성령께서 저를 온전히 인도하도록 허락하는 선택이었습니다.</p><p>순수한 마음의 선물, 깊은 평화, 그리고 뉴하트 #48에서의 생생한 만남은 여정의 끝이 아니라 깊은 시작이었습니다. 그 경험 이후로 저는 미국과 베트남의 여러 뉴하트 환경에서 팀원으로 섬겼습니다. 이제 저는 매우 축복받았고 평화에 굳게 뿌리내린 느낌이 듭니다. 새롭고 순수한 마음의 선물을 주신 주님께 감사드립니다.</p>`,
+    
+    thaoStory: `<p>뉴하트 캠프에 들어가는 것은 마치 믿음의 배에 올라타는 것 같았고, 믿을 수 없을 정도로 새롭고 매혹적인 발견의 여정을 시작하는 것이었습니다. 이 여정은 저를 한 놀라움에서 다른 놀라움으로, 한 경험에서 다른 경험으로 데려갔고 제 감정, 영혼, 그리고 혼에 정말로 닿았습니다.</p><p>이 캠프에 참여하기로 동의했을 때, 저는 단순히 휴식하며 시간을 보내고 새로운 것을 배울 기회를 활용하고 싶었습니다. 제 인생에서 캠프에 참가했을 때 처음으로, 4일 동안 어디에 머물게 될지 또는 무엇을 하게 될지 전혀 몰랐습니다. 제 머리는 생각과 상상으로 가득했습니다.</p><p>저는 "환영" 방에 들어간 첫 번째 사람들 중 한 명이었던 것을 기억하며, 정말 놀랐습니다. 노래, 큰 박수, 그리고 처음 만난 사람들의 따뜻한 미소로 환영받는 것은 진짜 "와우" 순간이었습니다.</p><p>간증 - 롤로 3 "정체성"을 들었을 때 깊은 감동을 받았습니다. 그것은 10학년 학생이었던 저 자신을 상기시켰습니다 - 몇몇 친구들과 어른들의 제 외모에 대한 농담 때문에 정서적 스트레스로 깊이 고통받던 십대. 저는 물러나고, 닫히고, 하나님과 많은 의심과 질문을 갖기 시작했습니다. 하나님께 감사드리며, 그분은 제가 깨닫도록 도와주셨습니다 "나는 이유가 있어서 나입니다. 나는 복잡한 계획의 일부입니다. 나는 귀중하고 완벽한 독특한 디자인, 하나님의 특별한 남자 또는 여자로 불립니다. 나는 이유가 있어서 나입니다. 나는 주님의 막대기로 형성되었습니다. 나는 나입니다, 사랑받는, 하나님이 계시기 때문에!" 다시 한 번, 이 진리가 뉴하트 캠프를 통해 제 안에서 되살아났습니다. 저는 이 땅에서 여전히 살아있는 것이 하나님의 영광을 위해 살기 위해서이고, 제 자신의 삶에서 하나님의 능력을 보여주기 위해 살기 위해서이며, 당신과 제가 하나님의 걸작임을 다른 사람들에게 말하기 위해 산다는 것을 압니다.</p><p>또 다른 깊은 인상은 성찬식 방에서 롤로 방으로 이동하여 발씻김을 준비하는 순간이었습니다. 어린아이처럼, 저는 통제할 수 없는 눈물을 터뜨렸습니다. 형제자매들이 겸손하게 제 발을 씻기 위해 자신을 낮추는데 제가 누구인지 궁금해서 울었습니다. 저 같은 자격 없는 사람에 대한 하나님의 사랑을 기억하며 울었습니다. 그리스도의 궁극적인 겸손을 생각하며 울었습니다. 그분은 하나님이시지만, 제자들의 발을 씻기고 다른 사람들을 섬기기를 원하셨습니다. 따라서 예수님의 제자로서 저도 그분의 모범을 따라야 합니다 - 겸손하게 살며, 교회에서 어떤 위치나 역할을 맡고 있든 상관없이 하나님과 모든 사람을 섬기는 것입니다.</p><p>확실히, 이것은 우연이나 우연의 일치가 아니었습니다. 모든 것은 하나님께서 저를 뉴하트 캠프로 데려오셨을 때 하나님의 위대한 계획의 일부였습니다. 하나님께 감사드리고, 조정 팀에게 감사드리며, 캠프의 모든 프로그램을 통해 섬기는 자들의 헌신, 세심함, 사려 깊음, 따뜻함에 대한 경험을 가져다준 모든 형제자매들에게도 감사드립니다. 발란카 팀의 선물, 다과 팀과 장식 팀의 연회 테이블은 항상 놀랍고, 인상적이고, 창의적이고, 능숙하며, 깊고 의미 있는 메시지로 가득했습니다.</p><p>또한 방으로 돌아왔을 때 격려 편지를 받는 느낌을 결코 잊지 못했습니다. 오늘날의 바쁜 디지털 세계에서, 저는 이런 손으로 쓴 편지를 진심으로 소중히 여기며, 이 사랑스러운 소원들을 읽으며 매우 감동받았습니다.</p><p>마지막으로, 저는 캠프의 매일을 너무나 많은 감정적인 순간들과 함께 보냈습니다. 저는 깊은 치유를 경험했고 영적이고 정신적인 신선함으로 집에 돌아왔습니다. 저는 뉴하트를 더 많이, 더 많이 만나기를 고대합니다.</p>`,
+    
+    cathyStory: `<p><strong>"보라 형제가 연합하여 동거함이 어찌 그리 선하고 아름다운고!" — 시편 133:1</strong></p><p><strong>갱신의 여정</strong></p><p>뉴하트와의 제 인연은 2022년 판티엣의 케 가에서 시작되었습니다. 그 당시 저는 영혼이 지친 참가자였고, 하나님께서 그 캠프를 사용하여 그분과의 관계를 새롭게 하신 것을 기억합니다. 저는 환경에 매료되었습니다—사려 깊은 선물들과 팀원들이 진정한 사랑으로 섬기는 방식. 올해 2025년, 저는 새로운 소명으로 나짱 뉴하트에 돌아왔습니다: 보조 팀에서 섬기기 위해.</p><p><strong>하나의 영의 힘</strong></p><p>섬김을 받는 것에서 다른 사람을 섬기는 것으로의 전환은 아름다운 진리에 대한 제 눈을 열었습니다. 저는 모든 팀원의 순종의 영과 "올인" 헌신에 놀랐습니다. 우리 중 많은 사람들이 방금 만났음에도 불구하고, 우리는 보통 구축하는 데 수년이 걸리는 수준의 동시성으로 일했습니다. 그리스도가 우리의 공통된 중심일 때 낯선 사람은 없다는 것을 깨달았습니다. 우리는 하룻밤 사이에 가족이 되었고, 단일 목표에 의해 움직였습니다: 후보자들의 영적 안녕.</p><p><strong>압박 속의 믿음</strong></p><p>그러나 섬김에는 시련이 없지 않습니다. 첫날 밤, 세 명의 후보자가 아프다고 보고했을 때 압박이 가중되었습니다. 한 명은 이전에 응급 입원이 필요할 정도로 심각한 병력이 있었습니다. 약과 돌봄을 제공하기 위해 신속하게 움직였지만, 제 심장은 불안으로 두근거렸습니다. 저는 전적으로 하나님을 의지해야 했습니다. 그들 세 명 모두가 완전히 회복되어 다음 날 기쁘게 참여하는 것을 보는 것은 그분이 우리의 궁극적인 치유자임을 아름답게 상기시켜주었습니다.</p><p>제 결심을 시험한 또 다른 순간은 한 후보자가 롤로 방에 자신의 전화기를 넘기는 것을 격렬하게 거부했을 때였습니다. 우리가 개입하여 지원적인 해결책을 제공하고 기기를 성공적으로 수거한 후, 저는 그 경험이 그의 리트릿에 부정적인 흔적을 남길까 봐 걱정했습니다. 제가 틀렸습니다. 나중에, 그 같은 사람이 기쁨의 눈물로 간증하며 디지털 세상에서 벗어난 "침묵의 날들"에 대해 하나님께 감사했습니다. 그가 주님과 함께한 그 조용한 시간을 소중히 여기는 것을 보는 것은 저에게 돌파구가 된 순간이었습니다.</p><p><strong>정제된 마음</strong></p><p>뉴하트 2025를 통해 저는 하나님의 변화시키는 손길이 모든 사람—후보자와 팀원 모두—를 독특하고 달콤한 방식으로 만지는 것을 목격했습니다. 이 경험은 섬김에 대한 제 헌신을 깊게 했습니다. 저는 더 이상 은혜의 수령자가 아닙니다. 저는 그것의 그릇입니다.</p><p>저는 창조주와의 신선한 만남을 찾는 제 친구들과 누구에게나 뉴하트를 진심으로 추천합니다. 당신은 하나님을 보는 것뿐만 아니라 다른 사람들의 손과 마음을 통해 일하시는 그분을 보게 될 것입니다. 이제 제 유일한 기도는 앞으로 더 많은 캠프에서 그분을 섬길 기회를 계속 가질 수 있기를 바라는 것입니다.</p>`,
+    
+    eunyoungStory: `<p>안녕하세요. 베트남을 기쁘게 섬기고 온 고은영 집사입니다. 제가 이 교회에 출석하게 된 계기는 거래처 사장님 덕분이에요. 오다가다 보면서 저한테 교회 나와야 한다고 계속 말씀하셔서 마지막이라는 생각으로 한번 나왔는데, 우리 목사님이랑 사모님이 너무 좋은거예요. 그래서 제가 '이 교회에 다녀야겠다'라고 마음을 먹었습니다.</p><p>어렸을 때부터 꾸준히 다니긴 했었는데 사회 생활을 하면서 계속 쉬었거든요 사실은. 계속 쉬다가 세상이 너무 좋아 점도 치러 가고 다 했어요. 얼마나 헛짓을 많이 했는지.</p><p>이제 교회를 나오기 시작했더니 목사님이 저에게 뉴하트를 가야 한다고 그러시더라구요. 정말 가기 싫었어요 사실은. 삼박사일이나 되고.. 그런데 가야만 끝날 것 같더라고요. 이왕 갈 거 매도 빨리 맞자는 마음으로 뉴하트를 갔습니다. 그런데 세상에, 이 뒤는 다 아시죠? 얘기 안해도.</p><p>그래서 여태껏 받은걸 한 번에 다 갚아야겠다는 마음으로 앞으로 뉴하트를 열심히 섬기기로 다짐을 하고 왔어요. 그런데 뉴하트를 섬기다보니 제가 더 은혜를 많이 받더라고요. 여태 점 보러 다닌 게 제일 후회스럽고.. 매번 무속인들이 이거 하면 장사가 잘 되니, 저거 하면 장사가 잘 되니 하는 징크스가 굉장히 많았어요. 이런 징크스에서 전부 벗어나게 되고 또 장사를 안 해도 행복하더라고요.</p><p>이제는 하나님만 섬기고 싶어요. 결국 재미있는게 별로 없더라고요. 예전에는 정말 많은걸 좋아했는데 지금은 그저 너무 기쁩니다! 이제부터는 열심히 섬기는 모습을 보여드리고, 내년에도 더욱 더 열심히 섬기는 모습을 보여드리고 싶어서 나왔습니다. 감사합니다.</p>`,
+    
+    paiStory: `<p>안녕하세요, 제 이름은 파이입니다. 뉴하트 리트릿에 참석하기 전에 제 외부 생활은 꽤 혼란스러웠습니다. 저는 아이들과 남편을 돌봐야 했고 집 밖에서 일도 해야 했습니다. 게다가 교회에서 섬기는 여러 책임도 있었습니다. 추가로 월요일과 목요일 저녁에 영어 수업을 듣고 있었고 뉴하트 캠프에 가기 직전인 1월 24일에 시험을 준비해야 했습니다. 제 외부 생활이 매우 바쁘게 보였지만, 제 내면은 기쁨과 기대로 가득했습니다. 저는 이 리트릿을 위해 마음을 크게 준비했고 이 행사를 통해 하나님을 만날 큰 희망이 있었습니다. 저는 하나님께서 제가 직면하고 있는 건강 문제를 치유해 주실 것으로 기대했습니다. 또한 제가 하고 있는 것—하나님에 대한 과거의 섬김—이 올바른 길인지, 하나님께서 기뻐하시는지 알고 싶었습니다. 왜냐하면 저는 진정으로 그분의 길로 제 삶을 살기를 원했기 때문입니다.</p><p>뉴하트 리트릿에 참여하기 전에 건강 검진을 받으러 갔습니다. 2024년으로 돌아가면, 저는 자궁 경부에 비정상 세포가 진단되었고 6개월마다 의사와 후속 조치를 해왔으며 열 소작 방법을 사용했습니다. 첫 번째 치료는 2025년 초였지만 비정상 세포가 남아 있었고 HPV도 발견되었습니다. 의사는 두 번째 치료를 수행했으며 더 넓은 영역의 열 소작을 사용했습니다. 따라서 저는 이 뉴하트 리트릿 동안 하나님께서 이 질병을 완전히 치유해 주실 것이라는 큰 기대를 가졌습니다.</p><p>리트릿에 있는 동안 내내 저는 팀원들과 동료 참가자들로부터 따뜻함과 사랑을 느꼈습니다. 모두가 다른 곳과 배경에서 왔음에도 불구하고 그들은 하나의 마음을 공유했습니다: 예수 그리스도의 마음. 이 뉴하트 행사에 와서 저는 눈물로 하나님을 예배했고, 그분의 은혜를 염두에 둔 마음으로, 그리고 진정으로 항복한 마음으로. 하나님은 제 삶의 가장 깊은 부분에서 많은 것을 드러내셨고, 저를 인도하여 제 죄를 고백하고 그분과 함께 새로 시작하도록 하셨습니다.</p><p>소그룹 나눔과 기도 시간 동안 저는 분명히 하나님에 대한 더 많은 확신을 얻었습니다. 저는 새로운 선물들을 받았고, 전에 한 번도 말해본 적 없는 방언으로 말했으며, "내가 너를 치유했다. 너는 건강하다"라고 말씀하시는 하나님의 목소리를 분명히 들었습니다. 그 순간 제 몸은 매우 뜨거웠고, 제 심장은 빨리 뛰고 있었으며, 저는 그분께 여러 번 절했습니다. 캠프의 셋째 밤, 잠을 자는 동안 저는 예수님의 빛이 제 삶에 들어오는 꿈을 꾸었습니다—매우 밝은 빛. 그리고 행사가 끝난 후 넷째 밤에 마유리 목사님이 저에게 "하나님께서 당신을 깨끗하게 하셨습니다"라고 말씀하시는 꿈을 꾸었습니다. 목사님은 웃는 얼굴로 말씀하셨고 꿈의 분위기는 기쁨으로 가득했습니다.</p><p>싱가포르로 돌아왔을 때 저는 여전히 같은 환경과 같은 문제에 직면해야 했지만 한 가지가 같지 않았습니다: "제 마음." 저는 새 마음을 가지고 있으며 그러한 상황들이 더 이상 제 마음을 소비하도록 허락하지 않을 것입니다. 저는 하나님께 더 가까워졌고, 그분께 정기적으로 기도하며, 단 하루도 그분의 말씀을 놓친 적이 없습니다.</p><p><strong>하나님께 크게 감사드리는 것은 돌아온 후 셋째 월요일에 건강 검진 결과가 더 이상 비정상 세포가 발견되지 않았고 HPV도 더 이상 감지되지 않았다고 보고했기 때문입니다.</strong> 그것은 엄청난 기적입니다. 저는 이 치유에 대해 하나님께 감사드리며, 이것이 저에게 그분과의 더 깊은 경험을 주었습니다. 저는 이번에 하나님으로부터 받은 모든 것을 사용하여 싱가포르의 피스 회원들뿐만 아니라 희망과 도움이 필요한 많은 다른 사람들을 돕고, 선포하고, 격려할 것이라고 스스로에게 말했습니다. 저는 겸손하게, 자랑하지 않고, 하나님께 최고의 감사로 하나님을 섬기기를 요청합니다. 하나님께서 최고의 영광을 받으시기를 바랍니다.</p>`,
+    
+    // Guk Hyun testimony
+    gukhyunName: "이국현",
+    gukhyunRole: "섬김으로 배우는 엎드림의 은혜",
+    gukhyunModalTitle: "이국현 — 섬김으로 배우는 엎드림의 은혜",
+    gukhyunStory: `<p><strong>"인자가 온 것은 섬김을 받으려 함이 아니라 섬기려 하고…" — 마가복음 10:45</strong></p><p>2024년 가을, 나는 뉴하트가 어떤 프로그램인지도 제대로 알지 못한 채 아내의 권유로 짐을 최소한만 챙겨 그 자리에 들어갔다. 세례를 받은 지 1년도 채 되지 않았던 초신자였던 나는 두 분의 목사님과 같은 방을 사용하며, 말보다 삶으로 드러나는 믿음의 모습을 가까이에서 보게 되었다. 그들의 태도와 섬김은 나에게 신앙이 무엇인지 몸으로 배우는 첫 시간이었고, 그 경험은 내 마음 깊은 곳에 오래 남았다.</p><p>그렇게 섬김을 '받는 자리'에 있었던 나는, 자연스럽게 다시 그 자리에 '섬기는 사람'으로 서야 한다는 마음이 생겼다. 받은 은혜가 너무 분명했기 때문이다. 그러나 동시에 두려움도 있었다. 믿음의 크기가 여전히 작다고 느껴졌고, 혹시나 다른 팀원들에게 짐이 되지 않을까 걱정했다. 그럼에도 불구하고 내가 받았던 감동과 은혜를 기억하며, 또 다른 캔디들에게도 그 사랑이 전해지기를 기대하며 다시 뉴하트에 발걸음을 옮겼다.</p><p>이 자리에 다시 부르신 주님께 감사와 찬양을 올려드린다. 앞으로도 주님께서 인도하실 모든 사역의 자리에서, 기꺼이 낮아져 섬길 수 있기를 소망한다.</p>`
+  
+  // Adding VN, TH, IL translations - abbreviated for space, you can expand these
+  VN: {
+    mainTitle: "Bản Tin New Heart",
+    subtitle: "Ấn Bản Mùa Đông 2026",
+    foundersGreetingTitle: "Từ Những Người Sáng Lập",
+    foundersTitle: "Người Sáng Lập & Giám Đốc Toàn Cầu",
+    storiesTitle: "Câu Chuyện Biến Đổi",
+    editorialSectionTitle: "Bài Xã Luận",
+    serveTitle: "Cách Để Phục Vụ",
+    palancaTitle: "Hỗ Trợ & Quyên Góp",
+    upcomingNhTitle: "Các Buổi New Heart Sắp Tới",
+    qrInstruction: "Sử dụng mã QR hoặc thông tin ngân hàng bên dưới:",
+    footerCopyright: "© 2026 New Heart Ministry. Đã đăng ký bản quyền.",
+    footerNote: "Vui lòng giữ bản tin này trong gia đình New Heart.",
+    verseRef: "Ê-xê-chiên 36:26",
+    verseText: '"Ta sẽ cho các ngươi một lòng mới, và đặt một tâm thần mới ở trong lòng các ngươi; Ta sẽ lấy lòng đá khỏi xác thịt các ngươi mà cho các ngươi một lòng thịt."',
+    founderMsgTitle: "Một Mùa Bắt Đầu Mới",
+    founderMsg: `<p>Gia đình New Heart thân mến,</p><p>Khi chúng ta bước vào mùa đông này, chúng ta được nhắc nhở rằng ngay cả trong những tháng lạnh nhất, Đức Chúa Trời đang chuẩn bị sự tăng trưởng mới bên dưới bề mặt. Năm qua đã tràn ngập những lời chứng về quyền năng biến đổi của Ngài trên các quốc gia.</p><p>Chúng tôi khiêm tốn chứng kiến sự thành tín của Đức Chúa Trời trong mỗi buổi tĩnh tâm—từ Thái Lan đến Việt Nam, Hàn Quốc đến Hoa Kỳ, và sớm là Israel. Mỗi cuộc tụ họp tiết lộ trái tim Ngài để phục hồi, đổi mới và cho chúng ta những cuộc gặp gỡ mới mẻ với tình yêu của Ngài.</p><p>Cầu mong bản tin này khích lệ đức tin của bạn và nhắc nhở bạn rằng bạn là một phần của một gia đình toàn cầu được kết hợp bởi Một Trái Tim Mới.</p>`,
+    serveText: "Cầu nguyện cho các cuối tuần sắp tới. Phục vụ trong một đội. Chia sẻ lời chứng của bạn. Hỗ trợ New Heart Kids. Mời ai đó cần một cuộc gặp gỡ trái tim mới.",
+    readStory: "Đọc Câu Chuyện",
+    placeholderNotice: "📝 Nội dung tạm thời - sẽ được cập nhật với Thông điệp cuối cùng từ Người sáng lập",
+    placeholderNoticeEditorial: "📝 Nội dung tạm thời - sẽ được cập nhật với Bài xã luận cuối cùng",
+    
+    carlosRole: "Món Quà Sinh Động Của Một Trái Tim Trong Sạch",
+    thaoRole: "New Heart #15 Việt Nam",
+    cathyRole: "Trái Tim Của Một Người Phục Vụ",
+    eunyoungName: "Eun Young Go",
+    eunyoungRole: "Thành Viên Nhóm Hàn Quốc/Việt Nam/Thái Lan",
+    paiRole: "Chữa Lành Kỳ Diệu - Thái Lan #56",
+    
+    carlosModalTitle: "Carlos Messerschmidt — Món Quà Sinh Động Của Một Trái Tim Trong Sạch",
+    thaoModalTitle: "Thảo Thơ — New Heart #15 Việt Nam",
+    cathyModalTitle: "Cathy — Trái Tim Của Một Người Phục Vụ",
+    eunyoungModalTitle: "Eun Young Go — Thành Viên Nhóm",
+    paiModalTitle: "Pai — Chữa Lành Kỳ Diệu",
+    
+    editorialContent: `<h3>Hiệu Ứng Gợn Sóng Của Một Trái Tim Mới</h3><p>Trên năm châu lục, chúng ta đang chứng kiến một phong trào không thể phủ nhận của Thánh Linh Đức Chúa Trời. Các lời chứng trong bản tin này chỉ đại diện cho một phần nhỏ của những cuộc sống đang được biến đổi thông qua Chức vụ New Heart.</p><h3>Vượt Qua Ba Ngày</h3><p>Buổi tĩnh tâm New Heart ba ngày không phải là điểm đến—đó là chất xúc tác. Chúng ta đang học rằng sự biến đổi thực sự xảy ra vào "ngày thứ tư" và sau đó, khi chúng ta tích hợp ca phẫu thuật tim mà Đức Chúa Trời thực hiện trong buổi tĩnh tâm vào cuộc sống hàng ngày của chúng ta.</p>`,
+    
+    carlosStory: `<p>Trước trải nghiệm biến đổi của New Heart #48, cuộc sống tâm linh của tôi được đặc trưng bởi sự tham gia tích cực vào nhà thờ, tham gia các nhóm nhỏ và các chức vụ khác nhau. Tuy nhiên, khi năm mới đến gần, một khát khao sâu sắc hơn đã bén rễ. Tại buổi lễ Giáng sinh 2023, chúng tôi được nhắc chọn hai từ để diễn đạt ý định của mình cho năm tới. Lựa chọn của tôi là một khát vọng đơn giản nhưng sâu sắc: "TRÁI TIM TRONG SẠCH."</p><p>Khi được chọn tham dự buổi tĩnh tâm New Heart, tôi đến với nó với một ý định rõ ràng, tập trung: "Tôi muốn trải nghiệm Thánh Linh thanh tẩy trái tim tôi để tôi cảm thấy một sự bình an sâu sắc và sự hướng dẫn cho cuộc sống Cơ Đốc hàng ngày của tôi bởi Thánh Linh." Thực tế của buổi tĩnh tâm vượt xa kỳ vọng này.</p><p>Món quà của một trái tim trong sạch, sự bình an sâu sắc và cuộc gặp gỡ sinh động tại New Heart #48 không phải là kết thúc của hành trình, mà là một khởi đầu sâu sắc. Kể từ trải nghiệm đó, tôi đã phục vụ như một thành viên nhóm trong nhiều môi trường New Heart ở cả Hoa Kỳ và Việt Nam.</p>`,
+    
+    thaoStory: `<p>Bước vào Trại New Heart, tôi nghĩ nó giống như bước lên một con thuyền đức tin, bắt đầu một hành trình khám phá vô cùng mới mẻ và hấp dẫn. Hành trình này đưa tôi từ bất ngờ này đến bất ngờ khác, từ trải nghiệm này đến trải nghiệm khác và thực sự chạm đến cảm xúc, tinh thần và tâm hồn của tôi.</p><p>Khi tôi nhận lời tham dự trại này, đơn giản tôi muốn có những ngày nghỉ ngơi, muốn học hỏi những điều mới. Lần đầu tiên trong đời khi tham dự một trại, tôi không biết mình sẽ ở đâu, mình sẽ làm những gì trong suốt 4 ngày. Rất nhiều những suy nghĩ, tưởng tượng nhảy múa trong đầu của tôi.</p><p>Tôi nhớ tôi là một trong những người đầu tiên bước vào căn phòng Welcome, tôi thật sự bất ngờ và giật cả mình. Một cảm giác thật "Wow", khi được chào đón bằng những bài hát, tiếng vỗ tay giòn tan, nụ cười ấm áp của những người mới chỉ lần đầu tiên gặp mặt.</p>`,
+    
+    cathyStory: `<p><strong>"Lạy Chúa, thật tốt đẹp và dễ chịu biết bao khi dân Chúa sống chung với nhau trong sự hòa thuận!" — Thi thiên 133:1</strong></p><p><strong>Một Hành Trình Đổi Mới</strong></p><p>Mối liên kết của tôi với New Heart bắt đầu vào năm 2022 tại Kê Gà, Phan Thiết. Lúc đó, tôi là một người tham gia có tâm hồn mệt mỏi, và tôi nhớ Đức Chúa Trời đã sử dụng trại đó như thế nào để làm mới mối quan hệ của tôi với Ngài.</p><p>Năm nay, năm 2025, tôi trở lại New Heart Nha Trang với một kêu gọi mới: phục vụ trong Đội Hỗ Trợ.</p>`,
+    
+    eunyoungStory: `<p>Xin chào. Tôi là Giáo Chủ Eun Young Go, người đã phục vụ một cách vui vẻ tại Việt Nam. Lý do tôi bắt đầu đi nhà thờ này là nhờ khách hàng kinh doanh của tôi. Mỗi khi chúng tôi gặp nhau, anh ấy liên tục nói với tôi rằng tôi nên đến nhà thờ. Cuối cùng tôi đến với tâm trạng "đây sẽ là lần cuối cùng," nhưng tôi thực sự thích mục sư và sư mẫu của chúng tôi. Vì vậy, tôi quyết định, "Tôi nên tham dự nhà thờ này."</p><p>Khi tôi bắt đầu trở lại nhà thờ, mục sư nói với tôi rằng tôi phải đến New Heart. Thành thật mà nói, tôi thực sự không muốn đi. Ba đêm bốn ngày... Nhưng tôi cảm thấy nó sẽ không kết thúc trừ khi tôi đi. Vì vậy, với tâm trạng "hãy chỉ hoàn thành việc này nhanh chóng," tôi đã đến New Heart. Nhưng ôi trời ơi, bạn đều biết điều gì đã xảy ra tiếp theo, phải không?</p>`,
+    
+    paiStory: `<p>Xin chào, tên tôi là Pai. Trước khi tham dự Buổi Tĩnh Tâm New Heart, cuộc sống bên ngoài của tôi khá hỗn loạn. Tôi phải chăm sóc con cái và chồng, bên cạnh việc làm việc bên ngoài nhà. Thêm vào đó, tôi có một số trách nhiệm phục vụ trong nhà thờ.</p><p>Trong suốt thời gian tại buổi tĩnh tâm, tôi cảm nhận được sự ấm áp và tình yêu từ các thành viên nhóm và những người tham gia. Mặc dù mọi người đến từ những nơi và nền tảng khác nhau, họ chia sẻ một trái tim: trái tim của Chúa Giê-su Christ.</p><p><strong>Cảm ơn Đức Chúa Trời vô cùng, vì vào thứ Hai thứ ba sau khi trở về, kết quả kiểm tra sức khỏe báo cáo rằng không tìm thấy tế bào bất thường nào nữa, và HPV cũng không được phát hiện nữa.</strong> Đó là một phép lạ to lớn.</p>`,
+    
+    // Guk Hyun testimony  
+    gukhyunName: "Guk Hyun Lee",
+    gukhyunRole: "Học Sự Khiêm Tốn Qua Phục Vụ",
+    gukhyunModalTitle: "Guk Hyun Lee — Học Sự Khiêm Tốn Qua Phục Vụ",
+    gukhyunStory: `<p><strong>"Con Người đến không phải để được phục vụ nhưng để phục vụ..." — Mác 10:45</strong></p><p>Vào mùa thu năm 2024, tôi bước vào New Heart mà không thực sự biết chương trình là gì, theo lời đề nghị của vợ tôi, chỉ mang theo những thứ tối thiểu. Là một tín đồ mới được rửa tội chưa đầy một năm, tôi ở chung phòng với hai mục sư và chứng kiến gần gũi cách đức tin được bộc lộ qua cuộc sống hơn là lời nói. Thái độ và sự phục vụ của họ là bài học đầu tiên của tôi trong việc học đức tin thực sự có nghĩa là gì qua kinh nghiệm, và trải nghiệm đó vẫn ở sâu trong tim tôi trong một thời gian dài.</p><p>Đã ở vị trí nhận được sự phục vụ, tôi tự nhiên cảm thấy bị thúc đẩy phải đứng lại ở nơi đó như một người phục vụ. Ân sủng tôi nhận được quá rõ ràng. Tuy nhiên, đồng thời cũng có nỗi sợ hãi. Tôi cảm thấy đức tin của mình vẫn còn nhỏ, và tôi lo lắng về việc trở thành gánh nặng cho các thành viên nhóm khác. Tuy nhiên, nhớ lại cảm hứng và ân sủng tôi đã nhận được, tôi trở lại New Heart với hy vọng tình yêu đó sẽ được truyền đạt đến các ứng viên khác.</p><p>Khi tôi là một người tham gia, tôi cảm nhận Chúa Giê-su qua các thành viên nhóm phục vụ. Tôi thấy tình yêu của Ngài trong những chuyển động lặng lẽ của họ mà không thu hút sự chú ý đến bản thân. Ngược lại, nhìn vào các ứng viên trong khi phục vụ như một thành viên nhóm, tôi thấy một khuôn mặt khác của Chúa Giê-su. Tôi thấy Chúa vẫn đang làm việc trong những trái tim đang mở ra, nhận ân sủng và ngợi khen.</p><p>Tại New Heart này, tôi phục vụ trong nhóm điều phối, giúp đỡ dòng chảy tổng thể của chương trình. Đó là công việc quản lý lịch trình và hậu cần, chịu trách nhiệm về những phần vô hình. Những khoảnh khắc đáng giá nhất là khi biểu hiện của các ứng viên thay đổi. Mỗi khi tôi thấy những trái tim đã cứng lại mềm lại và trở nên tự do trong sự thờ phượng, tôi cảm thấy rằng tất cả công sức này không bao giờ là vô ích.</p><p>Tất nhiên, điều đó không dễ dàng. Lần đầu tiên phục vụ, tôi đã di chuyển với tốc độ quá mức với sự nhiệt tình quá đáng, và khi thể lực giảm sút, tinh thần của tôi cũng sụp đổ theo. Mỗi lần, tôi nhớ lại những khoảnh khắc biết ơn và ân sủng tôi đã nhận được trong quá khứ, và những khuôn mặt của các ứng viên đang trải nghiệm ân sủng ngay trước mặt tôi đã nâng tôi lên một lần nữa. Nhìn thấy bàn tay của Đức Chúa Trời hướng dẫn mọi thứ suôn sẻ mặc dù chuẩn bị không đầy đủ và những tình huống bất ngờ, tôi cảm thấy rõ ràng rằng Chúa vẫn còn sống.</p><p>Qua sự phục vụ này, Đức Chúa Trời đã ban cho tôi một thông điệp rõ ràng. Không phải về số năm đức tin hay chiều sâu tâm linh, mà là sự thật rằng Đức Chúa Trời sử dụng những người sẵn lòng hạ mình. Sự thật rằng Đấng Cao Nhất đã phục vụ ở vị trí thấp nhất đã trồng một hệ thống giá trị hoàn toàn mới trong tôi, người đã sống với hy vọng vươn cao trong thế giới. Đó là thời gian để học qua cơ thể tôi rằng việc khiêm tốn không hề tồi tệ chút nào, mà đúng hơn là nơi đẹp nhất.</p><p>Điều thú vị là tôi không cảm thấy thay đổi nhiều trong khoảnh khắc phục vụ. Tôi nghĩ tôi đang phục vụ vì ân sủng, nhưng thực tế, "khát vọng làm tốt" và "nhiệt tình của riêng tôi" đã đi trước. Khi thời gian trôi qua và tôi suy ngẫm, tôi nhận ra sự phục vụ năm ngoái của tôi đã thế tục như thế nào. Tôi dễ dàng kiệt sức vì tôi cố gắng làm hài lòng Chúa bằng sự công chính và nỗ lực của chính tôi.</p><p>Trong sự nhận ra đó, tôi đã học lại thờ phượng và chức vụ thực sự là gì. Vị trí, môi trường và hoàn cảnh của tôi không liên quan gì đến bản chất của sự phục vụ. Thờ phượng thực sự là chết đi với bản thân trong thế giới và chỉ hướng về Chúa. Ngay cả những khoảnh khắc ngắn ngủi của lời ca ngợi và cầu nguyện toàn tâm toàn ý cũng trở thành thời gian của ân sủng sâu sắc hơn.</p><p>Đặc biệt nghi lễ rửa chân vẫn còn lâu trong ký ức của tôi. Trong những giọt nước mắt rơi khi gia đình, thành viên nhóm và các ứng viên rửa chân cho nhau, tôi thấy Chúa đã yêu các môn đồ của Ngài như thế nào và tình yêu đó nên tiếp tục vào sự phục vụ thêm nữa như thế nào. Cách của Đức Chúa Trời chữa lành những trái tim bị tổn thương và ban sức mạnh để phục vụ lại luôn luôn là tình yêu.</p><p>Nếu tôi phải diễn tả sự phục vụ này bằng một từ, đó sẽ là "sự phục tùng." Tôi đã học được rằng ân sủng phục vụ lớn hơn nhiều so với ân sủng nhận được. Ngay cả khi nó có vẻ nhỏ bé trong thế giới, nếu đó là điều Chúa hài lòng, thì điều đó là đủ.</p><p>Tôi vẫn là người chưa đi trên con đường đức tin lâu lắm. Đôi khi nó chậm và tôi trở nên thiếu kiên nhẫn. Tuy nhiên, Chúa nói với tôi đừng làm quá sức, rằng Ngài sẽ cùng mang gánh nặng với con trai yêu dấu của Ngài. Tôi tin rằng hành trình phục vụ này cuối cùng không phải là con đường tôi đi một mình, mà là con đường tôi đi cùng Chúa.</p><p>Tôi dâng lên lời cảm ơn và ngợi khen Chúa, Đấng đã gọi tôi đến nơi này một lần nữa. Tôi hy vọng tiếp tục phục vụ sẵn lòng với sự khiêm tốn trong tất cả các nơi chức vụ mà Chúa sẽ dẫn dắt.</p>`
+  },
+  
+  TH: {
+    mainTitle: "จดหมายข่าว New Heart",
+    subtitle: "ฉบับฤดูหนาว 2026",
+    foundersGreetingTitle: "จากผู้ก่อตั้งของเรา",
+    foundersTitle: "ผู้ก่อตั้งและผู้อำนวยการทั่วโลก",
+    storiesTitle: "เรื่องราวแห่งการเปลี่ยนแปลง",
+    editorialSectionTitle: "บทบรรณาธิการ",
+    serveTitle: "วิธีการรับใช้",
+    palancaTitle: "การสนับสนุนและการบริจาค",
+    upcomingNhTitle: "การรีทรีท New Heart ที่กำลังจะมาถึง",
+    qrInstruction: "ใช้รหัส QR หรือข้อมูลธนาคารด้านล่าง:",
+    footerCopyright: "© 2026 New Heart Ministry. สงวนลิขสิทธิ์.",
+    footerNote: "โปรดเก็บจดหมายข่าวนี้ไว้ในครอบครัว New Heart.",
+    verseRef: "เอเสเคียล 36:26",
+    verseText: '"เราจะให้จิตใจใหม่แก่เจ้า และจะใส่วิญญาณใหม่ไว้ในตัวเจ้า เราจะนำจิตใจหินออกจากเนื้อหนังของเจ้า และจะให้จิตใจเนื้อแก่เจ้า"',
+    founderMsgTitle: "ฤดูกาลแห่งจุดเริ่มต้นใหม่",
+    founderMsg: `<p>ครอบครัว New Heart ที่รัก,</p><p>เมื่อเราเข้าสู่ฤดูหนาวนี้ เราถูกเตือนว่าแม้ในเดือนที่หนาวที่สุด พระเจ้ากำลังเตรียมการเติบโตใหม่ใต้พื้นผิว ปีที่ผ่านมาเต็มไปด้วยคำพยานเกี่ยวกับพระราชกิจแห่งการเปลี่ยนแปลงของพระองค์ทั่วประเทศต่างๆ</p><p>เราถ่อมใจที่ได้เห็นความสัตย์ซื่อของพระเจ้าในทุกการรีทรีท—จากประเทศไทยไปยังเวียดนาม เกาหลีไปยังสหรัฐอเมริกา และเร็วๆ นี้จะเป็นอิสราเอล การชุมนุมแต่ละครั้งเปิดเผยหัวใจของพระองค์ที่จะฟื้นฟู เปลี่ยนใหม่ และให้เรามีการเผชิญหน้ากับความรักของพระองค์อย่างสดใหม่</p><p>ขอให้จดหมายข่าวนี้เป็นกำลังใจแก่ความเชื่อของคุณ และเตือนคุณว่าคุณเป็นส่วนหนึ่งของครอบครัวทั่วโลกที่เป็นหนึ่งเดียวกันด้วยหัวใจใหม่เดียว</p>`,
+    serveText: "อธิษฐานเพื่อสุดสัปดาห์ที่กำลังจะมาถึง รับใช้ในทีม แบ่งปันคำพยานของคุณ สนับสนุน New Heart Kids เชิญใครสักคนที่ต้องการการเผชิญหน้ากับหัวใจใหม่",
+    readStory: "อ่านเรื่องราว",
+    placeholderNotice: "📝 เนื้อหาชั่วคราว - จะได้รับการอัปเดตด้วยข้อความสุดท้ายจากผู้ก่อตั้ง",
+    placeholderNoticeEditorial: "📝 เนื้อหาชั่วคราว - จะได้รับการอัปเดตด้วยบทบรรณาธิการสุดท้าย",
+    
+    carlosRole: "ของขวัญที่สัมผัสได้ของหัวใจบริสุทธิ์",
+    thaoRole: "New Heart #15 เวียดนาม",
+    cathyRole: "หัวใจของผู้รับใช้",
+    eunyoungName: "Eun Young Go",
+    eunyoungRole: "สมาชิกทีม เกาหลี/เวียดนาม/ไทย",
+    paiRole: "การรักษาอัศจรรย์ - ไทย #56",
+    
+    carlosModalTitle: "Carlos Messerschmidt — ของขวัญที่สัมผัสได้ของหัวใจบริสุทธิ์",
+    thaoModalTitle: "Thao Tho — New Heart #15 เวียดนาม",
+    cathyModalTitle: "Cathy — หัวใจของผู้รับใช้",
+    eunyoungModalTitle: "Eun Young Go — สมาชิกทีม",
+    paiModalTitle: "Pai — การรักษาอัศจรรย์",
+    
+    editorialContent: `<h3>ผลกระทบระลอกของหัวใจใหม่หนึ่งดวง</h3><p>ทั่วห้าทวีป เรากำลังเห็นการเคลื่อนไหวที่ปฏิเสธไม่ได้ของพระวิญญาณของพระเจ้า คำพยานในจดหมายข่าวนี้แสดงถึงเพียงส่วนเล็กๆ ของชีวิตที่กำลังถูกเปลี่ยนแปลงผ่านพันธกิจ New Heart</p><h3>เกินกว่าสามวัน</h3><p>การรีทรีท New Heart สามวันไม่ใช่จุดหมายปลายทาง—มันคือตัวเร่ง เรากำลังเรียนรู้ว่าการเปลี่ยนแปลงที่แท้จริงเกิดขึ้นใน "วันที่สี่" และต่อไป เมื่อเรารวมการผ่าตัดหัวใจที่พระเจ้าทรงทำระหว่างการรีทรีทเข้ากับชีวิตประจำวันของเรา</p>`,
+    
+    carlosStory: `<p>ก่อนประสบการณ์แห่งการเปลี่ยนแปลงของ New Heart #48 ชีวิตฝ่ายวิญญาณของผมมีลักษณะการมีส่วนร่วมอย่างกระตือรือร้นในโบสถ์ การเข้าร่วมกลุ่มเล็ก และพันธกิจต่างๆ อย่างไรก็ตาม เมื่อปีใหม่ใกล้เข้ามา ความปรารถนาที่ลึกกว่าได้หยั่งรากลงไป ในพิธีคริสต์มาส 2023 เราได้รับแจ้งให้เลือกสองคำเพื่อแสดงความตั้งใจของเราสำหรับปีที่จะมาถึง การเลือกของผมเป็นความปรารถนาที่เรียบง่ายแต่ลึกซึ้ง: "หัวใจบริสุทธิ์"</p><p>เมื่อได้รับเลือกให้เข้าร่วมการรีทรีท New Heart ผมเข้าหามันด้วยความตั้งใจที่ชัดเจนและมุ่งเน้น: "ผมต้องการสัมผัสพระวิญญาณบริสุทธิ์ที่ชำระหัวใจของผมให้บริสุทธิ์ เพื่อที่ผมจะรู้สึกถึงสันติสุขอันลึกซึ้งและการนำทางสำหรับการใช้ชีวิตคริสเตียนประจำวันของผมโดยพระวิญญาณบริสุทธิ์" ความจริงของการรีทรีทเกินความคาดหมายนี้อย่างมาก</p>`,
+    
+    thaoStory: `<p>การเข้าสู่ค่าย New Heart ฉันคิดว่ามันเหมือนกับการก้าวขึ้นบนเรือแห่งความเชื่อ เริ่มต้นการเดินทางแห่งการค้นพบที่น่าทึ่งและน่าหลงใหลอย่างไม่น่าเชื่อ การเดินทางนี้พาฉันจากความประหลาดใจหนึ่งไปสู่อีกความประหลาดใจหนึ่ง จากประสบการณ์หนึ่งไปสู่อีกประสบการณ์หนึ่ง และสัมผัสอารมณ์ จิตวิญญาณ และจิตใจของฉันอย่างแท้จริง</p><p>เมื่อฉันตกลงที่จะเข้าร่วมค่ายนี้ ฉันแค่ต้องการใช้เวลาพักผ่อนและใช้ประโยชน์จากโอกาสในการเรียนรู้สิ่งใหม่ๆ นี่เป็นครั้งแรกในชีวิตของฉันเมื่อเข้าร่วมค่าย ฉันไม่รู้ว่าฉันจะอยู่ที่ไหนหรือฉันจะทำอะไรในระหว่างสี่วัน หัวของฉันเต็มไปด้วยความคิดและจินตนาการ</p>`,
+    
+    cathyStory: `<p><strong>"ดูเถิด ดีและน่ายินดีเพียงใดเมื่อพี่น้องอยู่ร่วมกันอย่างปรองดอง!" — สดุดี 133:1</strong></p><p><strong>การเดินทางแห่งการฟื้นฟู</strong></p><p>ความเชื่อมโยงของฉันกับ New Heart เริ่มต้นในปี 2022 ที่เก๊ะ งา พาน เทียต ตอนนั้นฉันเป็นผู้เข้าร่วมที่มีจิตใจเหนื่อยล้า และฉันจำได้ว่าพระเจ้าใช้ค่ายนั้นเพื่อฟื้นฟูความสัมพันธ์ของฉันกับพระองค์อย่างไร ฉันหลงใหลในสภาพแวดล้อม—ของขวัญที่มีความคิดและวิธีที่สมาชิกทีมรับใช้ด้วยความรักอันแท้จริง</p><p>ปีนี้ในปี 2025 ฉันกลับมาที่ New Heart นา จาง ด้วยการเรียกใหม่: เพื่อรับใช้ในทีมช่วยเหลือ</p>`,
+    
+    eunyoungStory: `<p>สวัสดีค่ะ ดิฉันชื่อปายค่ะ ก่อนที่จะไปร่วมค่าย New Heart ชีวิตภายนอกของดิฉันค่อนข้างวุ่นวายมาก ดิฉันต้องดูแลลูกๆ ดูแลสามีควบคู่ไปกับการทำงานนอกบ้าน อีกทั้งยังมีงานรับใช้ที่คริสตจักรหลายหน้าที่ที่ต้องรับผิดชอบ</p><p>ตลอดระยะเวลาที่อยู่ในค่าย ดิฉันสัมผัสได้ถึงความอบอุ่นและความรักจากทีม Member และผู้เข้าร่วมค่าย แม้ทุกคนจะมาจากต่างที่ต่างพื้นเพ แต่พวกเขามีหัวใจเดียวกัน คือหัวใจของพระเยซูคริสต์</p><p><strong>ขอบคุณพระเจ้าอย่างยิ่ง เพราะในวันจันทร์ที่สามหลังกลับมา ผลการตรวจสุขภาพแจ้งว่าไม่พบเซลล์ผิดปกติแล้ว และไม่พบเชื้อ HPV อีกต่อไป</strong> เป็นการอัศจรรย์อย่างยิ่ง</p>`,
+    
+    paiStory: `<p>สวัสดีค่ะ ดิฉันชื่อปายค่ะ ก่อนที่จะไปร่วมค่าย New Heart ชีวิตภายนอกของดิฉันค่อนข้างวุ่นวายมาก ดิฉันต้องดูแลลูกๆ ดูแลสามีควบคู่ไปกับการทำงานนอกบ้าน อีกทั้งยังมีงานรับใช้ที่คริสตจักรหลายหน้าที่ที่ต้องรับผิดชอบ นอกจากนี้ดิฉันยังเรียนภาษาอังกฤษเพิ่มเติมในช่วงเย็นวันจันทร์และวันพฤหัสบดีพร้อมกับต้องเตรียมตัวสอบในวันที่ 24 มกราคม ก่อนจะเดินทางไปค่าย New Heart</p><p>ตลอดระยะเวลาที่อยู่ในค่าย ดิฉันสัมผัสได้ถึงความอบอุ่นและความรักจากทีม Member และผู้เข้าร่วมค่าย แม้ทุกคนจะมาจากต่างที่ต่างพื้นเพ แต่พวกเขามีหัวใจเดียวกัน คือหัวใจของพระเยซูคริสต์</p><p><strong>ขอบคุณพระเจ้าอย่างยิ่ง เพราะในวันจันทร์ที่สามหลังกลับมา ผลการตรวจสุขภาพแจ้งว่าไม่พบเซลล์ผิดปกติแล้ว และไม่พบเชื้อ HPV อีกต่อไป</strong> เป็นการอัศจรรย์อย่างยิ่ง ดิฉันขอบคุณพระเจ้าสำหรับการรักษาในครั้งนี้ซึ่งทำให้ดิฉันมีประสบการณ์กับพระองค์ลึกซึ้งยิ่งขึ้น</p>`,
+    
+    // Guk Hyun testimony
+    gukhyunName: "Guk Hyun Lee",
+    gukhyunRole: "เรียนรู้ความถ่อมตนผ่านการรับใช้",
+    gukhyunModalTitle: "Guk Hyun Lee — เรียนรู้ความถ่อมตนผ่านการรับใช้",
+    gukhyunStory: `<p><strong>"บุตรมนุษย์มาไม่ใช่เพื่อรับการปรนนิบัติ แต่เพื่อปรนนิบัติ..." — มาระโก 10:45</strong></p><p>ในฤดูใบไม้ร่วงปี 2024 ผมเข้าสู่ New Heart โดยไม่รู้จริงๆ ว่าโปรแกรมเป็นอย่างไร ตามคำแนะนำของภรรยา นำเพียงสิ่งจำเป็นขั้นต่ำมา ในฐานะผู้เชื่อใหม่ที่รับบัพติศมาไม่ถึงปีหนึ่ง ผมแบ่งห้องกับบาทหลวงสองท่านและได้เห็นอย่างใกล้ชิดว่าความเชื่อถูกเปิดเผยผ่านชีวิตมากกว่าคำพูด ทัศนคติและการรับใช้ของพวกเขาคือบทเรียนแรกของผมในการเรียนรู้ว่าความเชื่อหมายความว่าอะไรผ่านประสบการณ์ และประสบการณ์นั้นยังคงอยู่ลึกในใจผมเป็นเวลานาน</p><p>การอยู่ในตำแหน่งที่ได้รับการรับใช้ ผมรู้สึกถูกบังคับโดยธรรมชาติให้ยืนอีกครั้งในสถานที่นั้นในฐานะผู้ที่รับใช้ พระคุณที่ผมได้รับชัดเจนเกินไป อย่างไรก็ตาม ในเวลาเดียวกันก็มีความกลัว ผมรู้สึกว่าความเชื่อของผมยังคงเล็ก และผมกังวลเกี่ยวกับการเป็นภาระสำหรับสมาชิกทีมคนอื่นๆ อย่างไรก็ตาม จำแรงบันดาลใจและพระคุณที่ผมได้รับ ผมกลับมา New Heart หวังว่าความรักนั้นจะถูกถ่ายทอดไปยังผู้สมัครคนอื่นๆ ด้วย</p><p>เมื่อผมเป็นผู้เข้าร่วม ผมรู้สึกถึงพระเยซูผ่านสมาชิกทีมที่รับใช้ ผมเห็นความรักของพระองค์ในการเคลื่อนไหวเงียบๆ ของพวกเขาโดยไม่ดึงความสนใจมาที่ตัวเอง ในทางตรงกันข้าม การมองไปที่ผู้สมัครในขณะที่รับใช้เป็นสมาชิกทีม ผมเห็นหน้าอีกหน้าหนึ่งของพระเยซู ผมเห็นพระเจ้ายังคงทำงานในหัวใจที่กำลังเปิดรับ รับพระคุณ และสรรเสริญ</p><p>ที่ New Heart นี้ ผมรับใช้ในทีมประสานงาน ช่วยเหลือการไหลโดยรวมของโปรแกรม มันคืองานจัดการตารางเวลาและโลจิสติกส์ รับผิดชอบส่วนที่มองไม่เห็น ช่วงเวลาที่คุ้มค่าที่สุดคือเมื่อการแสดงออกของผู้สมัครเปลี่ยนไป ทุกครั้งที่ผมเห็นหัวใจที่แข็งกระด้างอ่อนลงและกลายเป็นอิสระในการนมัสการ ผมรู้สึกว่าแรงงานทั้งหมดนี้ไม่เคยเป็นโมฆะ</p><p>แน่นอนว่ามันไม่ง่าย การรับใช้ครั้งแรกของผม ผมเคลื่อนไหวด้วยความกระตือรือร้นมากเกินไป และเมื่อความแข็งแรงทางกายภาพลดลง จิตใจของผมก็พังทลายไปด้วย แต่ละครั้ง ผมจำช่วงเวลาแห่งความกตัญญูและพระคุณที่ผมได้รับในอดีต และใบหน้าของผู้สมัครที่กำลังประสบพระคุณต่อหน้าผมได้ยกผมขึ้นอีกครั้ง การมองเห็นมือของพระเจ้านำทางทุกอย่างอย่างราบรื่นแม้จะมีการเตรียมการไม่เพียงพอและสถานการณ์ที่ไม่คาดคิด ผมรู้สึกอย่างชัดเจนว่าพระเจ้ายังคงมีชีวิตอยู่</p><p>ผ่านการรับใช้นี้ พระเจ้าได้ให้ข้อความที่ชัดเจนแก่ผม ไม่ใช่เกี่ยวกับปีแห่งความเชื่อหรือความลึกทางจิตวิญญาณ แต่เป็นความจริงที่ว่าพระเจ้าใช้ผู้ที่ยินดีถ่อมตนเอง ความจริงที่ว่าผู้สูงสุดรับใช้ในตำแหน่งต่ำสุดได้ปลูกระบบค่านิยมใหม่ทั้งหมดในตัวผม ผู้ที่เคยใช้ชีวิตหวังจะสูงขึ้นในโลก มันเป็นเวลาที่จะเรียนรู้ผ่านร่างกายของผมว่าการเป็นคนต่ำต้อยไม่ได้ไม่ดีเลย แต่เป็นสถานที่ที่สวยงามที่สุด</p><p>สิ่งที่น่าสนใจคือผมไม่รู้สึกถึงการเปลี่ยนแปลงมากนักในช่วงเวลาแห่งการรับใช้ ผมคิดว่าผมกำลังรับใช้จากพระคุณ แต่ในความเป็นจริง "ความปรารถนาที่จะทำดี" และ "ความกระตือรือร้นของตัวเอง" ได้นำหน้า เมื่อเวลาผ่านไปและผมไตร่ตรอง ผมตระหนักว่าการรับใช้ปีที่แล้วของผมเป็นฆราวาสอย่างไร ผมเหนื่อยง่ายเพราะผมพยายามทำให้พระเจ้าพอใจด้วยความชอบธรรมและความพยายามของตัวเอง</p><p>ในการตระหนักรู้นั้น ผมได้เรียนรู้อีกครั้งว่าการนมัสการและการรับใช้ที่แท้จริงคืออะไร ตำแหน่ง สภาพแวดล้อม และสถานการณ์ของผมไม่มีส่วนเกี่ยวข้องกับแก่นแท้ของการรับใช้ การนมัสการที่แท้จริงคือการตายต่อตัวเองในโลกและหันไปหาพระเจ้าเท่านั้น แม้แต่ช่วงเวลาสั้นๆ ของการสรรเสริญและอธิษฐานด้วยหัวใจเต็มเปี่ยมก็กลายเป็นเวลาแห่งพระคุณที่ลึกซึ้งยิ่งขึ้น</p><p>โดยเฉพาะพิธีล้างเท้ายังคงอยู่ในความทรงจำของผมเป็นเวลานาน ในน้ำตาที่ไหลขณะที่ครอบครัว สมาชิกทีม และผู้สมัครล้างเท้าให้กันและกัน ผมเห็นว่าพระเจ้ารักศิษย์ของพระองค์อย่างไร และความรักนั้นควรดำเนินต่อไปสู่การรับใช้เพิ่มเติมอย่างไร วิธีของพระเจ้าในการรักษาหัวใจที่บาดเจ็บและให้กำลังในการรับใช้อีกครั้งคือความรักเสมอ</p><p>ถ้าผมต้องแสดงการรับใช้นี้ด้วยคำเดียว มันจะเป็น "การกราบ" ผมได้เรียนรู้ว่าพระคุณแห่งการรับใช้ยิ่งใหญ่กว่าพระคุณที่ได้รับมาก แม้ว่ามันจะดูเล็กในโลก ถ้ามันเป็นสิ่งที่พระเจ้าพอใจ นั่นก็เพียงพอแล้ว</p><p>ผมยังคงเป็นคนที่ยังไม่ได้เดินบนเส้นทางแห่งความเชื่อมานานมาก บางครั้งมันช้าและผมกลายเป็นคนใจร้อน อย่างไรก็ตาม พระเจ้าบอกผมอย่าทำมากเกินไป ว่าพระองค์จะแบกแอกร่วมกับลูกชายที่รักของพระองค์ ผมเชื่อว่าการเดินทางแห่งการรับใช้นี้ในท้ายที่สุดไม่ใช่เส้นทางที่ผมเดินคนเดียว แต่เป็นเส้นทางที่ผมเดินกับพระเจ้า</p><p>ผมถวายความกตัญญูและการสรรเสริญแด่พระเจ้าผู้ทรงเรียกผมมาที่สถานที่นี้อีกครั้ง ผมหวังว่าจะยังคงรับใช้อย่างเต็มใจด้วยความถ่อมตนในทุกสถานที่แห่งการรับใช้ที่พระเจ้าจะนำ</p>`
+  },
+  
+  IL: {
+    mainTitle: "ניוזלטר ניו הארט",
+    subtitle: "מהדורת חורף 2026",
+    foundersGreetingTitle: "מהמייסדים שלנו",
+    foundersTitle: "מייסדים ומנהלים גלובליים",
+    storiesTitle: "סיפורי שינוי",
+    editorialSectionTitle: "מאמר פתיחה",
+    serveTitle: "דרכים לשרת",
+    palancaTitle: "תמיכה ותרומות",
+    upcomingNhTitle: "נסיגות ניו הארט קרובות",
+    qrInstruction: "השתמשו בקודי QR או במידע הבנק למטה:",
+    footerCopyright: "© 2026 New Heart Ministry. כל הזכויות שמורות.",
+    footerNote: "אנא שמרו על הניוזלטר הזה בתוך משפחת ניו הארט.",
+    verseRef: "יחזקאל 36:26",
+    verseText: '"ונתתי לכם לב חדש ורוח חדשה אתן בקרבכם והסרתי את לב האבן מבשרכם ונתתי לכם לב בשר"',
+    founderMsgTitle: "עונה של התחלות חדשות",
+    founderMsg: `<p>משפחת ניו הארט היקרה,</p><p>כאשר אנו נכנסים לעונת החורף הזו, אנו נזכרים שאפילו בחודשים הקרים ביותר, אלוהים מכין צמיחה חדשה מתחת לפני השטח. השנה האחרונה הייתה מלאה בעדויות על כוחו המשנה של אלוהים על פני אומות.</p><p>אנו מתכופפים לראות את נאמנותו של אלוהים בכל נסיגה - מתאילנד לווייטנאם, קוריאה לארצות הברית, ובקרוב ישראל. כל התכנסות מגלה את לבו לשחזר, לחדש ולתת לנו מפגשים חדשים עם אהבתו.</p><p>שהניוזלטר הזה יעודד את אמונתכם ויזכיר לכם שאתם חלק ממשפחה גלובלית המאוחדת על ידי לב חדש אחד.</p>`,
+    serveText: "התפללו על סופי שבוע קרובים. שרתו בצוות. שתפו את עדותכם. תמכו בילדי ניו הארט. הזמינו מישהו שזקוק למפגש לב חדש.",
+    readStory: "קראו סיפור",
+    placeholderNotice: "📝 תוכן זמני - יעודכן עם הודעה סופית מהמייסדים",
+    placeholderNoticeEditorial: "📝 תוכן זמני - יעודכן עם מאמר פתיחה סופי",
+    
+    carlosRole: "המתנה המוחשית של לב טהור",
+    thaoRole: "ניו הארט #15 וייטנאם",
+    cathyRole: "הלב של משרתת",
+    eunyoungName: "און יאנג גו",
+    eunyoungRole: "חברת צוות קוריאה/וייטנאם/תאילנד",
+    paiRole: "ריפוי נסי - תאילנד #56",
+    
+    carlosModalTitle: "קרלוס מסרשמידט — המתנה המוחשית של לב טהור",
+    thaoModalTitle: "תאו תו — ניו הארט #15 וייטנאם",
+    cathyModalTitle: "קתי — הלב של משרתת",
+    eunyoungModalTitle: "און יאנג גו — חברת צוות",
+    paiModalTitle: "פאי — ריפוי נסי",
+    
+    editorialContent: `<h3>אפקט הגלים של לב חדש אחד</h3><p>על פני חמש יבשות, אנו עדים לתנועה בלתי ניתנת להכחשה של רוח אלוהים. העדויות בניוזלטר זה מייצגות רק חלק קטן מהחיים שמשתנים דרך שירות ניו הארט.</p><h3>מעבר לשלושת הימים</h3><p>נסיגת ניו הארט בת שלושה ימים אינה היעד - היא הזרז. אנו לומדים ששינוי אמיתי מתרחש ב"יום הרביעי" ואילך, כאשר אנו משלבים את ניתוח הלב שאלוהים ביצע במהלך הנסיגה לחיי היומיום שלנו.</p>`,
+    
+    carlosStory: `<p>לפני החוויה המשנה של ניו הארט #48, חיי הרוחניים התאפיינו במעורבות פעילה בכנסייה, השתתפות בקבוצות קטנות ושירותים שונים. עם זאת, כשהשנה החדשה התקרבה, כיסופים עמוקים יותר השתרשו. בשירות חג המולד 2023, התבקשנו לבחור שתי מילים כדי לבטא את כוונתנו לשנה הבאה. הבחירה שלי הייתה שאיפה פשוטה אך עמוקה: "לב טהור".</p><p>כשנבחרתי להשתתף בנסיגת ניו הארט, ניגשתי אליה עם כוונה ברורה וממוקדת: "אני רוצה לחוות את רוח הקודש מטהרת את לבי כך שארגיש שלום עמוק והדרכה לחיים הנוצריים היומיומיים שלי על ידי רוח הקודש." המציאות של הנסיגה חרגה הרבה מעבר לציפייה זו.</p>`,
+    
+    thaoStory: `<p>כשנכנסתי למחנה ניו הארט, אני חושבת שזה דומה לעלות על סירת אמונה, מתחילה מסע גילוי שהיה חדש ומרתק להפליא. המסע הזה לקח אותי מהפתעה אחת לאחרת, מחוויה אחת לאחרת ובאמת נגע ברגשות שלי, ברוח שלי ובנפש שלי.</p><p>כשהסכמתי להשתתף במחנה הזה, פשוט רציתי לבלות זמן במנוחה ולנצל את ההזדמנות ללמוד דברים חדשים. זו הפעם הראשונה בחיי כשהצטרפתי למחנה, לא היה לי מושג איפה אשאר או מה אעשה במשך ארבעה ימים. הראש שלי היה מלא במחשבות ובדמיון.</p>`,
+    
+    cathyStory: `<p><strong>"הנה מה טוב ומה נעים שבת אחים גם יחד!" — תהלים 133:1</strong></p><p><strong>מסע של התחדשות</strong></p><p>הקשר שלי עם ניו הארט התחיל בשנת 2022 בקה גה, פאן תיאט. אז הייתי משתתפת שנשמתה הייתה עייפה, ואני זוכרת איך אלוהים השתמש במחנה הזה כדי לרענן את מערכת היחסים שלי איתו. נשבתי בסביבה - המתנות המתחשבות והדרך בה חברי הצוות שירתו באהבה אמיתית כל כך.</p><p>השנה, בשנת 2025, חזרתי לניו הארט נהא טראנג עם קריאה חדשה: לשרת בצוות העזר.</p>`,
+    
+    eunyoungStory: `<p>שלום. אני דיקונס און יאנג גו, ששירתה בשמחה בווייטנאם. הסיבה שהתחלתי להשתתף בכנסייה הזו הייתה בזכות לקוח עסקי שלי. בכל פעם שנפגשנו, הוא המשיך לומר לי שאני צריכה לבוא לכנסייה. לבסוף באתי עם הלך הרוח "זו תהיה הפעם האחרונה", אבל ממש אהבתי את הכומר ואת אשתו. אז החלטתי, "אני צריכה להשתתף בכנסייה הזו".</p><p>כשהתחלתי לחזור לכנסייה, הכומר אמר לי שאני חייבת ללכת לניו הארט. בכנות, ממש לא רציתי ללכת. שלושה לילות וארבעה ימים... אבל הרגשתי שזה לא יסתיים אלא אם כן אלך. אז עם הלך הרוח "בואי רק נסיים את זה מהר", הלכתי לניו הארט. אבל אלוהים אדירים, אתם יודעים מה קרה אחר כך, נכון?</p>`,
+    
+    paiStory: `<p>שלום, שמי פאי. לפני שהשתתפתי בנסיגת ניו הארט, החיים החיצוניים שלי היו די כאוטיים. הייתי צריכה לטפל בילדים שלי ובבעלי, לצד עבודה מחוץ לבית. בנוסף, היו לי כמה אחריות לשרת בכנסייה. בנוסף, למדתי שיעורי אנגלית נוספים בערבי יום שני ויום חמישי והייתי צריכה להתכונן לבחינה ב-24 בינואר, ממש לפני שהלכתי למחנה ניו הארט.</p><p>במהלך כל הזמן שלי בנסיגה, הרגשתי את החום והאהבה מחברי הצוות ומהמשתתפים. למרות שכולם באו ממקומות ורקעים שונים, הם חלקו לב אחד: הלב של ישוע המשיח.</p><p><strong>תודה לאלוהים מאוד מאוד, כי ביום שני השלישי אחרי החזרה, תוצאות בדיקת הבריאות דיווחו שלא נמצאו עוד תאים חריגים, וגם HPV לא זוהה עוד.</strong> זה נס עצום. אני מודה לאלוהים על הריפוי הזה, שנתן לי חוויה עמוקה יותר איתו.</p>`,
+    
+    // Guk Hyun testimony
+    gukhyunName: "גוק היון לי",
+    gukhyunRole: "לימוד ענווה דרך שירות",
+    gukhyunModalTitle: "גוק היון לי — לימוד ענווה דרך שירות",
+    gukhyunStory: `<p><strong>"בן האדם לא בא לקבל שירות אלא לשרת..." — מרקוס 10:45</strong></p><p>בסתיו 2024, נכנסתי לניו הארט מבלי באמת לדעת מה התוכנית, בהצעת אשתי, והבאתי רק את המינימום. כמאמין חדש שהוטבל פחות משנה, חלקתי חדר עם שני כמרים וצפיתי מקרוב כיצד האמונה מתגלה דרך החיים יותר מאשר מילים. היחס והשירות שלהם היו השיעור הראשון שלי בלמידה מה אמונה באמת אומרת דרך ניסיון, והניסיון הזה נשאר עמוק בליבי לזמן רב.</p><p>כשהייתי בעמדה של קבלת שירות, הרגשתי באופן טבעי מוכרח לעמוד שוב במקום הזה כמי ששרת. החסד שקיבלתי היה ברור מדי. עם זאת, בו זמנית היה פחד. הרגשתי שהאמונה שלי עדיין קטנה, ודאגתי להפוך למעמסה על חברי צוות אחרים. למרות זאת, נזכרתי בהשראה ובחסד שקיבלתי, חזרתי לניו הארט בתקווה שהאהבה הזו תועבר למועמדים אחרים גם כן.</p><p>כשהייתי משתתף, הרגשתי את ישוע דרך חברי הצוות ששירתו. ראיתי את אהבתו בתנועותיהם השקטות מבלי למשוך תשומת לב לעצמם. להיפך, כשהסתכלתי על המועמדים תוך כדי שירות כחבר צוות, ראיתי פנים אחרות של ישוע. ראיתי את האדון עדיין פועל בלבבות הנפתחים, מקבלים חסד ומשבחים.</p><p>בניו הארט הזה, שירתתי בצוות התיאום, עזרתי לזרימה הכוללת של התוכנית. זו הייתה עבודה לניהול לוחות זמנים ולוגיסטיקה, נטילת אחריות על חלקים בלתי נראים. הרגעים המתגמלים ביותר היו כשהביטויים של המועמדים השתנו. בכל פעם שראיתי לבבות שהתקשו מתרככים והופכים לחופשיים בפולחן, הרגשתי שכל העבודה הזו מעולם לא הייתה לשווא.</p><p>כמובן שזה לא היה קל. בהיותי שירתתי בפעם הראשונה, נעתי בקצב מוגזם עם התלהבות מוגזמת, וכשהכוח הפיזי ירד, הנפש שלי קרסה איתו. בכל פעם, נזכרתי ברגעי התודה והחסד שקיבלתי בעבר, והפנים של המועמדים החווים חסד ממש לפני הרימו אותי שוב. כשראיתי את יד האלוהים מנחה הכל בצורה חלקה למרות הכנה לא מספקת ומצבים בלתי צפויים, הרגשתי בבירור שהאדון עדיין חי.</p><p>דרך השירות הזה, אלוהים נתן לי מסר ברור. לא היה מדובר בשנים של אמונה או עומק רוחני, אלא בעובדה שאלוהים משתמש באלה שמתנדבים בהכנעה. האמת שהגבוה ביותר שירת במקום הנמוך ביותר שתלה מערכת ערכים חדשה לגמרי בתוכי, שחייתי בתקווה לעלות גבוה בעולם. זה היה זמן ללמוד דרך הגוף שלי שלהיות נמוך כלל לא רע, אלא המקום היפה ביותר.</p><p>מה שמעניין הוא שלא הרגשתי שינוי רב ברגע השירות. חשבתי שאני משרת מחסד, אבל למעשה, "הרצון לעשות טוב" ו"התלהבות שלי עצמי" היו מלפנים. כשהזמן עבר והרהרתי, הבנתי עד כמה השירות של שנה שעברה היה חילוני. התעייפתי בקלות כי ניסיתי לרצות את האדון עם הצדקה והמאמץ שלי עצמי.</p><p>בהבנה זו, למדתי שוב מה הם פולחן ושירות אמיתיים. המיקום, הסביבה והנסיבות שלי לא היו קשורים למהות השירות. פולחן אמיתי היה למות לעצמי בעולם ולפנות רק לאדון. אפילו רגעים קצרים של שבח ותפילה בכל הלב הפכו לזמנים של חסד עמוק יותר.</p><p>במיוחד טקס רחיצת הרגליים נשאר זמן רב בזיכרוני. בדמעות שנשפכו כאשר משפחה, חברי צוות ומועמדים שטפו את רגלי זה של זה, ראיתי כיצד האדון אהב את תלמידיו וכיצד האהבה הזו צריכה להמשיך לשירות נוסף. דרכו של אלוהים לרפא לבבות פצועים ולתת כוח לשרת שוב הייתה תמיד אהבה.</p><p>אם הייתי צריך לבטא את השירות הזה במילה אחת, זה יהיה "השתטחות." למדתי שחסד השירות גדול הרבה יותר מהחסד שהתקבל. גם אם זה נראה קטן בעולם, אם זה משהו שהאדון מרוצה ממנו, זה מספיק.</p><p>אני עדיין מישהו שלא הלך בדרך האמונה זמן רב מאוד. לפעמים זה איטי ואני נעשה חסר סבלנות. עם זאת, האדון אומר לי לא להגזים, שהוא יישא את העול יחד עם בנו האהוב. אני מאמין שמסע השירות הזה בסופו של דבר אינו דרך שאני הולך לבד, אלא דרך שאני הולך עם האדון.</p><p>אני מקריב תודה ושבח לאדון שקרא לי למקום הזה שוב. אני מקווה להמשיך לשרת ברצון בענווה בכל מקומות השירות שהאדון ינחה.</p>`
+  }
 };
+  </script>
 
-function lang() {
-  return document.body.getAttribute("data-lang") || "EN";
+  <script>
+// APP LOGIC
+function safeSetText(id, text) {
+  const el = document.getElementById(id);
+  if (el && typeof text === "string") el.textContent = text;
+}
+function safeSetHTML(id, html) {
+  const el = document.getElementById(id);
+  if (el && typeof html === "string") el.innerHTML = html;
 }
 
-buttons.forEach(btn => {
-  btn.onclick = () => {
-    const id = btn.dataset.target.replace("#","");
-    const modal = document.getElementById(id);
-    const key = storyMap[id];
-    const container = modal.querySelector("div[id$='story-content']");
+function switchLanguage(lang) {
+  const t = translations[lang] || translations.EN;
+  document.body.setAttribute('data-lang', lang);
+  document.body.setAttribute('dir', lang === 'IL' ? 'rtl' : 'ltr');
+  
+  document.querySelectorAll('.language-buttons span[data-lang]').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
 
-    if (translations[lang()][key]) {
-      container.innerHTML = translations[lang()][key];
-    }
+  // Update all text content
+  safeSetText("main-title", t.mainTitle);
+  safeSetText("subtitle", t.subtitle);
+  safeSetText("founders-greeting-title", t.foundersGreetingTitle);
+  safeSetText("founders-title", t.foundersTitle);
+  safeSetText("stories-title", t.storiesTitle);
+  safeSetText("editorial-section-title", t.editorialSectionTitle);
+  safeSetText("serve-title", t.serveTitle);
+  safeSetText("palanca-title", t.palancaTitle);
+  safeSetText("upcoming-nh-title", t.upcomingNhTitle);
+  safeSetText("qr-instruction", t.qrInstruction);
+  safeSetText("footer-copyright", t.footerCopyright);
+  safeSetText("footer-note", t.footerNote);
+  safeSetText("verse-ref", t.verseRef);
+  safeSetText("verse-text", t.verseText);
+  safeSetText("founder-msg-title", t.founderMsgTitle);
+  safeSetHTML("founder-msg", t.founderMsg);
+  safeSetText("serve-text", t.serveText);
+  safeSetText("placeholder-notice", t.placeholderNotice);
+  safeSetText("placeholder-notice-editorial", t.placeholderNoticeEditorial);
+  
+  // Story roles
+  safeSetText("carlos-role", t.carlosRole);
+  safeSetText("thao-role", t.thaoRole);
+  safeSetText("cathy-role", t.cathyRole);
+  safeSetText("eunyoung-name", t.eunyoungName);
+  safeSetText("eunyoung-role", t.eunyoungRole);
+  safeSetText("pai-role", t.paiRole);
+  safeSetText("gukhyun-name", t.gukhyunName);
+  safeSetText("gukhyun-role", t.gukhyunRole);
+  
+  // Modal titles
+  safeSetText("carlos-modal-title", t.carlosModalTitle);
+  safeSetText("thao-modal-title", t.thaoModalTitle);
+  safeSetText("cathy-modal-title", t.cathyModalTitle);
+  safeSetText("eunyoung-modal-title", t.eunyoungModalTitle);
+  safeSetText("pai-modal-title", t.paiModalTitle);
+  safeSetText("gukhyun-modal-title", t.gukhyunModalTitle);
+  
+  // Editorial and testimonies
+  safeSetHTML("editorial-content", t.editorialContent);
+  safeSetHTML("carlos-story-content", t.carlosStory);
+  safeSetHTML("thao-story-content", t.thaoStory);
+  safeSetHTML("cathy-story-content", t.cathyStory);
+  safeSetHTML("eunyoung-story-content", t.eunyoungStory);
+  safeSetHTML("pai-story-content", t.paiStory);
+  safeSetHTML("gukhyun-story-content", t.gukhyunStory);
+  
+  // Update buttons
+  document.querySelectorAll(".open-modal").forEach(btn => btn.textContent = t.readStory);
+  
+  // RTL adjustments
+  document.querySelectorAll(".modal-content").forEach(mc => {
+    mc.setAttribute("dir", lang === "IL" ? "rtl" : "ltr");
+  });
+}
 
-    modal.classList.add("show");
-    document.body.style.overflow = "hidden";
-  };
+// Initialize
+document.addEventListener('DOMContentLoaded', () => switchLanguage("EN"));
+
+// Language switcher
+document.querySelectorAll(".language-buttons span[data-lang]").forEach(btn => {
+  btn.addEventListener("click", () => switchLanguage(btn.dataset.lang));
 });
 
-closes.forEach(btn => {
-  btn.onclick = () => {
+// Modals
+document.querySelectorAll(".open-modal").forEach(btn => {
+  btn.addEventListener("click", e => {
+    e.preventDefault();
+    const modal = document.querySelector(btn.dataset.target);
+    if (modal) {
+      modal.classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+  });
+});
+
+document.querySelectorAll(".close-modal").forEach(btn => {
+  btn.addEventListener("click", () => {
     btn.closest(".modal").classList.remove("show");
-    document.body.style.overflow = "";
-  };
+    document.body.style.overflow = "auto";
+    window.speechSynthesis.cancel();
+  });
 });
 
-modals.forEach(m => {
-  m.onclick = e => {
-    if (e.target === m) {
-      m.classList.remove("show");
-      document.body.style.overflow = "";
+document.querySelectorAll(".modal").forEach(modal => {
+  modal.addEventListener("click", e => {
+    if (e.target === modal) {
+      modal.classList.remove("show");
+      document.body.style.overflow = "auto";
+      window.speechSynthesis.cancel();
     }
-  };
+  });
 });
-</script>
 
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    const open = document.querySelector('.modal.show');
+    if (open) {
+      open.classList.remove('show');
+      document.body.style.overflow = 'auto';
+      window.speechSynthesis.cancel();
+    }
+  }
+});
+
+// Audio
+document.getElementById("audioToggleHeader")?.addEventListener("click", () => {
+  if (window.speechSynthesis.speaking) {
+    window.speechSynthesis.cancel();
+  } else {
+    const utter = new SpeechSynthesisUtterance(document.body.innerText);
+    utter.lang = { EN: 'en-US', KO: 'ko-KR', VN: 'vi-VN', TH: 'th-TH', IL: 'he-IL' }[document.body.dataset.lang] || 'en-US';
+    utter.rate = 0.95;
+    window.speechSynthesis.speak(utter);
+  }
+});
+
+document.querySelectorAll(".modal-speak-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    if (btn.classList.contains('speaking')) {
+      window.speechSynthesis.cancel();
+      btn.classList.remove('speaking');
+    } else {
+      const text = btn.closest(".modal").innerText;
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = { EN: 'en-US', KO: 'ko-KR', VN: 'vi-VN', TH: 'th-TH', IL: 'he-IL' }[document.body.dataset.lang] || 'en-US';
+      utter.rate = 0.95;
+      btn.classList.add('speaking');
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utter);
+      utter.onend = () => btn.classList.remove('speaking');
+    }
+  });
+});
+  </script>
 </body>
 </html>
