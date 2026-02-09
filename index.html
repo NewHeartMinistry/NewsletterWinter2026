@@ -203,12 +203,12 @@
     .stories-section { overflow: hidden; }
     .carousel-wrapper {
       position: relative;
-      padding: 1rem 0 2rem;
+      overflow: hidden;
+      padding: 1rem 50px 2rem;
     }
     .stories-scroll {
       display: flex;
       gap: 1.5rem;
-      overflow: hidden;
       transition: transform 0.5s ease;
     }
 
@@ -257,8 +257,8 @@
       justify-content: center;
     }
     .carousel-btn:hover { background: var(--primary); color: #fff; }
-    .carousel-btn.prev { left: -10px; }
-    .carousel-btn.next { right: -10px; }
+    .carousel-btn.prev { left: 0; }
+    .carousel-btn.next { right: 0; }
     .carousel-btn:disabled { opacity: 0.3; cursor: default; }
     .carousel-dots {
       display: flex;
@@ -748,8 +748,7 @@ const translations = {
     gukhyunRole: "섬김으로 배우는 엎드림의 은혜",
     gukhyunModalTitle: "이국현 — 섬김으로 배우는 엎드림의 은혜",
     gukhyunStory: `<p><strong>"인자가 온 것은 섬김을 받으려 함이 아니라 섬기려 하고…" — 마가복음 10:45</strong></p><p>2024년 가을, 나는 뉴하트가 어떤 프로그램인지도 제대로 알지 못한 채 아내의 권유로 짐을 최소한만 챙겨 그 자리에 들어갔다. 세례를 받은 지 1년도 채 되지 않았던 초신자였던 나는 두 분의 목사님과 같은 방을 사용하며, 말보다 삶으로 드러나는 믿음의 모습을 가까이에서 보게 되었다. 그들의 태도와 섬김은 나에게 신앙이 무엇인지 몸으로 배우는 첫 시간이었고, 그 경험은 내 마음 깊은 곳에 오래 남았다.</p><p>그렇게 섬김을 '받는 자리'에 있었던 나는, 자연스럽게 다시 그 자리에 '섬기는 사람'으로 서야 한다는 마음이 생겼다. 받은 은혜가 너무 분명했기 때문이다. 그러나 동시에 두려움도 있었다. 믿음의 크기가 여전히 작다고 느껴졌고, 혹시나 다른 팀원들에게 짐이 되지 않을까 걱정했다. 그럼에도 불구하고 내가 받았던 감동과 은혜를 기억하며, 또 다른 캔디들에게도 그 사랑이 전해지기를 기대하며 다시 뉴하트에 발걸음을 옮겼다.</p><p>이 자리에 다시 부르신 주님께 감사와 찬양을 올려드린다. 앞으로도 주님께서 인도하실 모든 사역의 자리에서, 기꺼이 낮아져 섬길 수 있기를 소망한다.</p>`
-  
-  // Adding VN, TH, IL translations - abbreviated for space, you can expand these
+  },
   VN: {
     mainTitle: "Bản Tin New Heart",
     subtitle: "Ấn Bản Mùa Đông 2026",
@@ -992,7 +991,11 @@ function switchLanguage(lang) {
 }
 
 // Initialize
-document.addEventListener('DOMContentLoaded', () => switchLanguage("EN"));
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => switchLanguage("EN"));
+} else {
+  switchLanguage("EN");
+}
 
 // Language switcher
 document.querySelectorAll(".language-buttons span[data-lang]").forEach(btn => {
