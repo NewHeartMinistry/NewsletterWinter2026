@@ -1363,7 +1363,7 @@ function safeSetHTML(id, html) {
 function switchLanguage(lang) {
   const t = translations[lang] || translations.EN;
   document.body.setAttribute('data-lang', lang);
-  document.body.setAttribute('dir', lang === 'IL' ? 'rtl' : 'ltr');
+  document.body.setAttribute('dir', 'ltr');
   
   document.querySelectorAll('.language-buttons span[data-lang]').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
@@ -1442,7 +1442,7 @@ function switchLanguage(lang) {
   
   // RTL adjustments
   document.querySelectorAll(".modal-content").forEach(mc => {
-    mc.setAttribute("dir", lang === "IL" ? "rtl" : "ltr");
+    mc.setAttribute("dir", "ltr");
   });
   if (typeof populateVoiceSelects === 'function') populateVoiceSelects();
 }
