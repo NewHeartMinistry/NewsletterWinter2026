@@ -1544,7 +1544,15 @@ document.getElementById("audioToggleHeader")?.addEventListener("click", () => {
   if (window.speechSynthesis.speaking) {
     window.speechSynthesis.cancel();
   } else {
-    const utter = new SpeechSynthesisUtterance(document.body.innerText);
+    // Gather only newsletter content, excluding UI elements
+    const contentEls = document.querySelectorAll("section, footer");
+    let text = "";
+    contentEls.forEach(el => {
+      const clone = el.cloneNode(true);
+      clone.querySelectorAll(".voice-select, .modal-speak-btn, .language-buttons, .audio-toggle, .open-modal, .close-modal, button, select, .prev-edition-link").forEach(n => n.remove());
+      text += clone.innerText + "\n";
+    });
+    const utter = new SpeechSynthesisUtterance(text.trim());
     utter.lang = { EN: 'en-US', KO: 'ko-KR', VN: 'vi-VN', TH: 'th-TH', IL: 'he-IL' }[document.body.dataset.lang] || 'en-US';
     utter.rate = 0.95;
     const voice = getSelectedVoice(document.getElementById("headerVoiceSelect"));
@@ -1559,7 +1567,10 @@ document.querySelectorAll(".modal-speak-btn").forEach(btn => {
       window.speechSynthesis.cancel();
       btn.classList.remove('speaking');
     } else {
-      const text = btn.closest(".modal").innerText;
+      const modal = btn.closest(".modal");
+      const clone = modal.cloneNode(true);
+      clone.querySelectorAll(".voice-select, .modal-speak-btn, .close-modal, select, button").forEach(n => n.remove());
+      const text = clone.innerText;
       const utter = new SpeechSynthesisUtterance(text);
       utter.lang = { EN: 'en-US', KO: 'ko-KR', VN: 'vi-VN', TH: 'th-TH', IL: 'he-IL' }[document.body.dataset.lang] || 'en-US';
       utter.rate = 0.95;
