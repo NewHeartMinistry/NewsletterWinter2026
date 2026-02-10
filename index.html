@@ -522,6 +522,58 @@
       color: var(--text-muted);
       line-height: 1.5;
     }
+    .palanca-section-title {
+      font-size: 1rem;
+      color: var(--accent);
+      margin: 1.5rem 0 0.75rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--glass-border);
+    }
+    .palanca-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.78rem;
+      margin-top: 0.5rem;
+    }
+    .palanca-table th {
+      background: var(--primary);
+      color: #fff;
+      padding: 0.4rem 0.5rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.75rem;
+    }
+    .palanca-table td {
+      padding: 0.35rem 0.5rem;
+      border-bottom: 1px solid var(--glass-border);
+      color: var(--text-muted);
+      vertical-align: top;
+    }
+    .palanca-table tr.claimed td {
+      color: var(--text-muted);
+      opacity: 0.55;
+      text-decoration: line-through;
+    }
+    .palanca-table tr.available td {
+      color: var(--text);
+      font-weight: 500;
+    }
+    .palanca-status {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.15rem 0.4rem;
+      border-radius: 8px;
+      display: inline-block;
+      white-space: nowrap;
+    }
+    .palanca-status.donated {
+      background: rgba(76,175,80,0.15);
+      color: #4caf50;
+    }
+    .palanca-status.needed {
+      background: rgba(255,152,0,0.15);
+      color: #ff9800;
+    }
 
     /* Footer */
     footer {
@@ -893,6 +945,12 @@
           <div class="sidebar-card">
             <h4>🤝 <span id="serve-title">Ways to Serve</span></h4>
             <p id="serve-text">Pray for upcoming New Heart. Serve on a team. Share your testimony. Support New Heart with donation and palanca. Invite someone who needs a new heart encounter.</p>
+            <div style="margin-top:1.2rem; padding:1rem; background:rgba(255,152,0,0.08); border-radius:12px; border:1px solid rgba(255,152,0,0.2); text-align:center;">
+              <div style="font-size:1.5rem; margin-bottom:0.4rem;">🇮🇱 💝</div>
+              <h5 style="color:var(--accent); margin:0 0 0.5rem; font-size:0.95rem;" id="palanca-israel-title">Israel New Heart — Palanca Donations</h5>
+              <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:0.75rem; line-height:1.5;" id="palanca-israel-desc">Bless the candidates of the upcoming Israel New Heart! View the list of palanca items and sign up to sponsor one.</p>
+              <a id="palanca-israel-btn" href="https://docs.google.com/spreadsheets/d/1yq-7HRM9NDQq0H3gp4FmOctiu_HG7x--/edit?usp=sharing&ouid=117485122076700097938&rtpof=true&sd=true" target="_blank" style="display:inline-block; padding:0.6rem 1.5rem; background:var(--primary); color:#fff; border-radius:8px; text-decoration:none; font-weight:600; font-size:0.9rem; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">📋 View & Sign Up for Palanca</a>
+            </div>
           </div>
           
           <div class="sidebar-card">
@@ -987,6 +1045,9 @@ const translations = {
     israelRdRole: "Israel New Heart Regional Director",
     israelRdMsg: `<p>In Israel, preparations are underway for <strong>New Heart #57, Israel</strong>, which will take place during the Purim festival from <strong>March 1–4</strong>.</p><p>Just as God personally protected His beloved people through Esther from the hand of Haman during Purim, we are praying that through New Heart, young people will rise up who discover the purpose of their calling—those who carry the honor of God's name and make the resolute declaration, <em>"If I perish, I perish."</em></p><p>This New Heart is painting a vision of the One New Man, where Jews and Arabs worship together, and young people from the nations stand alongside them, blessing one another.</p><p>Remembering the three promises received twenty years ago in Da Lat, Vietnam, we share this vision with you:</p><p><strong>1. Forerunners</strong> (Malachi 4:6) — A life that prepares the way for the Lord's coming by turning the hearts of fathers to their children and the hearts of children to their fathers.</p><p><strong>2. Watchmen</strong> (Isaiah 62:7) — A life of intercession and worship that reminds God of His covenant.</p><p><strong>3. Harvesters</strong> (Amos 9:1–15) — A time when the fallen tent of David is restored (v.11), and restoration expands toward the nations.</p><p>We look forward to the Lord preparing the harvest field for New Heart 57 and bringing the harvest workers into the harvest field. We expect that our God, who began this holy work, will complete it and receive all the glory. We invite the New Heart members who will join us to this holy calling.</p><p><em>Shalom</em></p>`,
     serveText: "Pray for upcoming New Heart. Serve on a team. Share your testimony. Support New Heart with donation and palanca. Invite someone who needs a new heart encounter.",
+    palancaIsraelTitle: "Israel New Heart — Palanca Donations",
+    palancaIsraelDesc: "Bless the candidates of the upcoming Israel New Heart! View the list of palanca items and sign up to sponsor one.",
+    palancaIsraelBtn: "📋 View & Sign Up for Palanca",
     readStory: "Read Story",
     placeholderNotice: "📝 Placeholder content - to be updated with final Founders' Message",
     placeholderNoticeEditorial: "📝 Placeholder content - to be updated with final Editorial",
@@ -1071,6 +1132,9 @@ const translations = {
     israelRdRole: "이스라엘 뉴하트 지역 디렉터",
     israelRdMsg: `<p>이스라엘에서는 3월 1-4일까지 부림절 절기에 <strong>뉴하트 57기</strong>를 준비하고 있습니다.</p><p>부림절에 에스더를 통해 당신의 사랑하는 백성을 하만의 손에서 친히 보호하신 것처럼, 하나님의 이름의 명예를 가지고 <em>"죽으면 죽으리라"</em>하며 결단하는 부르심의 목적을 발견할 젊은이들이 뉴하트를 통해 일어나길 기대합니다.</p><p>이번 뉴하트는 유대인과 아랍인이 같이 예배하고 열방의 청년들이 곁에 서서 서로 축복하는 원뉴맨의 그림을 그려가고 있습니다.</p><p>20년 전에 베트남 달랏에서 받았던 3가지 약속을 기억하며 여러분과 그 비전을 나눕니다:</p><p><strong>1) 선두주자 (Forerunner)</strong> (말라기 4:6) — 아버지의 마음을 자녀에게로 자녀들의 마음을 아버지에게로 돌이키게 하는 주님 오실 길을 예비하는 삶.</p><p><strong>2) 파수꾼 (Watchman)</strong> (이사야 62:7) — 하나님의 언약을 기억나게 해 드리는 중보, 예배자로의 삶.</p><p><strong>3) 추수의 일꾼 (Harvesters)</strong> (아모스 9:1-15) — 무너진 다윗의 장막이 일어나고 (11절), 열방을 향한 회복이 확장되며 (12절), 추수와 씨 뿌림이 동시에 진행 (13절)되고, 풍요와 회복이 실재가 되어지는 영원한 공동체의 삶 (14-15절).</p><p>뉴하트 57기에 추수 마당을 준비하시고 추수의 일꾼을 추수 밭에 들어오게 하실 주님, 이 거룩한 일을 시작하신 우리 하나님께서 이 일을 마치게 하심으로 홀로 영광 받으시길 기대하며, 함께 동참할 뉴하트 지체들을 이 거룩한 부르심에 초대합니다.</p><p><em>샬롬</em></p>`,
     serveText: "다가오는 뉴하트를 위해 기도해 주세요. 팀에서 섬기세요. 간증을 나누세요. 헌금과 팔랑카로 뉴하트를 후원하세요. 새 마음의 만남이 필요한 누군가를 초대하세요.",
+    palancaIsraelTitle: "이스라엘 뉴하트 — 팔랑카 후원",
+    palancaIsraelDesc: "다가오는 이스라엘 뉴하트의 후보자들을 축복해 주세요! 팔랑카 항목 목록을 보고 후원에 참여하세요.",
+    palancaIsraelBtn: "📋 팔랑카 보기 & 신청하기",
     readStory: "간증 읽기",
     placeholderNotice: "📝 임시 내용 - 최종 설립자 메시지로 업데이트될 예정",
     placeholderNoticeEditorial: "📝 임시 내용 - 최종 에디토리얼로 업데이트될 예정",
@@ -1147,6 +1211,9 @@ const translations = {
     israelRdRole: "Giám Đốc Khu Vực New Heart Israel",
     israelRdMsg: `<p>Tại Israel, công tác chuẩn bị đang được tiến hành cho <strong>New Heart #57, Israel</strong>, sẽ diễn ra trong lễ Purim từ ngày <strong>1–4 tháng 3</strong>.</p><p>Cũng như Đức Chúa Trời đã đích thân bảo vệ dân yêu dấu của Ngài qua Ê-xơ-tê khỏi tay Ha-man trong lễ Purim, chúng tôi đang cầu nguyện rằng qua New Heart, những người trẻ sẽ đứng lên, khám phá mục đích của sự kêu gọi—những người mang danh dự của Đức Chúa Trời và tuyên bố kiên quyết, <em>"Nếu tôi chết thì tôi chết."</em></p><p>New Heart lần này đang vẽ nên tầm nhìn về Một Người Mới, nơi người Do Thái và người Ả Rập cùng thờ phượng, và những người trẻ từ các quốc gia đứng bên cạnh họ, chúc phước cho nhau.</p><p>Nhớ lại ba lời hứa nhận được hai mươi năm trước tại Đà Lạt, Việt Nam, chúng tôi chia sẻ tầm nhìn này với bạn:</p><p><strong>1. Người Tiên Phong</strong> (Ma-la-chi 4:6) — Một đời sống chuẩn bị đường cho Chúa đến bằng cách xoay lòng cha về con cái và lòng con cái về cha.</p><p><strong>2. Người Canh Gác</strong> (Ê-sai 62:7) — Một đời sống cầu thay và thờ phượng nhắc nhở Đức Chúa Trời về giao ước của Ngài.</p><p><strong>3. Người Thu Hoạch</strong> (A-mốt 9:1–15) — Thời điểm lều đổ nát của Đa-vít được phục hồi (câu 11), và sự phục hồi mở rộng đến các dân tộc.</p><p>Chúng tôi mong chờ Chúa chuẩn bị cánh đồng thu hoạch cho New Heart 57 và đưa những người thu hoạch vào cánh đồng. Chúng tôi kỳ vọng rằng Đức Chúa Trời, Đấng đã bắt đầu công việc thánh này, sẽ hoàn thành và nhận mọi vinh quang. Chúng tôi mời gọi các thành viên New Heart sẽ cùng tham gia vào sự kêu gọi thánh này.</p><p><em>Shalom</em></p>`,
     serveText: "Cầu nguyện cho New Heart sắp tới. Phục vụ trong một đội. Chia sẻ lời chứng của bạn. Hỗ trợ New Heart bằng dâng hiến và palanca. Mời ai đó cần một cuộc gặp gỡ trái tim mới.",
+    palancaIsraelTitle: "Israel New Heart — Quyên Góp Palanca",
+    palancaIsraelDesc: "Chúc phước cho các ứng viên của Israel New Heart sắp tới! Xem danh sách các mục palanca và đăng ký tài trợ.",
+    palancaIsraelBtn: "📋 Xem & Đăng Ký Palanca",
     readStory: "Đọc Câu Chuyện",
     placeholderNotice: "📝 Nội dung tạm thời - sẽ được cập nhật với Thông điệp cuối cùng từ Người sáng lập",
     placeholderNoticeEditorial: "📝 Nội dung tạm thời - sẽ được cập nhật với Bài xã luận cuối cùng",
@@ -1171,7 +1238,7 @@ const translations = {
     eunyoungModalTitle: "Eun Young Go — Thành Viên Nhóm",
     paiModalTitle: "Pai — Chữa Lành Kỳ Diệu",
     
-    editorialContent: `<h3>Hiệu Ứng Gợn Sóng Của Một Trái Tim Mới</h3><p>Trên năm châu lục, chúng ta đang chứng kiến một phong trào không thể phủ nhận của Thánh Linh Đức Chúa Trời. Các lời chứng trong bản tin này chỉ đại diện cho một phần nhỏ của những cuộc sống đang được biến đổi thông qua Chức vụ New Heart.</p><h3>Vượt Qua Ba Ngày</h3><p>Buổi tĩnh tâm New Heart ba ngày không phải là điểm đến—đó là chất xúc tác. Chúng ta đang học rằng sự biến đổi thực sự xảy ra vào "ngày thứ tư" và sau đó, khi chúng ta tích hợp ca phẫu thuật tim mà Đức Chúa Trời thực hiện trong buổi tĩnh tâm vào cuộc sống hàng ngày của chúng ta.</p>`,
+    editorialContent: `<h3>Hiệu Ứng Gợn Sóng Của Một Trái Tim Mới</h3><p>Trên năm châu lục, chúng ta đang chứng kiến một phong trào không thể phủ nhận của Thánh Linh Đức Chúa Trời. Các lời chứng trong bản tin này chỉ đại diện cho một phần nhỏ của những cuộc sống đang được biến đổi thông qua Chức vụ New Heart. Từ cuộc gặp gỡ sâu sắc của Carlos tại Hoa Kỳ đến sự chữa lành kỳ diệu của Pai ở Thái Lan, mỗi câu chuyện đều mang cùng một DNA: lời hứa của Đức Chúa Trời ban cho chúng ta một trái tim bằng thịt.</p><h3>Vượt Qua Ba Ngày</h3><p>Trải nghiệm New Heart ba ngày không phải là đích đến—đó là chất xúc tác. Chúng ta đang học rằng sự biến đổi thực sự xảy ra vào "ngày thứ tư" và sau đó, khi chúng ta tích hợp ca phẫu thuật tim mà Đức Chúa Trời thực hiện trong New Heart vào cuộc sống hàng ngày. Bản tin này tồn tại để giữ chúng ta kết nối, được khích lệ và có trách nhiệm với trái tim mới mà chúng ta đã nhận được.</p><h3>Hướng Tới Năm 2026</h3><p>Với các New Heart sắp tới tại Israel, Hoa Kỳ, Hàn Quốc và Việt Nam, Đức Chúa Trời đang mở rộng gia đình này hơn nữa. Chúng tôi mời bạn cầu nguyện, phục vụ, dâng hiến và mời người khác trải nghiệm những gì bạn đã trải nghiệm. Mùa gặt thật nhiều, và Đức Chúa Trời đang kêu gọi thêm nhiều người làm công vào cánh đồng của Ngài.</p>`,
     
     carlosStory: `<p>Trước trải nghiệm biến đổi của New Heart #53, đời sống tâm linh của tôi được đặc trưng bởi sự tham gia tích cực trong nhà thờ, tham gia các nhóm nhỏ, và nhiều chức vụ khác nhau. Tuy nhiên, khi năm mới đến gần, một khát khao sâu xa hơn bắt đầu bén rễ. Tại buổi lễ Giáng Sinh 2023, chúng tôi được khuyến khích chọn hai từ để diễn đạt ý định cho năm tới. Lựa chọn của tôi là một khát vọng đơn giản nhưng sâu sắc: "TẤM LÒNG TRONG SẠCH." Tôi không hề biết Chúa sẽ đáp lời cầu nguyện đó theo nghĩa đen như thế nào.</p><p>Khi tôi được chọn tham dự New Heart, tôi đến với một ý định rõ ràng và tập trung: "Tôi muốn trải nghiệm Đức Thánh Linh thanh tẩy tấm lòng tôi để tôi cảm nhận sự bình an sâu sắc và sự hướng dẫn cho đời sống Cơ Đốc hàng ngày bởi Đức Thánh Linh." Thực tế đã vượt xa kỳ vọng này. Điều xảy ra không chỉ là một trải nghiệm cảm xúc, mà là một cuộc gặp gỡ sâu sắc, hữu hình với Đấng thiêng liêng. Tôi được ban phước sâu sắc với tình yêu từ tấm lòng Chúa. Trong một khoảnh khắc hoàn toàn sáng tỏ, tôi cảm thấy tấm lòng mình được lấy ra, đặt vào chính tấm lòng của Chúa, rồi được trả lại cho tôi. Đó là một trải nghiệm thực đến nỗi nó thay đổi tôi mãi mãi. Chúa hà hơi tấm lòng Ngài vào tôi, và tôi có cảm nhận rõ ràng rằng Đức Thánh Linh đang ban cho tôi một tấm lòng mới.</p><p>Cuộc phẫu thuật tâm linh này được tạo điều kiện bởi một môi trường thờ phượng và cầu nguyện mạnh mẽ. Nhóm thờ phượng là người dẫn đường cho tôi, những bài hát và lời trên màn hình khuấy động cảm xúc sâu sắc. Tôi bắt đầu khóc, đầu phục trước những cảm xúc tràn ngập của niềm vui và lòng biết ơn. Giữa sự đầu phục này, một giọng nói rõ ràng, không thể nhầm lẫn vang vọng trong tâm linh tôi: "Con thuộc về Ta và hãy vâng phục ngay bây giờ." Những lời đó rung chuyển tôi đến tận cốt lõi. Đồng thời, đội cầu nguyện tận tâm tiếp tục công việc, sự cầu thay của họ—đặc biệt khi một đồng đội và những người khác cầu nguyện cho tôi—rung chuyển mặt đất bên dưới tôi. Những bức tường tôi xây dựng suốt đời bắt đầu sụp đổ, tạo không gian cho Đức Thánh Linh di chuyển và ngự trị tự do hơn. Cảm giác như lần đầu tiên được hít thở. Nghi thức rửa chân, một nghi lễ thiêng liêng, mời gọi sự buông bỏ thêm các thành trì. Tôi sụp đổ hoàn toàn dưới lời cầu nguyện yêu thương của một thành viên trong đội, đôi tay trên vai tôi truyền tải món quà của ân điển vô biên. Vào ngày cuối cùng, cuộc theo đuổi tiếp tục; thêm cầu nguyện, thêm thờ phượng, với hai đồng đội tiếp tục theo đuổi, tìm kiếm, và cầu nguyện cho tôi. Đối với tình yêu kiên định, vô điều kiện này từ tất cả những người phục vụ và thành viên trong đội, lòng biết ơn của tôi vẫn vô bờ bến.</p><p>Điều làm cho trải nghiệm New Heart trở nên độc đáo là nghệ thuật gợi lên sự hiện diện của Đức Thánh Linh, cho phép Ngài hoàn toàn tự do hành động và biến đổi theo ý muốn Ngài. Bầu không khí này được tạo ra có chủ đích thông qua các hành động thờ phượng và thực hành cầu nguyện bằng tiếng lạ đầy quyền năng. Ngày thứ tư của tôi là sự tiếp nối liền mạch của việc phục vụ và tìm kiếm Chúa, một sự lựa chọn để hoàn toàn cho phép Thánh Linh dẫn dắt tôi.</p><p>Món quà của tấm lòng trong sạch, sự bình an sâu sắc, và cuộc gặp gỡ sâu sắc tại New Heart #53 không phải là kết thúc của hành trình, mà là sự khởi đầu sâu sắc. Kể từ trải nghiệm đó, tôi đã phục vụ như một thành viên trong đội tại nhiều New Heart ở cả Mỹ và Việt Nam. Giờ đây tôi cảm thấy được ban phước rất nhiều, được neo chặt trong bình an. Cảm ơn Chúa, vì món quà của một tấm lòng mới, trong sạch.</p>`,
     
@@ -1222,6 +1289,9 @@ const translations = {
     israelRdRole: "ผู้อำนวยการภูมิภาค New Heart อิสราเอล",
     israelRdMsg: `<p>ในอิสราเอล การเตรียมการกำลังดำเนินไปสำหรับ <strong>New Heart #57, อิสราเอล</strong> ซึ่งจะจัดขึ้นในช่วงเทศกาลปูริมตั้งแต่วันที่ <strong>1–4 มีนาคม</strong></p><p>เช่นเดียวกับที่พระเจ้าทรงปกป้องประชากรที่รักของพระองค์ด้วยพระองค์เองผ่านเอสเธอร์จากมือของฮามานในช่วงเทศกาลปูริม เรากำลังอธิษฐานว่าผ่าน New Heart คนหนุ่มสาวจะลุกขึ้นค้นพบจุดประสงค์แห่งการทรงเรียกของพวกเขา—ผู้ที่แบกรับเกียรติของพระนามพระเจ้าและประกาศอย่างแน่วแน่ว่า <em>"ถ้าข้าพเจ้าต้องตาย ก็ตาย"</em></p><p>New Heart ครั้งนี้กำลังวาดภาพวิสัยทัศน์ของมนุษย์ใหม่คนเดียว ที่ชาวยิวและชาวอาหรับนมัสการร่วมกัน และคนหนุ่มสาวจากนานาชาติยืนเคียงข้างพวกเขา อวยพรซึ่งกันและกัน</p><p>ระลึกถึงสัญญาสามข้อที่ได้รับเมื่อยี่สิบปีก่อนที่ดาลัด เวียดนาม เราแบ่งปันวิสัยทัศน์นี้กับคุณ:</p><p><strong>1. ผู้บุกเบิก</strong> (มาลาคี 4:6) — ชีวิตที่เตรียมทางสำหรับการเสด็จมาขององค์พระผู้เป็นเจ้าโดยหันใจของพ่อมาหาลูกและใจของลูกมาหาพ่อ</p><p><strong>2. ยาม</strong> (อิสยาห์ 62:7) — ชีวิตแห่งการอธิษฐานวิงวอนและการนมัสการที่เตือนพระเจ้าถึงพันธสัญญาของพระองค์</p><p><strong>3. ผู้เก็บเกี่ยว</strong> (อาโมส 9:1–15) — เวลาที่เต็นท์ที่ล้มลงของดาวิดได้รับการฟื้นฟู (ข้อ 11) และการฟื้นฟูขยายไปสู่ประชาชาติ</p><p>เราตั้งตารอที่พระเจ้าจะเตรียมทุ่งเก็บเกี่ยวสำหรับ New Heart 57 และนำคนงานเก็บเกี่ยวเข้าสู่ทุ่ง เราคาดหวังว่าพระเจ้าของเราผู้ทรงเริ่มงานบริสุทธิ์นี้จะทำให้สำเร็จและรับพระสิริทั้งหมด เราขอเชิญสมาชิก New Heart ที่จะร่วมกับเราสู่การทรงเรียกอันศักดิ์สิทธิ์นี้</p><p><em>ชาโลม</em></p>`,
     serveText: "อธิษฐานเพื่อ New Heart ที่กำลังจะมาถึง รับใช้ในทีม แบ่งปันคำพยานของคุณ สนับสนุน New Heart ด้วยการบริจาคและ palanca เชิญใครสักคนที่ต้องการการเผชิญหน้ากับหัวใจใหม่",
+    palancaIsraelTitle: "Israel New Heart — บริจาค Palanca",
+    palancaIsraelDesc: "อวยพรผู้สมัครของ Israel New Heart ที่กำลังจะมาถึง! ดูรายการสิ่งของ palanca และลงชื่อเพื่อสนับสนุน",
+    palancaIsraelBtn: "📋 ดูและลงชื่อ Palanca",
     readStory: "อ่านเรื่องราว",
     placeholderNotice: "📝 เนื้อหาชั่วคราว - จะได้รับการอัปเดตด้วยข้อความสุดท้ายจากผู้ก่อตั้ง",
     placeholderNoticeEditorial: "📝 เนื้อหาชั่วคราว - จะได้รับการอัปเดตด้วยบทบรรณาธิการสุดท้าย",
@@ -1246,7 +1316,7 @@ const translations = {
     eunyoungModalTitle: "Eun Young Go — สมาชิกทีม",
     paiModalTitle: "Pai — การรักษาอัศจรรย์",
     
-    editorialContent: `<h3>ผลกระทบระลอกของหัวใจใหม่หนึ่งดวง</h3><p>ทั่วห้าทวีป เรากำลังเห็นการเคลื่อนไหวที่ปฏิเสธไม่ได้ของพระวิญญาณของพระเจ้า คำพยานในจดหมายข่าวนี้แสดงถึงเพียงส่วนเล็กๆ ของชีวิตที่กำลังถูกเปลี่ยนแปลงผ่านพันธกิจ New Heart</p><h3>เกินกว่าสามวัน</h3><p>การรีทรีท New Heart สามวันไม่ใช่จุดหมายปลายทาง—มันคือตัวเร่ง เรากำลังเรียนรู้ว่าการเปลี่ยนแปลงที่แท้จริงเกิดขึ้นใน "วันที่สี่" และต่อไป เมื่อเรารวมการผ่าตัดหัวใจที่พระเจ้าทรงทำระหว่างการรีทรีทเข้ากับชีวิตประจำวันของเรา</p>`,
+    editorialContent: `<h3>ผลกระทบระลอกของหัวใจใหม่หนึ่งดวง</h3><p>ทั่วห้าทวีป เรากำลังเห็นการเคลื่อนไหวที่ปฏิเสธไม่ได้ของพระวิญญาณของพระเจ้า คำพยานในจดหมายข่าวนี้แสดงถึงเพียงส่วนเล็กๆ ของชีวิตที่กำลังถูกเปลี่ยนแปลงผ่านพันธกิจ New Heart จากการเผชิญหน้าอันลึกซึ้งของคาร์ลอสในสหรัฐอเมริกาไปจนถึงการรักษาอัศจรรย์ของไผ่ในประเทศไทย แต่ละเรื่องราวมี DNA เดียวกัน: พระสัญญาของพระเจ้าที่จะให้เรามีหัวใจเนื้อ</p><h3>เกินกว่าสามวัน</h3><p>ประสบการณ์ New Heart สามวันไม่ใช่จุดหมายปลายทาง—มันคือตัวเร่ง เรากำลังเรียนรู้ว่าการเปลี่ยนแปลงที่แท้จริงเกิดขึ้นใน "วันที่สี่" และต่อไป เมื่อเรานำการผ่าตัดหัวใจที่พระเจ้าทรงทำระหว่าง New Heart มาผสานเข้ากับชีวิตประจำวันของเรา จดหมายข่าวนี้มีอยู่เพื่อให้เราเชื่อมต่อกัน ให้กำลังใจกัน และรับผิดชอบต่อหัวใจใหม่ที่เราได้รับ</p><h3>มองไปข้างหน้าสู่ปี 2026</h3><p>ด้วย New Heart ที่กำลังจะมาถึงในอิสราเอล สหรัฐอเมริกา เกาหลี และเวียดนาม พระเจ้ากำลังขยายครอบครัวนี้ให้กว้างขึ้นอีก เราขอเชิญชวนคุณอธิษฐาน รับใช้ ถวาย และเชิญผู้อื่นมาสัมผัสสิ่งที่คุณได้สัมผัส ทุ่งนาแห่งการเก็บเกี่ยวนั้นใหญ่ และพระเจ้ากำลังเรียกคนงานมากขึ้นเข้าสู่ทุ่งนาของพระองค์</p>`,
     
     carlosStory: `<p>ก่อนประสบการณ์ที่เปลี่ยนชีวิตของ New Heart #53 ชีวิตฝ่ายจิตวิญญาณของผมมีลักษณะเป็นการมีส่วนร่วมอย่างแข็งขันในคริสตจักร การเข้าร่วมกลุ่มเซลล์ และการรับใช้ต่างๆ แต่เมื่อปีใหม่ใกล้เข้ามา ความโหยหาที่ลึกซึ้งกว่าก็เริ่มหยั่งราก ในพิธีคริสต์มาส 2023 เราได้รับการกระตุ้นให้เลือกสองคำเพื่อแสดงเจตนาสำหรับปีที่จะมาถึง ตัวเลือกของผมเป็นความปรารถนาที่เรียบง่ายแต่ลึกซึ้ง: "หัวใจบริสุทธิ์" ผมไม่รู้เลยว่าพระเจ้าจะตอบคำอธิษฐานนั้นอย่างตรงตัวเพียงใด</p><p>เมื่อผมได้รับเลือกให้เข้าร่วม New Heart ผมเข้าไปด้วยเจตนาที่ชัดเจนและมุ่งมั่น: "ผมต้องการสัมผัสพระวิญญาณบริสุทธิ์ชำระหัวใจผมเพื่อให้ผมรู้สึกถึงสันติสุขลึกซึ้งและการทรงนำสำหรับชีวิตคริสเตียนประจำวันโดยพระวิญญาณบริสุทธิ์" ความเป็นจริงเกินความคาดหมายนี้มาก สิ่งที่เกิดขึ้นไม่ใช่เพียงประสบการณ์ทางอารมณ์ แต่เป็นการพบปะที่ลึกซึ้งและจับต้องได้กับพระเจ้า ผมได้รับพระพรอย่างลึกซึ้งด้วยความรักจากพระทัยของพระเจ้า ในช่วงเวลาของความชัดเจนสมบูรณ์ ผมรู้สึกว่าหัวใจถูกนำออกมา วางไว้ในพระทัยของพระเจ้าเอง แล้วส่งกลับคืนให้ผม เป็นประสบการณ์ที่จริงจนเปลี่ยนผมตลอดกาล พระเจ้าทรงเป่าพระทัยของพระองค์เข้ามาในผม และผมรู้สึกชัดเจนว่าพระวิญญาณบริสุทธิ์กำลังมอบหัวใจใหม่ให้ผม</p><p>การผ่าตัดฝ่ายวิญญาณนี้เกิดขึ้นได้จากสภาพแวดล้อมของการนมัสการและการอธิษฐานที่ทรงพลัง ทีมนมัสการเป็นผู้นำทางให้ผม เพลงและคำบนจอกระตุ้นอารมณ์ลึกซึ้ง ผมเริ่มร้องไห้ ยอมจำนนต่อความรู้สึกท่วมท้นของความยินดีและความกตัญญู ท่ามกลางการยอมจำนนนี้ เสียงที่ชัดเจนดังก้องในจิตวิญญาณผม: "เจ้าเป็นของเราและจงเชื่อฟังเดี๋ยวนี้" คำพูดนั้นสั่นสะเทือนผมถึงแก่นแกน ขณะเดียวกัน ทีมอธิษฐานที่ทุ่มเทยังคงทำงาน การอธิษฐานวิงวอนของพวกเขา—โดยเฉพาะเมื่อเพื่อนร่วมทีมและคนอื่นๆ อธิษฐานเพื่อผม—สั่นสะเทือนพื้นดินใต้ผม กำแพงที่ผมสร้างขึ้นตลอดชีวิตเริ่มพังทลาย สร้างพื้นที่ให้พระวิญญาณบริสุทธิ์เคลื่อนไหวและสถิตอย่างอิสระมากขึ้น รู้สึกเหมือนการหายใจครั้งแรก การล้างเท้า พิธีกรรมศักดิ์สิทธิ์ เชิญชวนให้ปล่อยวางป้อมปราการต่อไป ผมล้มลงอย่างสิ้นเชิงภายใต้คำอธิษฐานอันเปี่ยมด้วยความรักของสมาชิกทีม มือบนไหล่ผมสื่อของขวัญแห่งพระคุณอันยิ่งใหญ่ ในวันสุดท้าย การไล่ตามยังคงดำเนินต่อไป อธิษฐานมากขึ้น นมัสการมากขึ้น กับเพื่อนร่วมทีมสองคนที่ยังคงไล่ตาม ค้นหา และอธิษฐานเพื่อผม สำหรับความรักที่มั่นคงและไม่มีเงื่อนไขจากผู้รับใช้และสมาชิกทีมทุกคน ความกตัญญูของผมไม่มีขอบเขต</p><p>สิ่งที่ทำให้ประสบการณ์ New Heart เป็นเอกลักษณ์คือศิลปะในการเรียกสถิตของพระวิญญาณบริสุทธิ์ ให้พระองค์มีอิสระเต็มที่ในการเคลื่อนไหวและเปลี่ยนแปลงตามพระประสงค์ บรรยากาศนี้ถูกสร้างขึ้นอย่างตั้งใจผ่านการนมัสการและการอธิษฐานภาษาแปลกๆ อย่างทรงพลัง วันที่สี่ของผมเป็นการสืบเนื่องอย่างต่อเนื่องของการรับใช้และแสวงหาองค์พระผู้เป็นเจ้า เป็นการเลือกที่จะให้พระวิญญาณทรงนำผมอย่างเต็มที่</p><p>ของขวัญแห่งหัวใจบริสุทธิ์ สันติสุขลึกซึ้ง และการพบปะอันลึกซึ้งที่ New Heart #53 ไม่ใช่จุดจบของการเดินทาง แต่เป็นจุดเริ่มต้นอันลึกซึ้ง ตั้งแต่ประสบการณ์นั้น ผมได้รับใช้ในฐานะสมาชิกทีมใน New Heart หลายครั้งทั้งในสหรัฐอเมริกาและเวียดนาม ตอนนี้ผมรู้สึกได้รับพระพรมากมาย มีสมอยึดในสันติสุข ขอบคุณพระเจ้า สำหรับของขวัญแห่งหัวใจใหม่ที่บริสุทธิ์</p>`,
     
@@ -1297,6 +1367,9 @@ const translations = {
     israelRdRole: "מנהל אזור New Heart ישראל",
     israelRdMsg: `<p>בישראל, ההכנות מתקדמות ל<strong>New Heart #57, ישראל</strong>, שיתקיים במהלך חג הפורים בין <strong>1–4 במרץ</strong>.</p><p>כשם שאלוהים הגן באופן אישי על עמו האהוב דרך אסתר מיד המן בפורים, אנו מתפללים שדרך New Heart, צעירים יקומו שיגלו את מטרת קריאתם—אלה שנושאים את כבוד שם אלוהים ומכריזים בנחישות, <em>״ואם אבדתי אבדתי.״</em></p><p>New Heart זה מצייר חזון של האדם החדש האחד, שבו יהודים וערבים עובדים יחד, וצעירים מהאומות עומדים לצידם, מברכים זה את זה.</p><p>בזכרנו את שלוש ההבטחות שהתקבלו לפני עשרים שנה בדא לאט, וייטנאם, אנו חולקים חזון זה איתכם:</p><p><strong>1. חלוצים</strong> (מלאכי 4:6) — חיים שמכינים את הדרך לביאת האדון על ידי הפיכת לב אבות אל בנים ולב בנים אל אבותם.</p><p><strong>2. שומרים</strong> (ישעיהו 62:7) — חיי תפילת שטח ועבודת ה׳ שמזכירים לאלוהים את בריתו.</p><p><strong>3. קוצרים</strong> (עמוס 9:1–15) — זמן שבו סוכת דוד הנופלת משוקמת (פס׳ 11), והשיקום מתרחב לעבר האומות.</p><p>אנו מצפים שהאדון יכין את שדה הקציר ל-New Heart 57 ויביא את פועלי הקציר אל השדה. אנו מצפים שאלוהינו, שהתחיל את העבודה הקדושה הזו, ישלים אותה ויקבל את כל הכבוד. אנו מזמינים את חברי New Heart שיצטרפו אלינו לקריאה הקדושה הזו.</p><p><em>שלום</em></p>`,
     serveText: "התפללו על New Heart הקרובים. שרתו בצוות. שתפו את עדותכם. תמכו ב-New Heart בתרומה ופלנקה. הזמינו מישהו שזקוק למפגש לב חדש.",
+    palancaIsraelTitle: "ניו הארט ישראל — תרומות פלנקה",
+    palancaIsraelDesc: "ברכו את המועמדים של ניו הארט ישראל הקרוב! צפו ברשימת פריטי הפלנקה והירשמו לתרומה.",
+    palancaIsraelBtn: "📋 צפייה והרשמה לפלנקה",
     readStory: "קראו סיפור",
     placeholderNotice: "📝 תוכן זמני - יעודכן עם הודעה סופית מהמייסדים",
     placeholderNoticeEditorial: "📝 תוכן זמני - יעודכן עם מאמר פתיחה סופי",
@@ -1389,6 +1462,9 @@ function switchLanguage(lang) {
   safeSetText("founder-msg-title", t.founderMsgTitle);
   safeSetHTML("founder-msg", t.founderMsg);
   safeSetText("serve-text", t.serveText);
+  safeSetText("palanca-israel-title", t.palancaIsraelTitle);
+  safeSetText("palanca-israel-desc", t.palancaIsraelDesc);
+  safeSetText("palanca-israel-btn", t.palancaIsraelBtn);
   safeSetText("placeholder-notice", t.placeholderNotice);
   safeSetText("placeholder-notice-editorial", t.placeholderNoticeEditorial);
   safeSetText("israel-rd-title", t.israelRdTitle);
