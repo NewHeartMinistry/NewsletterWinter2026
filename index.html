@@ -1,1 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Heart Newsletter — Winter 2026</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700&family=Noto+Sans+Thai:wght@300;400;600;700&family=Noto+Sans+Hebrew:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* === BASE === */
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Source Sans 3", sans-serif;
+      background: linear-gradient(180deg, #1a2d4a, #1f3454, #1a2d4a);
+      color: #dce4ed;
+      line-height: 1.7;
+    }
+
+    :root {
+      --primary: #4a90d9;
+      --accent: #d4ac2e;
+      --glass: rgba(25, 45, 75, 0.75);
+      --glass-border: rgba(74, 144, 217, 0.25);
+      --text-muted: #9ab3c8;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 1.5rem;
+    }
+
+    section { padding: 4rem 0; }
+
+    /* === HEADER === */
+    .page-header {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      border-bottom: 1px solid var(--glass-border);
+      background: linear-gradient(135deg, rgba(30,55,90,.9), transparent);
+    }
+
+    .newsletter-logo {
+      max-width: 420px;
+      width: 100%;
+    }
+
+    .edition-badge {
+      margin-top: 1rem;
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent), #e8c95a);
+      color: #162840;
+      padding: .5rem 1.5rem;
+      border-radius: 30px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* === SECTION TITLES === */
+    .section-title {
+      font-family: "Playfair Display", serif;
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    /* === GLASS CARDS === */
+    .glass-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+    }
+
+    /* === STORIES CAROUSEL === */
+    .stories-scroll {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      padding-bottom: 1rem;
+    }
+
+    .story-card {
+      flex: 0 0 280px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .story-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .story-country {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      padding: .2rem .7rem;
+      border-radius: 12px;
+      font-size: .75rem;
+      font-weight: 600;
+      margin-bottom: .5rem;
+    }
+
+    .story-name {
+      font-family: "Playfair Display", serif;
+      font-size: 1.2rem;
+      margin: .5rem 0 .3rem;
+    }
+
+    .story-role {
+      color: var(--accent);
+      font-size: .9rem;
+      margin-bottom: .8rem;
+    }
+
+    .story-card p {
+      font-size: .85rem;
+      color: var(--text-muted);
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      border-top: 1px solid var(--glass-border);
+      font-size: .9rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="page-header">
+    <img class="newsletter-logo" src="logo.png" alt="New Heart">
+    <div class="edition-badge">Winter 2026</div>
+  </header>
+
+  <!-- STORIES OF TRANSFORMATION -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">Stories of Transformation</h2>
+
+      <div class="stories-scroll">
+
+        <!-- Cathy — FIXED & COMPLETE -->
+        <div class="story-card">
+          <img
+            class="story-photo"
+            src="images/cathy.jpg"
+            alt="Cathy"
+          >
+
+          <div class="story-country">Vietnam</div>
+
+          <h3 class="story-name">Cathy</h3>
+
+          <div class="story-role">Story of Transformation</div>
+
+          <p>
+            Cathy shares how encountering Jesus brought healing to her heart
+            and a renewed sense of purpose. Through His love, she discovered
+            hope, joy, and a deeper trust in God’s faithfulness.
+          </p>
+        </div>
+
+        <!-- (Other story cards continue here exactly as before) -->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 New Heart • Thank you for walking with us in faith and prayer
+  </footer>
+
+</body>
+</html>
 
