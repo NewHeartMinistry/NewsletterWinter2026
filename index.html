@@ -636,22 +636,28 @@
     }
     .modal-content p { color: var(--text-muted); margin-bottom: 1rem; line-height: 1.8; }
     .modal-content strong { color: var(--text); }
-    .close-modal {
+    .modal-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
       position: absolute;
       top: 1rem;
       right: 1.5rem;
+    }
+    [dir="rtl"] .modal-controls { right: auto; left: 1.5rem; }
+    .close-modal {
       font-size: 2rem;
       color: var(--text-muted);
       background: none;
       border: none;
       cursor: pointer;
       transition: color 0.2s;
+      order: 3;
+      line-height: 1;
+      padding: 0 0 0 0.25rem;
     }
     .close-modal:hover { color: var(--text); }
     .modal-speak-btn {
-      position: absolute;
-      top: 1rem;
-      right: 4rem;
       background: var(--glass);
       border: 1px solid var(--glass-border);
       border-radius: 50%;
@@ -662,13 +668,12 @@
       align-items: center;
       justify-content: center;
       transition: all 0.2s;
+      order: 2;
+      flex-shrink: 0;
     }
     .modal-speak-btn:hover { background: var(--primary); border-color: var(--primary); }
     .modal-speak-btn.speaking { background: var(--accent); border-color: var(--accent); }
     .voice-select {
-      position: absolute;
-      top: 1rem;
-      right: 7.5rem;
       background: var(--glass);
       border: 1px solid var(--glass-border);
       border-radius: 20px;
@@ -676,22 +681,35 @@
       font-size: 0.75rem;
       color: var(--text);
       cursor: pointer;
-      max-width: 160px;
-      appearance: none;
-      -webkit-appearance: none;
+      max-width: 180px;
+      order: 1;
+      padding-right: 24px;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23ccc'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 8px center;
-      padding-right: 24px;
     }
     .voice-select:focus { outline: none; border-color: var(--primary); }
     .voice-select option { background: #1a2744; color: #fff; }
-    [dir="rtl"] .voice-select { right: auto; left: 7.5rem; }
+    @media (max-width: 600px) {
+      .modal-controls {
+        position: static;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+      }
+      .voice-select {
+        max-width: 100%;
+        flex: 1 1 auto;
+        min-width: 0;
+        font-size: 16px;
+      }
+      .modal-content h2 {
+        font-size: 1.3rem;
+      }
+    }
 
     /* RTL Support */
     [dir="rtl"] .modal-content { text-align: right; }
-    [dir="rtl"] .close-modal { right: auto; left: 1.5rem; }
-    [dir="rtl"] .modal-speak-btn { right: auto; left: 4rem; }
+    [dir="rtl"] .modal-controls { right: auto; left: 1.5rem; }
 
     .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
     
@@ -725,7 +743,7 @@
         <!-- Left Column: Founders' Message -->
         <div class="founders-column">
           <div class="glass-card">
-            <iframe class="video-frame" src="https://www.youtube.com/embed/mEjrP9gJZhQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="video-frame" src="https://www.youtube.com/embed/6oSamwG22PE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
           <div class="founder-message glass-card">
             <h3 id="founder-msg-title">A Message from Our Founders</h3>
@@ -741,6 +759,48 @@
               <div class="name">Pastors Jason & Youngmi Cha</div>
               <div class="title" id="founders-title">Founders & Global Directors</div>
             </div>
+          </div>
+          <!-- New Heart Themes & Verses -->
+  <div class="glass-card" style="padding:1.2rem 1.2rem;">
+    <h3 class="section-title" id="themes-title" style="margin-bottom:0.2rem;font-size:1.15rem;">📖 New Heart Themes &amp; Verses</h3>
+    <p style="text-align:center;color:var(--text-muted);font-size:0.8rem;margin-bottom:0.8rem;" id="themes-subtitle">Each New Heart is anchored by a God-given theme and Scripture.</p>
+    <table style="width:100%;border-collapse:collapse;font-size:0.82rem;">
+      <tr style="border-bottom:1px solid var(--glass-border);">
+        <td style="padding:0.35rem 0;color:var(--text-muted);white-space:nowrap;">🇻🇳 #50</td>
+        <td style="padding:0.35rem 0.4rem;font-weight:700;color:var(--accent);">"Willing Obedience"</td>
+        <td style="padding:0.35rem 0;font-style:italic;color:var(--text);text-align:right;white-space:nowrap;">Isaiah 1:19</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--glass-border);">
+        <td style="padding:0.35rem 0;color:var(--text-muted);white-space:nowrap;">🇰🇷 #51</td>
+        <td style="padding:0.35rem 0.4rem;font-weight:700;color:var(--accent);">"You Are Mine"</td>
+        <td style="padding:0.35rem 0;font-style:italic;color:var(--text);text-align:right;white-space:nowrap;">Isaiah 43:1</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--glass-border);">
+        <td style="padding:0.35rem 0;color:var(--text-muted);white-space:nowrap;">🇺🇸 #53</td>
+        <td style="padding:0.35rem 0.4rem;font-weight:700;color:var(--accent);">"The Truth"</td>
+        <td style="padding:0.35rem 0;font-style:italic;color:var(--text);text-align:right;white-space:nowrap;">John 17:17</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--glass-border);">
+        <td style="padding:0.35rem 0;color:var(--text-muted);white-space:nowrap;">🇰🇷 #54</td>
+        <td style="padding:0.35rem 0.4rem;font-weight:700;color:var(--accent);">"Christ In Me"</td>
+        <td style="padding:0.35rem 0;font-style:italic;color:var(--text);text-align:right;white-space:nowrap;">Galatians 2:20</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--glass-border);">
+        <td style="padding:0.35rem 0;color:var(--text-muted);white-space:nowrap;">🇻🇳 #55</td>
+        <td style="padding:0.35rem 0.4rem;font-weight:700;color:var(--accent);">"Unity"</td>
+        <td style="padding:0.35rem 0;font-style:italic;color:var(--text);text-align:right;white-space:nowrap;">Ephesians 4:3</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--glass-border);">
+        <td style="padding:0.35rem 0;color:var(--text-muted);white-space:nowrap;">🇹🇭 #56</td>
+        <td style="padding:0.35rem 0.4rem;font-weight:700;color:var(--accent);">"Show Us Your Glory"</td>
+        <td style="padding:0.35rem 0;font-style:italic;color:var(--text);text-align:right;white-space:nowrap;">Exodus 33:18</td>
+      </tr>
+      <tr>
+        <td style="padding:0.35rem 0;color:var(--text-muted);white-space:nowrap;">🇮🇱 #57</td>
+        <td style="padding:0.35rem 0.4rem;font-weight:700;color:var(--accent);">"Arise &amp; Shine"</td>
+        <td style="padding:0.35rem 0;font-style:italic;color:var(--text);text-align:right;white-space:nowrap;">Isaiah 60:1-3</td>
+      </tr>
+    </table>
           </div>
         </div>
 
@@ -821,6 +881,13 @@
           <button class="btn btn-primary open-modal" data-target="#modal-guitar">Read Story</button>
         </div>
 </div>
+        <div class="story-card">
+          <img src="data:image/jpeg;base64,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" alt="Jin Sun Tak" class="story-photo" />
+          <h3 class="story-name" id="jin-name">Jin Sun Tak</h3>
+          <div class="story-country" id="jin-country">🇹🇭 Thailand</div>
+          <div class="story-role" id="jin-role">Grace Before the Program Even Began</div>
+          <button class="btn btn-primary open-modal" data-target="#modal-jin">Read Story</button>
+        </div>
 </div>
         <div class="carousel-dots" id="carousel-dots"></div>
       </div>
@@ -832,6 +899,7 @@
     <div class="container">
       <h2 class="section-title" id="video-highlights-title">2025 New Heart Video Highlights</h2>
       <p style="text-align:center; color:var(--text-muted); max-width:680px; margin:0 auto 0.5rem; font-size:0.95rem;" id="video-highlights-subtitle">Relive the powerful moments from each New Heart held in 2025.</p>
+      <p style="text-align:center; max-width:600px; margin:0 auto 1.5rem; font-size:0.82rem; color:var(--accent); font-weight:600; opacity:0.9;" id="video-privacy-note">🔒 Please do not share these videos with anyone who has not yet experienced New Heart.</p>
       <div class="video-highlights-grid">
 
         <!-- NH #56 Thailand -->
@@ -890,7 +958,7 @@
         <div class="video-card">
           <div class="video-thumb" style="aspect-ratio:auto;">
             <span class="flag-emoji">🇺🇸</span>
-            <iframe style="width:100%;aspect-ratio:16/9;border:none;border-radius:16px 16px 0 0;display:block;" src="https://www.youtube.com/embed/LP92w6zREP8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe style="width:100%;aspect-ratio:16/9;border:none;border-radius:16px 16px 0 0;display:block;" src="https://www.youtube.com/embed/3H43Dm7eKR4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
           <div class="video-card-body">
             <div class="video-session">New Heart #53 — USA</div>
@@ -1009,13 +1077,14 @@
   </footer>
 
   <!-- MODALS -->
-  <div class="modal" id="modal-carlos"><div class="modal-content"><button class="close-modal">×</button><select class="voice-select" title="Choose voice"></select><button class="modal-speak-btn">🔊</button><h2 id="carlos-modal-title">Carlos Messerschmidt — The Visceral Gift of a Pure Heart</h2><div id="carlos-story-content"></div></div></div>
-  <div class="modal" id="modal-thao"><div class="modal-content"><button class="close-modal">×</button><select class="voice-select" title="Choose voice"></select><button class="modal-speak-btn">🔊</button><h2 id="thao-modal-title">Thao Tho — New Heart #55 Vietnam</h2><div id="thao-story-content"></div></div></div>
-  <div class="modal" id="modal-cathy"><div class="modal-content"><button class="close-modal">×</button><select class="voice-select" title="Choose voice"></select><button class="modal-speak-btn">🔊</button><h2 id="cathy-modal-title">Cathy — The Heart of a Servant</h2><div id="cathy-story-content"></div></div></div>
-  <div class="modal" id="modal-eunyoung"><div class="modal-content"><button class="close-modal">×</button><select class="voice-select" title="Choose voice"></select><button class="modal-speak-btn">🔊</button><h2 id="eunyoung-modal-title">Eun Young Go — Team Member</h2><div id="eunyoung-story-content"></div></div></div>
-  <div class="modal" id="modal-pai"><div class="modal-content"><button class="close-modal">×</button><select class="voice-select" title="Choose voice"></select><button class="modal-speak-btn">🔊</button><h2 id="pai-modal-title">Pai — Miraculous Healing</h2><div id="pai-story-content"></div></div></div>
-  <div class="modal" id="modal-gukhyun"><div class="modal-content"><button class="close-modal">×</button><select class="voice-select" title="Choose voice"></select><button class="modal-speak-btn">🔊</button><h2 id="gukhyun-modal-title">Kook Hyun Lee — Learning Humility Through Service</h2><div id="gukhyun-story-content"></div></div></div>
-  <div class="modal" id="modal-guitar"><div class="modal-content"><button class="close-modal">×</button><select class="voice-select" title="Choose voice"></select><button class="modal-speak-btn">🔊</button><h2 id="guitar-modal-title">Guitar — New Heart, New Life</h2><div id="guitar-story-content"></div></div></div>
+  <div class="modal" id="modal-carlos"><div class="modal-content"><div class="modal-controls"><select class="voice-select" title="Choose voice"></select><button class="modal-speak-btn">🔊</button><button class="close-modal">×</button></div><h2 id="carlos-modal-title">Carlos Messerschmidt — The Visceral Gift of a Pure Heart</h2><div id="carlos-story-content"></div></div></div>
+  <div class="modal" id="modal-thao"><div class="modal-content"><div class="modal-controls"><select class="voice-select" title="Choose voice"></select><button class="modal-speak-btn">🔊</button><button class="close-modal">×</button></div><h2 id="thao-modal-title">Thao Tho — New Heart #55 Vietnam</h2><div id="thao-story-content"></div></div></div>
+  <div class="modal" id="modal-cathy"><div class="modal-content"><div class="modal-controls"><select class="voice-select" title="Choose voice"></select><button class="modal-speak-btn">🔊</button><button class="close-modal">×</button></div><h2 id="cathy-modal-title">Cathy — The Heart of a Servant</h2><div id="cathy-story-content"></div></div></div>
+  <div class="modal" id="modal-eunyoung"><div class="modal-content"><div class="modal-controls"><select class="voice-select" title="Choose voice"></select><button class="modal-speak-btn">🔊</button><button class="close-modal">×</button></div><h2 id="eunyoung-modal-title">Eun Young Go — Team Member</h2><div id="eunyoung-story-content"></div></div></div>
+  <div class="modal" id="modal-pai"><div class="modal-content"><div class="modal-controls"><select class="voice-select" title="Choose voice"></select><button class="modal-speak-btn">🔊</button><button class="close-modal">×</button></div><h2 id="pai-modal-title">Pai — Miraculous Healing</h2><div id="pai-story-content"></div></div></div>
+  <div class="modal" id="modal-gukhyun"><div class="modal-content"><div class="modal-controls"><select class="voice-select" title="Choose voice"></select><button class="modal-speak-btn">🔊</button><button class="close-modal">×</button></div><h2 id="gukhyun-modal-title">Kook Hyun Lee — Learning Humility Through Service</h2><div id="gukhyun-story-content"></div></div></div>
+  <div class="modal" id="modal-guitar"><div class="modal-content"><div class="modal-controls"><select class="voice-select" title="Choose voice"></select><button class="modal-speak-btn">🔊</button><button class="close-modal">×</button></div><h2 id="guitar-modal-title">Guitar — New Heart, New Life</h2><div id="guitar-story-content"></div></div></div>
+  <div class="modal" id="modal-jin"><div class="modal-content"><div class="modal-controls"><select class="voice-select" title="Choose voice"></select><button class="modal-speak-btn">🔊</button><button class="close-modal">×</button></div><h2 id="jin-modal-title">Jin Sun Tak — Grace Before the Program Even Began</h2><div id="jin-story-content"></div></div></div>
 
   <script>
 // TRANSLATIONS - Complete for all 5 languages
@@ -1028,6 +1097,9 @@ const translations = {
     storiesTitle: "Stories of Transformation",
     videoHighlightsTitle: "2025 New Heart Video Highlights",
     videoHighlightsSubtitle: "Relive the powerful moments from each New Heart held in 2025.",
+    videoPrivacyNote: "🔒 Please do not share these videos with anyone who has not yet experienced New Heart.",
+    themesTitle: "📖 New Heart Themes & Verses",
+    themesSubtitle: "Each New Heart is anchored by a God-given theme and Scripture.",
     editorialSectionTitle: "Editorial",
     serveTitle: "Ways to Serve",
     palancaTitle: "Support & Donations",
@@ -1087,6 +1159,11 @@ const translations = {
     guitarRole: "New Heart, New Life",
     guitarModalTitle: "Guitar — New Heart, New Life",
     guitarStory: `<p><strong>"New Heart, New Life"</strong></p><p>Before this, my spiritual life felt like someone trying to run a race while wearing chains on their feet. I knew God. I attended church and worshiped every Sunday. I served sometimes when mission teams came, and I also joined village outreach. But truly accepting Him—or obeying Him—was very difficult. Inside, I resisted. I didn't want to follow. I felt that walking in God's way was a tiring and boring burden.</p><p>Even though my mouth prayed, "God, please change my life," in reality, I had completely shut the door of my heart to God. I wanted to change, but I didn't want Him to come in and interfere. I blocked Him out and tried to handle everything with my own strength—and in the end, I failed, because as humans we cannot change the nature of our own hearts.</p><p><strong>Turning point: From "trying hard" to "opening my heart."</strong></p><p>But when I went to New Heart, God broke that wall down. I learned that true change is not about "trying harder," but about "surrender." I began to open my heart and truly let God work. The moment I said, "God, I surrender," thoughts of God came to me constantly.</p><p>I no longer wanted to obey because I "had to," but because I "love and trust" Him—and I wanted to obey immediately, without conditions. Humility arises naturally when we truly allow God to be the owner of our lives.</p><p><strong>Victory over problems and serving with a new heart</strong></p><p>When I returned from New Heart, God tested my heart immediately through a very difficult situation. It was something God had warned me about many times, but I had been stubborn. This time, I decided to "obey immediately" and place the matter in His hands.</p><p>Can you believe it? Within 1–2 days, God miraculously resolved a long-standing problem. I truly thank God.</p><p>Not only that—this new heart expanded into love for others as well. Before, I never wanted to wake up early to pray. I never felt the desire to pray for anyone. But now God has given me mercy and compassion to see that prayer is the most powerful tool an ordinary person like me can use to help others. So now I willingly and joyfully join the church's early-morning prayer group.</p><p>Lastly, I have a new personal slogan I want to share: <strong>"New Heart, New Life."</strong> When we have a new heart, we will have a new life. Because when our heart is transformed by God, the way we see the world, our problems, and the people around us will never be the same again.</p><p>All glory be to God in my life. Thank you.</p>`,
+    jinName: "Jin Sun Tak",
+    jinCountry: "🇹🇭 Thailand",
+    jinRole: "Grace Before the Program Even Began",
+    jinModalTitle: "Jin Sun Tak — Grace Before the Program Even Began",
+    jinStory: `<p>Fifteen years ago, through a program called "Good Meeting," I remember receiving precious service and love that I never expected. Now, with as many as eight members from our church attending this New Heart, I joined the team with the mindset that we should serve and help in whatever way we can.</p><p>Thinking about our church members getting to enjoy that same kind of love and service I once received made my heart overflow—I was so grateful and full of anticipation as I participated.</p><p>Before the program even began, we had a team members' gathering where we greeted one another, shared, and spent time in prayer. The missionary leading the meeting suggested that we pray together for the missionaries in Thailand. As they earnestly prayed—comforting and blessing us who minister in Thailand, a place that may look very peaceful but is spiritually so dark—I suddenly burst into tears and cried without stopping. I felt as though the Lord Himself was comforting me; I sensed deep emotion and grace washing over me.</p><p><strong>Before the program even started, I felt like I had already received all the grace I could have hoped for.</strong></p><p>While serving at Palangka and working alongside people I was meeting for the first time, I found that it didn't feel awkward or difficult at all. I was deeply moved by each and every person—gathered from all directions, from near and far—uniting with one heart and one purpose, and carrying out their roles so wonderfully. In particular, I learned so much from seeing everyone's humility.</p><p>Once the New Heart program began, it was such a joy and happiness to watch our church members—who at first looked a bit overwhelmed—grow brighter and more radiant as time went on. Even though they work hard every day, doing business and enduring exhausting days in the heat, I felt truly happy and thankful seeing them rest comfortably in a good place and receive such precious, loving service.</p><p>I prayed earnestly, again and again, that they would be filled with the Lord's precious love, and that the love they received would flow well to their families, neighbors, and within the church. I can't express how precious and grateful I am for every moment we spent laughing and crying together, praising, and praying.</p><p>After returning, we are still living in the same circumstances and environment, continuing to fight intense spiritual battles. But I will live remembering the valuable grace and blessed times we experienced through New Heart.</p><p>I give thanks and glory to our Lord who has bestowed this precious New Heart, and I want to express my gratitude once again to everyone who worked so hard. Shalom.</p>`,
     
     // Editorial
     editorialContent: `<h3>The Ripple Effect of One New Heart</h3><p>Across five continents, we are witnessing an undeniable movement of God's Spirit. The testimonies in this newsletter represent just a fraction of the lives being transformed through New Heart Ministry. From Carlos's visceral encounter in the USA to Pai's miraculous healing in Thailand, each story carries the same DNA: God's promise to give us a heart of flesh.</p><h3>Beyond the Three Days</h3><p>The three-day New Heart experience is not the destination—it's the catalyst. We are learning that true transformation happens in the "fourth day" and beyond, as we integrate the heart surgery God performed during New Heart into our daily lives. This newsletter exists to keep us connected, encouraged, and accountable to the new hearts we've received.</p><h3>Looking Forward to 2026</h3><p>With upcoming New Hearts in Israel, USA, Korea, and Vietnam, God is expanding this family even further. We invite you to pray, serve, give, and invite others to experience what you've experienced. The harvest is plentiful, and God is calling more laborers into His field.</p>`,
@@ -1115,6 +1192,9 @@ const translations = {
     storiesTitle: "변화의 이야기",
     videoHighlightsTitle: "2025 뉴하트 영상 하이라이트",
     videoHighlightsSubtitle: "2025년에 열린 각 뉴하트 리트릿의 감동적인 순간들을 다시 경험하세요.",
+    videoPrivacyNote: "🔒 아직 뉴하트를 경험하지 않은 분들에게는 이 영상을 공유하지 말아 주세요.",
+    themesTitle: "📖 뉴하트 주제 & 말씀",
+    themesSubtitle: "각 뉴하트는 하나님이 주신 주제와 말씀 위에 세워집니다.",
     editorialSectionTitle: "에디토리얼",
     serveTitle: "섬길 수 있는 방법",
     palancaTitle: "후원 & 헌금",
@@ -1183,6 +1263,11 @@ const translations = {
     guitarRole: "새 마음, 새 삶",
     guitarModalTitle: "기타 — 새 마음, 새 삶",
     guitarStory: `<p><strong>"새 마음, 새 삶"</strong></p><p>이전에 저의 영적 삶은 마치 발에 쇠사슬을 차고 경주를 뛰는 사람 같았습니다. 저는 하나님을 알고 있었고, 매주 일요일 교회에 나가 예배를 드렸습니다. 선교팀이 오면 가끔 봉사도 했고, 마을 전도에도 참여했습니다. 하지만 진정으로 그분을 받아들이거나 순종하는 것은 매우 어려웠습니다. 내면에서 저는 저항했고, 따르고 싶지 않았습니다. 하나님의 길을 걷는 것이 피곤하고 지루한 짐이라고 느꼈습니다.</p><p>입으로는 "하나님, 제 인생을 바꿔 주세요"라고 기도했지만, 실제로 저는 하나님께 마음의 문을 완전히 닫아 버렸습니다. 변하고 싶었지만, 그분이 들어와서 간섭하는 것은 원하지 않았습니다. 그분을 차단하고 제 힘으로 모든 것을 해결하려 했지만—결국 실패했습니다. 인간은 스스로 마음의 본성을 바꿀 수 없기 때문입니다.</p><p><strong>전환점: "열심히 노력하는 것"에서 "마음을 여는 것"으로</strong></p><p>그런데 뉴하트에 갔을 때, 하나님이 그 벽을 무너뜨리셨습니다. 진정한 변화는 "더 열심히 노력하는 것"이 아니라 "항복하는 것"임을 배웠습니다. 마음을 열고 진정으로 하나님이 일하시도록 했습니다. "하나님, 항복합니다"라고 말한 순간, 하나님에 대한 생각이 끊임없이 찾아왔습니다.</p><p>더 이상 "해야 하니까" 순종하는 것이 아니라, 그분을 "사랑하고 신뢰하기" 때문에—조건 없이 즉시 순종하고 싶었습니다. 진정으로 하나님이 우리 삶의 주인이 되도록 허락할 때, 겸손은 자연스럽게 생깁니다.</p><p><strong>문제에 대한 승리와 새 마음으로 섬기기</strong></p><p>뉴하트에서 돌아왔을 때, 하나님은 매우 어려운 상황을 통해 즉시 제 마음을 시험하셨습니다. 하나님이 여러 번 경고하셨지만 제가 고집을 부렸던 일이었습니다. 이번에는 "즉시 순종"하고 그 문제를 그분의 손에 맡기기로 결심했습니다.</p><p>믿을 수 있겠습니까? 1~2일 안에 하나님이 오래된 문제를 기적적으로 해결해 주셨습니다. 진심으로 하나님께 감사드립니다.</p><p>그뿐만 아니라—이 새 마음은 다른 사람들을 향한 사랑으로도 확장되었습니다. 전에는 일찍 일어나 기도하고 싶지 않았고, 누군가를 위해 기도하고 싶은 마음도 없었습니다. 하지만 이제 하나님은 저에게 자비와 연민을 주셔서, 기도가 저 같은 평범한 사람이 다른 사람을 도울 수 있는 가장 강력한 도구임을 깨닫게 해주셨습니다. 그래서 이제 기꺼이 기쁨으로 교회의 새벽 기도 모임에 참여하고 있습니다.</p><p>마지막으로 나누고 싶은 새로운 개인 슬로건이 있습니다: <strong>"새 마음, 새 삶."</strong> 새 마음을 가지면, 새 삶을 살게 됩니다. 하나님이 우리의 마음을 변화시키시면, 세상을 보는 방식, 문제를 대하는 방식, 주변 사람들을 대하는 방식이 결코 예전 같지 않을 것이기 때문입니다.</p><p>제 삶에서 모든 영광을 하나님께 돌립니다. 감사합니다.</p>`,
+    jinName: "탁진선",
+    jinCountry: "🇹🇭 태국",
+    jinRole: "프로그램이 시작되기도 전에 받은 은혜",
+    jinModalTitle: "탁진선 — 프로그램이 시작되기도 전에 받은 은혜",
+    jinStory: `<p>15년전에 좋은만남이라는 프로그램을 통해 생각하지 못했던 귀한 섬김과 사랑을 받았던 기억이 있었습니다 이번 뉴하트에 저희 교회 성도들이 8명이나 참석하게 되어서 무슨 일이든 섬기고 도와야한다는 마음을 가지고 팀멤버로 함께 하게 되었습니다</p><p>제가 받았던 그런 사랑과 섬김의 시간을 누리게 될 성도들을 생각하니 마음이 벅차고 너무 감사해서 큰 기대를 안고 참여하게 되었습니다</p><p>프로그램을 시작하기 전에 팀멤버 모임을 통해 서로 인사하고 나누는 시간에 기도 하는 시간이 있었는데 인도하는 선교사님께서 태국 선교사님들을 위해 함께 기도하기를 제안하셨습니다 너무 편안해 보이지만 영적으로 너무 어두운 이 곳 태국에서 사역하는 저희들을 위로하시고 축복하시면서 간절히 기도해 주셨는데 나도 모르게 눈물이 터지고 한없이 울었습니다 마치 주님께서 위로해 주시는듯한 감동과 은혜가 임하는 것을 느꼈습니다</p><p><strong>프로그램이 시작하기도 전에 받아할 은혜를 다 받아버렸습니다</strong></p><p>팔랑카를 섬기며 처음 만나는 분들과 함께 일을 하면서도 전혀 어색하거나 어렵지 않음을 느꼈습니다</p><p>한 분 한 분 모두 원근각처 사방에서 모여 한 마음과 한 뜻으로 똘똘 뭉쳐 각자의 일들을 너무도 멋지게 감당하는 모습에 큰 감동을 받았습니다</p><p>특히 모든 분들의 겸손한 모습들을 보면서 많은 것들을 배우게 되었습니다</p><p>뉴하트 프로그램이 시작 되고 다소 얼떨떨한 모습의 우리 성도들 모습이 시간이 갈수록 밝고 환해지는 얼굴을 보는 것이 큰 기쁨이고 행복이었습니다 더운 날씨에도 매일매일 장사하며 고된 하루를 보내는 성도들이 좋은 숙소에서 편히 쉬고 귀한 사랑의 섬김을 받는 모습을 보며 참 행복하고 감사했습니다</p><p>성도들이 주님의 귀한 시랑을 충만히 받아서 받은 그 사랑을 가족과 이웃과 교회안에 잘 흘려 보낼수 있게 해달라고 간절히 기도하며 기도했습니다 성도들과 함께 웃고 울고 찬양하며 기도했던 모든 시간들이 얼마나 귀하고 감사한지 모릅니다</p><p>돌아와서 여전히 같은 상황과 환경 속에서 영적인 싸움을 치열하게 감당하며 살아 가고 있지만 뉴하트를 통해 경험했던 소중한 은혜와 축복의 시간들을 늘 기억하며 살아가겠습니다</p><p>귀한 뉴하트를 베풀어 주신 우리 주님께 감사와 영광을 올려드리며 수고하신 모든 분들께 다시한번 감사의 말씀을 드립니다 샬롬</p>`,
   },
   
   // Adding VN, TH, IL translations - abbreviated for space, you can expand these
@@ -1194,6 +1279,9 @@ const translations = {
     storiesTitle: "Câu Chuyện Biến Đổi",
     videoHighlightsTitle: "Video Nổi Bật New Heart 2025",
     videoHighlightsSubtitle: "Sống lại những khoảnh khắc đầy quyền năng từ mỗi buổi tĩnh tâm New Heart trong năm 2025.",
+    videoPrivacyNote: "🔒 Xin đừng chia sẻ những video này với bất kỳ ai chưa từng trải nghiệm New Heart.",
+    themesTitle: "📖 Chủ Đề & Câu Gốc New Heart",
+    themesSubtitle: "Mỗi New Heart được xây dựng trên chủ đề và Kinh Thánh Chúa ban.",
     editorialSectionTitle: "Bài Xã Luận",
     serveTitle: "Cách Để Phục Vụ",
     palancaTitle: "Hỗ Trợ & Quyên Góp",
@@ -1262,6 +1350,11 @@ const translations = {
     guitarRole: "Trái Tim Mới, Cuộc Sống Mới",
     guitarModalTitle: "Guitar — Trái Tim Mới, Cuộc Sống Mới",
     guitarStory: `<p><strong>"Trái Tim Mới, Cuộc Sống Mới"</strong></p><p>Trước đây, đời sống tâm linh của tôi giống như một người cố chạy đua trong khi chân mang xiềng xích. Tôi biết Chúa. Tôi đi nhà thờ và thờ phượng mỗi Chủ nhật. Đôi khi tôi phục vụ khi các đoàn truyền giáo đến, và tôi cũng tham gia truyền giáo tại các làng. Nhưng thực sự chấp nhận Ngài—hay vâng phục Ngài—là điều rất khó khăn. Bên trong, tôi chống đối. Tôi không muốn theo. Tôi cảm thấy đi theo đường lối của Chúa là một gánh nặng mệt mỏi và nhàm chán.</p><p>Dù miệng tôi cầu nguyện, "Chúa ơi, xin hãy thay đổi cuộc đời con," nhưng thực tế, tôi đã hoàn toàn đóng cửa lòng mình với Chúa. Tôi muốn thay đổi, nhưng không muốn Ngài bước vào và can thiệp. Tôi chặn Ngài ra và cố gắng tự mình giải quyết mọi thứ—và cuối cùng, tôi thất bại, vì con người không thể tự thay đổi bản chất tấm lòng mình.</p><p><strong>Bước ngoặt: Từ "cố gắng hết sức" đến "mở lòng"</strong></p><p>Nhưng khi tôi đến New Heart, Chúa đã phá vỡ bức tường đó. Tôi học được rằng sự thay đổi thực sự không phải là "cố gắng nhiều hơn," mà là "đầu phục." Tôi bắt đầu mở lòng và thực sự để Chúa hành động. Khoảnh khắc tôi nói, "Chúa ơi, con đầu phục," những suy nghĩ về Chúa đến với tôi liên tục.</p><p>Tôi không còn muốn vâng phục vì "phải làm," mà vì tôi "yêu thương và tin cậy" Ngài—và tôi muốn vâng phục ngay lập tức, không điều kiện. Sự khiêm nhường tự nhiên nảy sinh khi chúng ta thực sự cho phép Chúa làm chủ cuộc đời mình.</p><p><strong>Chiến thắng trước nan đề và phục vụ với trái tim mới</strong></p><p>Khi tôi trở về từ New Heart, Chúa thử thách tấm lòng tôi ngay lập tức qua một tình huống rất khó khăn. Đó là điều Chúa đã cảnh báo tôi nhiều lần, nhưng tôi đã cứng đầu. Lần này, tôi quyết định "vâng phục ngay" và giao phó vấn đề vào tay Ngài.</p><p>Bạn có tin được không? Trong 1–2 ngày, Chúa đã giải quyết một vấn đề kéo dài một cách kỳ diệu. Tôi thực sự cảm tạ Chúa.</p><p>Không chỉ vậy—trái tim mới này cũng mở rộng thành tình yêu dành cho người khác. Trước đây, tôi chẳng bao giờ muốn dậy sớm cầu nguyện. Tôi chẳng bao giờ có mong muốn cầu nguyện cho ai. Nhưng giờ đây Chúa đã ban cho tôi lòng thương xót và trắc ẩn để thấy rằng cầu nguyện là công cụ mạnh mẽ nhất mà một người bình thường như tôi có thể dùng để giúp đỡ người khác. Vì vậy giờ đây tôi tự nguyện và vui vẻ tham gia nhóm cầu nguyện sáng sớm của hội thánh.</p><p>Cuối cùng, tôi có một khẩu hiệu cá nhân mới muốn chia sẻ: <strong>"Trái Tim Mới, Cuộc Sống Mới."</strong> Khi chúng ta có trái tim mới, chúng ta sẽ có cuộc sống mới. Vì khi tấm lòng được Chúa biến đổi, cách chúng ta nhìn thế giới, vấn đề và những người xung quanh sẽ không bao giờ giống như trước nữa.</p><p>Mọi vinh quang thuộc về Chúa trong đời tôi. Cảm ơn.</p>`,
+    jinName: "Jin Sun Tak",
+    jinCountry: "🇹🇭 Thái Lan",
+    jinRole: "Ân Điển Trước Khi Chương Trình Bắt Đầu",
+    jinModalTitle: "Jin Sun Tak — Ân Điển Trước Khi Chương Trình Bắt Đầu",
+    jinStory: `<p>Mười lăm năm trước, qua một chương trình có tên "Cuộc Gặp Gỡ Tốt Đẹp," tôi nhớ mình đã nhận được sự phục vụ và tình yêu quý báu mà tôi chưa bao giờ mong đợi. Lần này, với tám thành viên từ hội thánh chúng tôi tham gia New Heart, tôi gia nhập đội ngũ với tâm niệm phải phục vụ và giúp đỡ bằng mọi cách có thể.</p><p>Nghĩ đến việc các thành viên hội thánh sẽ được trải nghiệm cùng một tình yêu và sự phục vụ mà tôi từng nhận được, lòng tôi tràn ngập—tôi rất biết ơn và háo hức khi tham gia.</p><p>Trước khi chương trình bắt đầu, chúng tôi có buổi họp mặt đội ngũ để chào hỏi, chia sẻ và cầu nguyện. Vị giáo sĩ dẫn dắt buổi họp đề nghị chúng tôi cùng cầu nguyện cho các giáo sĩ tại Thái Lan. Khi họ tha thiết cầu nguyện—an ủi và chúc phước cho những người phục vụ tại Thái Lan, nơi trông có vẻ yên bình nhưng tâm linh lại rất tối tăm—tôi bỗng bật khóc không thể dừng lại. Tôi cảm nhận như chính Chúa đang an ủi tôi; tôi cảm nhận được sự xúc động sâu sắc và ân điển tuôn tràn.</p><p><strong>Trước khi chương trình bắt đầu, tôi cảm thấy như mình đã nhận được tất cả ân điển mà mình có thể hy vọng.</strong></p><p>Khi phục vụ tại Palangka và làm việc cùng những người lần đầu gặp mặt, tôi thấy hoàn toàn không có sự ngượng ngùng hay khó khăn. Tôi vô cùng xúc động bởi từng người—tụ họp từ khắp nơi, gần xa—đoàn kết một lòng một ý, và hoàn thành vai trò của mình thật tuyệt vời. Đặc biệt, tôi đã học được rất nhiều từ sự khiêm nhường của mọi người.</p><p>Khi chương trình New Heart bắt đầu, thật vui và hạnh phúc khi nhìn các thành viên hội thánh—ban đầu có vẻ hơi choáng ngợp—ngày càng tươi sáng và rạng rỡ hơn. Dù họ làm việc vất vả mỗi ngày trong cái nóng, tôi thực sự hạnh phúc và biết ơn khi thấy họ được nghỉ ngơi thoải mái và nhận được sự phục vụ yêu thương quý báu.</p><p>Tôi tha thiết cầu nguyện nhiều lần rằng họ sẽ được đầy dẫy tình yêu quý báu của Chúa, và tình yêu họ nhận được sẽ lan tỏa đến gia đình, hàng xóm và trong hội thánh. Tôi không thể diễn tả những khoảnh khắc quý báu và biết ơn khi chúng tôi cùng cười, cùng khóc, cùng ngợi khen và cầu nguyện.</p><p>Sau khi trở về, chúng tôi vẫn sống trong cùng hoàn cảnh, tiếp tục chiến đấu những trận chiến tâm linh ác liệt. Nhưng tôi sẽ sống với ký ức về ân điển quý báu và những khoảng thời gian phước hạnh qua New Heart.</p><p>Tôi dâng lời cảm tạ và vinh hiển lên Chúa đã ban cho New Heart quý báu này, và xin bày tỏ lòng biết ơn một lần nữa đến tất cả mọi người đã làm việc chăm chỉ. Shalom.</p>`,
   },
   
   TH: {
@@ -1272,6 +1365,9 @@ const translations = {
     storiesTitle: "เรื่องราวแห่งการเปลี่ยนแปลง",
     videoHighlightsTitle: "วิดีโอไฮไลท์ New Heart 2025",
     videoHighlightsSubtitle: "สัมผัสช่วงเวลาอันทรงพลังจากการรีทรีท New Heart แต่ละครั้งในปี 2025 อีกครั้ง",
+    videoPrivacyNote: "🔒 กรุณาอย่าแชร์วิดีโอเหล่านี้กับผู้ที่ยังไม่เคยเข้าร่วม New Heart",
+    themesTitle: "📖 หัวข้อและพระคัมภีร์ New Heart",
+    themesSubtitle: "New Heart แต่ละครั้งตั้งอยู่บนหัวข้อและพระคัมภีร์ที่พระเจ้าประทาน",
     editorialSectionTitle: "บทบรรณาธิการ",
     serveTitle: "วิธีการรับใช้",
     palancaTitle: "การสนับสนุนและการบริจาค",
@@ -1340,6 +1436,11 @@ const translations = {
     guitarRole: "หัวใจใหม่ ชีวิตใหม่",
     guitarModalTitle: "กีตาร์ — หัวใจใหม่ ชีวิตใหม่",
     guitarStory: `<p><strong>"หัวใจใหม่ ชีวิตใหม่"</strong></p><p>ก่อนหน้านี้ ชีวิตฝ่ายจิตวิญญาณของผมรู้สึกเหมือนคนที่พยายามวิ่งแข่งโดยมีโซ่ล่ามอยู่ที่เท้า ผมรู้จักพระเจ้า ผมไปโบสถ์และนมัสการทุกวันอาทิตย์ ผมรับใช้บางครั้งเมื่อทีมมิชชันนารีมา และยังร่วมประกาศข่าวประเสริฐในหมู่บ้าน แต่การยอมรับพระองค์อย่างแท้จริง—หรือเชื่อฟังพระองค์—เป็นเรื่องยากมาก ภายในใจ ผมต่อต้าน ผมไม่อยากติดตาม ผมรู้สึกว่าการเดินในทางของพระเจ้าเป็นภาระที่เหนื่อยล้าและน่าเบื่อ</p><p>แม้ปากของผมอธิษฐานว่า "พระเจ้า โปรดเปลี่ยนชีวิตของข้าพระองค์" แต่ในความเป็นจริง ผมปิดประตูหัวใจต่อพระเจ้าสนิทแล้ว ผมอยากเปลี่ยนแปลง แต่ไม่อยากให้พระองค์เข้ามาแทรกแซง ผมกั้นพระองค์ออกไปและพยายามจัดการทุกอย่างด้วยกำลังของตัวเอง—และในที่สุด ผมก็ล้มเหลว เพราะมนุษย์ไม่สามารถเปลี่ยนธรรมชาติของหัวใจตัวเองได้</p><p><strong>จุดเปลี่ยน: จาก "พยายามหนัก" สู่ "เปิดใจ"</strong></p><p>แต่เมื่อผมไป New Heart พระเจ้าทำลายกำแพงนั้นลง ผมเรียนรู้ว่าการเปลี่ยนแปลงที่แท้จริงไม่ใช่การ "พยายามมากขึ้น" แต่คือการ "ยอมจำนน" ผมเริ่มเปิดใจและปล่อยให้พระเจ้าทำงานอย่างแท้จริง ช่วงเวลาที่ผมพูดว่า "พระเจ้า ข้าพระองค์ยอมจำนน" ความคิดเกี่ยวกับพระเจ้าเข้ามาหาผมอย่างต่อเนื่อง</p><p>ผมไม่อยากเชื่อฟังเพราะ "ต้องทำ" อีกต่อไป แต่เพราะผม "รักและไว้วางใจ" พระองค์—และผมอยากเชื่อฟังทันที โดยไม่มีเงื่อนไข ความถ่อมตนเกิดขึ้นโดยธรรมชาติเมื่อเรายอมให้พระเจ้าเป็นเจ้าของชีวิตของเราอย่างแท้จริง</p><p><strong>ชัยชนะเหนือปัญหาและการรับใช้ด้วยหัวใจใหม่</strong></p><p>เมื่อผมกลับจาก New Heart พระเจ้าทดสอบหัวใจผมทันทีผ่านสถานการณ์ที่ยากลำบากมาก เป็นเรื่องที่พระเจ้าเตือนผมหลายครั้งแล้ว แต่ผมดื้อรั้น คราวนี้ ผมตัดสินใจ "เชื่อฟังทันที" และมอบเรื่องนั้นไว้ในพระหัตถ์ของพระองค์</p><p>คุณเชื่อได้ไหม? ภายใน 1-2 วัน พระเจ้าแก้ไขปัญหาที่ยืดเยื้อมานานอย่างอัศจรรย์ ผมขอบคุณพระเจ้าอย่างแท้จริง</p><p>ไม่เพียงเท่านั้น—หัวใจใหม่นี้ยังขยายเป็นความรักต่อผู้อื่นด้วย ก่อนหน้านี้ ผมไม่เคยอยากตื่นเช้ามาอธิษฐาน ผมไม่เคยรู้สึกอยากอธิษฐานเพื่อใคร แต่ตอนนี้พระเจ้าให้ความเมตตาและความเห็นอกเห็นใจแก่ผม เพื่อเห็นว่าการอธิษฐานเป็นเครื่องมือที่ทรงพลังที่สุดที่คนธรรมดาอย่างผมสามารถใช้ช่วยเหลือผู้อื่นได้ ดังนั้นตอนนี้ผมเต็มใจและยินดีเข้าร่วมกลุ่มอธิษฐานเช้าของคริสตจักร</p><p>สุดท้ายนี้ ผมมีสโลแกนส่วนตัวใหม่ที่อยากแบ่งปัน: <strong>"หัวใจใหม่ ชีวิตใหม่"</strong> เมื่อเรามีหัวใจใหม่ เราจะมีชีวิตใหม่ เพราะเมื่อหัวใจของเราถูกเปลี่ยนแปลงโดยพระเจ้า วิธีที่เรามองโลก ปัญหาของเรา และผู้คนรอบข้างจะไม่เหมือนเดิมอีกต่อไป</p><p>ขอพระสิริทั้งหมดเป็นของพระเจ้าในชีวิตของผม ขอบคุณครับ</p>`,
+    jinName: "จินซอนทัก",
+    jinCountry: "🇹🇭 ไทย",
+    jinRole: "พระคุณก่อนโปรแกรมจะเริ่ม",
+    jinModalTitle: "จินซอนทัก — พระคุณก่อนโปรแกรมจะเริ่ม",
+    jinStory: `<p>สิบห้าปีที่แล้ว ผ่านโปรแกรมที่เรียกว่า "การพบปะที่ดี" ฉันจำได้ว่าได้รับการรับใช้และความรักอันล้ำค่าที่ไม่เคยคาดคิดมาก่อน ครั้งนี้ สมาชิกจากคริสตจักรของเราถึงแปดคนเข้าร่วม New Heart ฉันจึงเข้าร่วมทีมด้วยใจที่ว่าควรรับใช้และช่วยเหลือในทุกวิถีทางที่ทำได้</p><p>เมื่อนึกถึงสมาชิกคริสตจักรที่จะได้สัมผัสความรักและการรับใช้แบบเดียวกับที่ฉันเคยได้รับ หัวใจของฉันท่วมท้น—ฉันรู้สึกขอบคุณและเต็มไปด้วยความคาดหวังในการเข้าร่วม</p><p>ก่อนโปรแกรมจะเริ่ม เรามีการรวมตัวของสมาชิกทีมเพื่อทักทาย แบ่งปัน และใช้เวลาอธิษฐาน มิชชันนารีที่นำการประชุมเสนอให้เราอธิษฐานด้วยกันเพื่อมิชชันนารีในประเทศไทย ขณะที่พวกเขาอธิษฐานอย่างจริงจัง—ปลอบโยนและอวยพรพวกเราที่รับใช้ในประเทศไทย สถานที่ที่ดูสงบสุขแต่ฝ่ายจิตวิญญาณมืดมาก—ฉันก็ร้องไห้ออกมาอย่างกะทันหันและหยุดไม่ได้ ฉันรู้สึกเหมือนองค์พระผู้เป็นเจ้าเองกำลังปลอบโยนฉัน ฉันรู้สึกถึงความซาบซึ้งลึกซึ้งและพระคุณที่หลั่งไหลเข้ามา</p><p><strong>ก่อนที่โปรแกรมจะเริ่ม ฉันรู้สึกเหมือนได้รับพระคุณทั้งหมดที่หวังไว้แล้ว</strong></p><p>ขณะรับใช้ที่ปาลังกาและทำงานร่วมกับคนที่เพิ่งพบกันครั้งแรก ฉันพบว่าไม่รู้สึกเก้อเขินหรือลำบากเลย ฉันประทับใจทุกคนอย่างลึกซึ้ง—มารวมตัวกันจากทุกทิศทาง ใกล้และไกล—รวมเป็นหนึ่งใจหนึ่งเป้าหมาย และทำหน้าที่ของตนอย่างยอดเยี่ยม โดยเฉพาะ ฉันได้เรียนรู้มากจากการเห็นความถ่อมตนของทุกคน</p><p>เมื่อโปรแกรม New Heart เริ่มต้น เป็นความสุขและความปีติยิ่งที่ได้เห็นสมาชิกคริสตจักร—ที่ตอนแรกดูตื่นตะลึงเล็กน้อย—สว่างสดใสขึ้นเรื่อยๆ แม้พวกเขาจะทำงานหนักทุกวันในอากาศร้อน ฉันรู้สึกมีความสุขและขอบคุณอย่างแท้จริงที่เห็นพวกเขาได้พักผ่อนสบายและได้รับการรับใช้ด้วยความรักอันล้ำค่า</p><p>ฉันอธิษฐานอย่างจริงจังซ้ำแล้วซ้ำเล่าว่าพวกเขาจะเต็มเปี่ยมด้วยความรักอันล้ำค่าขององค์พระผู้เป็นเจ้า และความรักที่ได้รับจะไหลไปสู่ครอบครัว เพื่อนบ้าน และในคริสตจักร ฉันบอกไม่ได้ว่าทุกช่วงเวลาที่เราหัวเราะ ร้องไห้ สรรเสริญ และอธิษฐานด้วยกันนั้นล้ำค่าเพียงใด</p><p>หลังจากกลับมา เรายังคงอยู่ในสถานการณ์เดิม สู้รบทางจิตวิญญาณอย่างดุเดือด แต่ฉันจะมีชีวิตอยู่โดยจดจำพระคุณอันล้ำค่าและช่วงเวลาแห่งพระพรที่ได้สัมผัสผ่าน New Heart</p><p>ฉันถวายความขอบคุณและพระสิริแด่องค์พระผู้เป็นเจ้าที่ได้ประทาน New Heart อันล้ำค่านี้ และขอแสดงความขอบคุณอีกครั้งต่อทุกคนที่ทำงานอย่างหนัก ชาโลม</p>`,
   },
   
   IL: {
@@ -1350,6 +1451,9 @@ const translations = {
     storiesTitle: "סיפורי שינוי",
     videoHighlightsTitle: "סרטוני הדגשה של ניו הארט 2025",
     videoHighlightsSubtitle: "חוו מחדש את הרגעים העוצמתיים מכל נסיגת ניו הארט שנערכה ב-2025.",
+    videoPrivacyNote: "🔒 אנא אל תשתפו סרטונים אלה עם מי שטרם חווה את ניו הארט.",
+    themesTitle: "📖 נושאות ופסוקים — ניו הארט",
+    themesSubtitle: "כל ניו הארט מעוגן בנושא ובפסוק שניתנו מאת ה׳.",
     editorialSectionTitle: "מאמר פתיחה",
     serveTitle: "דרכים לשרת",
     palancaTitle: "תמיכה ותרומות",
@@ -1418,6 +1522,11 @@ const translations = {
     guitarRole: "לב חדש, חיים חדשים",
     guitarModalTitle: "גיטאר — לב חדש, חיים חדשים",
     guitarStory: `<p><strong>"לב חדש, חיים חדשים"</strong></p><p>לפני כן, חיי הרוח שלי הרגישו כמו מישהו שמנסה לרוץ תחרות כשרגליו כבולות בשרשראות. הכרתי את אלוהים. הלכתי לכנסייה והשתחוויתי כל יום ראשון. שירתתי לפעמים כשצוותי משימה הגיעו, וגם הצטרפתי להפצה בכפרים. אבל לקבל אותו באמת—או לציית לו—היה מאוד קשה. בפנים, התנגדתי. לא רציתי ללכת אחריו. הרגשתי שהליכה בדרך אלוהים היא נטל מעייף ומשעמם.</p><p>למרות שפי התפלל, "אלוהים, בבקשה שנה את חיי," במציאות, סגרתי לחלוטין את דלת ליבי בפני אלוהים. רציתי להשתנות, אבל לא רציתי שהוא ייכנס ויתערב. חסמתי אותו וניסיתי להתמודד עם הכל בכוחות עצמי—ובסופו של דבר, נכשלתי, כי בני אדם לא יכולים לשנות את טבע ליבם.</p><p><strong>נקודת מפנה: מ"להתאמץ" ל"לפתוח את הלב"</strong></p><p>אבל כשהלכתי ל-New Heart, אלוהים שבר את הקיר הזה. למדתי ששינוי אמיתי הוא לא "להתאמץ יותר," אלא "להיכנע." התחלתי לפתוח את ליבי ובאמת לתת לאלוהים לפעול. ברגע שאמרתי, "אלוהים, אני נכנע," מחשבות על אלוהים באו אליי ללא הפסקה.</p><p>לא רציתי עוד לציית כי "חייב," אלא כי אני "אוהב וסומך" עליו—ורציתי לציית מיד, בלי תנאים. ענווה נוצרת באופן טבעי כשאנחנו באמת מאפשרים לאלוהים להיות הבעלים של חיינו.</p><p><strong>ניצחון על בעיות ושירות בלב חדש</strong></p><p>כשחזרתי מ-New Heart, אלוהים בחן את ליבי מיד דרך מצב קשה מאוד. זה היה משהו שאלוהים הזהיר אותי ממנו פעמים רבות, אבל הייתי עקשן. הפעם, החלטתי "לציית מיד" ולהניח את העניין בידיו.</p><p>אתם מאמינים? תוך יום-יומיים, אלוהים פתר בעיה ארוכת שנים בדרך ניסית. אני באמת מודה לאלוהים.</p><p>לא רק זה—הלב החדש הזה התרחב גם לאהבה כלפי אחרים. קודם, מעולם לא רציתי לקום מוקדם להתפלל. מעולם לא הרגשתי רצון להתפלל עבור מישהו. אבל עכשיו אלוהים נתן לי רחמים וחמלה לראות שתפילה היא הכלי החזק ביותר שאדם רגיל כמוני יכול להשתמש בו כדי לעזור לאחרים. אז עכשיו אני מצטרף ברצון ובשמחה לקבוצת תפילת הבוקר המוקדמת של הכנסייה.</p><p>לסיום, יש לי סיסמה אישית חדשה שאני רוצה לשתף: <strong>"לב חדש, חיים חדשים."</strong> כשיש לנו לב חדש, יהיו לנו חיים חדשים. כי כשליבנו משתנה על ידי אלוהים, הדרך שבה אנחנו רואים את העולם, את הבעיות שלנו, ואת האנשים סביבנו לעולם לא תהיה אותו דבר שוב.</p><p>כל הכבוד לאלוהים בחיי. תודה.</p>`,
+    jinName: "ג׳ין סון טאק",
+    jinCountry: "🇹🇭 תאילנד",
+    jinRole: "חסד לפני שהתוכנית אפילו התחילה",
+    jinModalTitle: "ג׳ין סון טאק — חסד לפני שהתוכנית אפילו התחילה",
+    jinStory: `<p>לפני חמש עשרה שנים, דרך תוכנית בשם "מפגש טוב," אני זוכרת שקיבלתי שירות ואהבה יקרים שלא ציפיתי להם. הפעם, עם שמונה חברים מהקהילה שלנו שהשתתפו ב-New Heart, הצטרפתי לצוות עם הלך הרוח שעלינו לשרת ולעזור בכל דרך אפשרית.</p><p>המחשבה שחברי הקהילה שלנו ייהנו מאותה אהבה ושירות שקיבלתי פעם מילאה את ליבי—הייתי כל כך אסירת תודה ומלאת ציפייה כשהשתתפתי.</p><p>לפני שהתוכנית אפילו התחילה, היה לנו מפגש צוות שבו ברכנו זה את זה, שיתפנו והתפללנו. המיסיונר שהנחה את המפגש הציע שנתפלל יחד עבור המיסיונרים בתאילנד. כשהם התפללו בכנות—מנחמים ומברכים אותנו שמשרתים בתאילנד, מקום שנראה שלו אך רוחנית חשוך מאוד—פרצתי בבכי פתאומי ולא יכולתי להפסיק. הרגשתי כאילו האדון עצמו מנחם אותי; חשתי רגש עמוק וחסד שוטפים אותי.</p><p><strong>לפני שהתוכנית אפילו התחילה, הרגשתי שכבר קיבלתי את כל החסד שיכולתי לקוות לו.</strong></p><p>בזמן השירות בפלנגקה והעבודה לצד אנשים שפגשתי לראשונה, גיליתי שזה לא הרגיש מביך או קשה כלל. התרגשתי עמוקות מכל אדם—שהתאספו מכל הכיוונים, מקרוב ומרחוק—מתאחדים בלב אחד ובמטרה אחת, וממלאים את תפקידיהם בצורה נפלאה. במיוחד, למדתי רבות מהענווה של כולם.</p><p>כשתוכנית New Heart התחילה, היה שמחה ואושר לראות את חברי הקהילה—שבהתחלה נראו קצת המומים—הולכים ומזהירים עם הזמן. למרות שהם עובדים קשה כל יום בחום, הרגשתי באמת מאושרת ואסירת תודה לראות אותם נחים בנוחות ומקבלים שירות אוהב ויקר.</p><p>התפללתי בכנות שוב ושוב שיתמלאו באהבת האדון היקרה, ושהאהבה שקיבלו תזרום למשפחותיהם, שכניהם ובתוך הקהילה. אני לא יכולה לבטא כמה יקר ומלא תודה כל רגע שצחקנו ובכינו יחד, שיבחנו והתפללנו.</p><p>אחרי החזרה, אנחנו עדיין חיים באותן נסיבות, ממשיכים להילחם קרבות רוחניים עזים. אבל אחיה עם הזיכרון של החסד היקר והזמנים המבורכים שחווינו דרך New Heart.</p><p>אני מעלה תודה ותפארת לאדוננו שהעניק את ה-New Heart היקר הזה, ורוצה להביע את הכרת התודה שלי שוב לכל מי שעבד כל כך קשה. שלום.</p>`,
   }
 };
   </script>
@@ -1489,8 +1598,11 @@ function switchLanguage(lang) {
   safeSetText("pai-country", t.paiCountry);
   safeSetText("gukhyun-country", t.gukhyunCountry);
   safeSetText("guitar-name", t.guitarName);
+  safeSetText("jin-name", t.jinName);
   safeSetText("guitar-country", t.guitarCountry);
+  safeSetText("jin-country", t.jinCountry);
   safeSetText("guitar-role", t.guitarRole);
+  safeSetText("jin-role", t.jinRole);
   
   // Modal titles
   safeSetText("carlos-modal-title", t.carlosModalTitle);
@@ -1500,10 +1612,14 @@ function switchLanguage(lang) {
   safeSetText("pai-modal-title", t.paiModalTitle);
   safeSetText("gukhyun-modal-title", t.gukhyunModalTitle);
   safeSetText("guitar-modal-title", t.guitarModalTitle);
+  safeSetText("jin-modal-title", t.jinModalTitle);
   
   // Editorial and testimonies
   safeSetText("video-highlights-title", t.videoHighlightsTitle);
   safeSetText("video-highlights-subtitle", t.videoHighlightsSubtitle);
+  safeSetText("video-privacy-note", t.videoPrivacyNote);
+  safeSetText("themes-title", t.themesTitle);
+  safeSetText("themes-subtitle", t.themesSubtitle);
   safeSetHTML("editorial-content", t.editorialContent);
   safeSetHTML("carlos-story-content", t.carlosStory);
   safeSetHTML("thao-story-content", t.thaoStory);
@@ -1512,6 +1628,7 @@ function switchLanguage(lang) {
   safeSetHTML("pai-story-content", t.paiStory);
   safeSetHTML("gukhyun-story-content", t.gukhyunStory);
   safeSetHTML("guitar-story-content", t.guitarStory);
+  safeSetHTML("jin-story-content", t.jinStory);
   
   // Update buttons
   document.querySelectorAll(".open-modal").forEach(btn => btn.textContent = t.readStory);
